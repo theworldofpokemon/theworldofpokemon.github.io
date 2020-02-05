@@ -215,6 +215,6 @@ function loadPage(n) {
 	document.getElementById("Evolution-header").innerHTML = "<font style='color:" + genColor + "'>" + "Evolution" + "</font>";
 	document.getElementById("Evolution").innerHTML = overviewEvo[n];
 	//Back/Forward Buttons
-	document.getElementById("prev").href= 'entryPage_' + n-1 + '.html'
-	document.getElementById("prev").href= 'entryPage_' + n+1 + '.html'
+	document.getElementById("prev").href= 'entryPage_' + parseInt(parseInt(n)-parseInt(1)) + '.html'
+	document.getElementById("next").href= 'entryPage_' + parseInt(parseInt(n)+parseInt(1)) + '.html'
 }
