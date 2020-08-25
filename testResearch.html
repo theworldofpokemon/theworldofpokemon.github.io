@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <head>
+    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
+    <script type='text/javascript' src='data/OverviewText.js'></script>
+  </head>
+
+  <script>generateStyle()</script>
+
+  <body onload='loadResearchPage(540)'>
+
+        <script>generateNavBar()</script>
+
+    <div class='flex-container' style='margin:0px 200px 200px 200px;display:flex;flex-direction:column;'>
+      <h1 class='entry-name' id='entry-name'>Pokémon Name</h1>
+      <h3 class='scientific-name' id='scientific-name'>The Undefined Pokémon</h3>
+
+      <div class='flex-container' style='display:flex; flex-direction: row;'>
+        <span><p class='research-info' id='Research'>Research Info</p></span>
+      </div>
+      <div>
+        <hr class='hr' style='width:100%;'></hr>
+      </div>
+      <div class='flex-container' style='display:flex; flex-direction: row;'>
+        <span style='flex: 0 0 150px'><h2 class='section-info' id='Diet-header'>Diet</h2></span>
+        <span><p class='diet-info' id='Diet'>Diet Info</p></span>
+      </div>
+      <div class='flex-container' style='display:flex; flex-direction: row;'>
+        <span style='flex: 0 0 150px'><h2 class='section-info' id='Care-header'>Care</h2></span>
+        <span><p class='care-info' id='Care'>Care Info</p></span>
+      </div>
+      <div class='flex-container' style='display:flex; flex-direction: row;'>
+        <span style='flex: 0 0 150px'><h2 class='section-info' id='Caution-header'>Caution</h2></span>
+        <span><p class='caution-info' id='Caution'>Caution Info</p></span>
+      </div>
+      <div class='flex-container' style='display:flex; flex-direction: row;'>
+        <span style='flex: 0 0 150px'><h2 class='section-info' id='Behavior-header'>Behavior</h2></span>
+        <span><p class='behavior-info' id='Behavior'>Behavior Info</p></span>
+      </div>
+    </div>
+
+  </body>
+
+</html>

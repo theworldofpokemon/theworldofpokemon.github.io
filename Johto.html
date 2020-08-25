@@ -1,23 +1,23 @@
+<!DOCTYPE html>
 <html>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
 
   <head>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-    <script type="text/javascript" src="data/OverviewText.js"></script>
-    <script>
-    function loadEntryHolderPage() {
-      var entryImages = "";
-      var entryImageLink = "";
-      for (i = 152; i <= 251; i++) {
-        entryImageLink = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/".concat(overviewNum[i],".png");
-        entryImages = entryImages + "<a href='entryPages/entryPage_" + i + ".html'><img src='" + entryImageLink + "' width='40' height='40'></a>";
-      }
-      document.getElementById("entryHolder").innerHTML = entryImages;
-    }
-    </script>
+    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
+    <script type='text/javascript' src='OverviewText.js'></script>
   </head>
 
-  <body onload="loadEntryHolderPage()">
-    <div id ="entryHolder"></div>
+  <script>generateStyle()</script>
+
+  <body onload='loadEntryHolderPage(152,251)'>
+    <script>generateNavBar()</script>
+    <h1 id='region'><strong><center>Johto</center></strong></h1>
+    <script>document.getElementById('region').style.color=genColors[1]</script>
+    <br></br>
+    <div id="region-gallery" class="imageGallery" style="line-height: 0px; padding: 0; margin: 0;">
+      <div style='display:flex; flex-flow:row wrap; margin:0px 175px 100px 175px;' id='entryHolder'></div>
+    </div>
   </body>
 
 </html>
