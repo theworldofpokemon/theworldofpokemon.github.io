@@ -10,7 +10,7 @@ for i in "${mainLoop[@]}"
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
   <head>
-    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
+    <script type='text/javascript' src='https://code.jquery.com/jquery-latest.js'></script>
     <script type='text/javascript' src='../OverviewText.js'></script>
   </head>
 
