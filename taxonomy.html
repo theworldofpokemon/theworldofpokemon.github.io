@@ -31,7 +31,7 @@
         nextLevel.push(node.children[n]);
       }
       else {
-        toWrite = toWrite + "\t\t\t\t\t\t\t\t<font  size='4'><i>" + overviewSN[node.children[n].num] + "</i></font>      <font size = 2>(" + overviewName[node.children[n].num] + ")</font>\n";
+        toWrite = toWrite + "\t\t\t\t\t\t\t\t<a href = " + directory + "/researchPages/" + node.children[n].num + "_research.html><font size='4'><i>" + overviewSN[node.children[n].num] + "</i></font>      <font size = 2>(" + overviewName[node.children[n].num] + ")</font>\n";
       }
     }
     while (nextLevel.length > 0) {
