@@ -918,6 +918,7 @@ function behaviorFormatter(i) {
 	}
 
 function generateNavBar() {
+	alert(directory)
 	document.write("<header class='w3-center' style='margin:0px 0x 150px 0px;'>" +
 	"<h1 class='w3-xlarge', style='font-size:2em;'>THE WORLD OF</h1>" +
 	  "<h1>POKÉMON</h1>"+
