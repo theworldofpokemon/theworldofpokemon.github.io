@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<head>
+  <script type='text/javascript' src='https://code.jquery.com/jquery-latest.js'></script>
+  <script type='text/javascript' src='OverviewText.js'></script>
+</head>
+
+  <script>generateStyle()</script>
+  <body><script>generateNavBar()</script></body>
+
+  <div style='margin:0px 170px 170px 170px;'>
+  <h2 class="wsite-content-title" style="text-align:center;">
+    <font size="5">Starter Quiz</font>
+  </h2>
+
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr class="styled-hr" style="width:100%;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+<h3 style="text-align:center; font-style:italic; display:none" id="starterReveal">
+  <font size="4">Your starter is...</font>
+</h3>
+<h3 style="text-align:center; font-style:italic;" id="question">
+  <font size="5">Which of the following best describes the habitat you live in or plan to explore?</font>
+</h3>
+<h3 style="text-align:center; font-style:none; font-size:250%; display:none" id="reveal">
+  <font>Undefined</font>
+</h3>
+</br>
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr class="styled-hr" style="width:100%;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+<h3 style="text-align:center; font-style:italic; font-size:120%; display:none" id="followup">
+  <font size="4">Learn more about UNDEFINED below!</font>
+</h3>
+
+<script>
+var personalityNum = [1,4,3,2,1,1,2,4,2,2,6,6,2,8,2,2,8,5,8,1,4,6,1,2,5,2,1,1,2,1,1,6,2,3,1,2,7,1,8,1,4,2,6,8,3,4,2,6,2,1,8,4,4,4,1,6,1,6,1,8,2,4,2,
+  1,2,3,2,8,3,2,1,8,2,6,6,8,1,3,8,3,8,8,7,7,1,2,1,2,3,6,2,2,1,7,8,1,1,3,8,6,4,6,3,2,5,5,8,4,1,6,2,
+  1,2,3,4,8,1,3,7,5,8,2,1,2,1,2,2,5,3,1,3,7,7,1,5,6,3,3,5,1,1,4,1,1,1,8,3,1,1,3,4,4,1,1,1,4,1,1,2,1,1,2,7,7,6,2,2,8,8,1,1,6,5,4,
+  1,8,2,4,5,3,6,2,4,5,2,5,3,5,3,1,1,2,2,3,2,1,2,6,6,8,7,4,8,5,8,2,1,1,1,8,8,7,1,
+  2,3,5,5,6,7,8,8,8,2,6,4,1,6,3,6,5,3,5,5,6,4,7,2,4,1,3,3,2,6,1,2,1,8,8,7,5,8,1,6,1,2,3,4,2,1,6,1,2,1,2,8,7,5,1,4,2,1,5,4,5,6,4,6,6,1,5,4,2,
+  3,1,2,5,4,1,6,5,5,7,6,2,7,8,3,7,2,2,4,3,4,2,4,2,1,3,7,2,8,2,8,
+  8,2,3,3,4,6,4,3,8,6,2,2,5,2,1,1,7,2,3,6,8,5,2,2,1,2,1,1,1,2,8,4,6,1,5,
+  3,5,2,8,5,2,7,1,1,4,6,5,2,2,1,4,1,2,4,7,2,7,3,5,1,1,1,2,5,4,3,3,3,3,3,4,2]
+
+var questionBank = ["Which of the following best describes the habitat you live in?","Would you prefer to raise a low-maintenance, easygoing Pokémon? Or a challenging, but rewarding Pokémon?","Introverted or extroverted?","Which of the following personalities do you get along with best?","Which of the following characteristics do you value most in a friend?"]
+
+//TEST function
+function loadStarterPage() {
+	var entryImages = "";
+	var entryImageLink = "";
+	for (i = 0; i < runningList.length; i++) {
+		entryImageLink = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/".concat(overviewNum[runningList[i]],".png");
+		entryImageContainer = "<div id='common-image-1' style='width:50%;margin:auto;'><div id='common-inside-image-1' style='position:relative;margin:5px;'><div id='common-1-border' class='galleryImageBorder' style='border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;'><div class='galleryImageHolder' style='position:relative; width:100%;padding: 0 0 100%;overflow:hidden;'>"
+    entryImageTmp = entryImageContainer + "<a href=" + "./researchPages/" + runningList[i] +"_research" + ".html><img src='" + entryImageLink + "' class='galleryImage' _width='600' _height='600' style='position:absolute;border:0;width:100%;top:-0%;left:0%'></a></div></div></div></div>";
+		entryImages = entryImages + entryImageTmp;
+	}
+  if (runningList.length == 1) {
+	   document.getElementById("entryHolder").innerHTML = entryImages;
+     removeAllButtons();
+     document.getElementById("starterReveal").style.display = "block";
+     document.getElementById("question").style.display = "none";
+     document.getElementById("reveal").style.display = "block";
+	   document.getElementById("reveal").innerHTML = PKMNList[runningList[0] - 1];
+     document.getElementById("followup").style.display = "block";
+     document.getElementById("followup").innerHTML = "Learn more about " + PKMNList[runningList[0] - 1] + " below!";
+  }
+}
+
+var PKMNList = ["Bulbasaur","Ivysaur","Venusaur","Charmander","Charmeleon","Charizard","Squirtle","Wartortle","Blastoise","Caterpie","Metapod","Butterfree","Weedle","Kakuna","Beedrill","Pidgey","Pidgeotto","Pidgeot","Rattata","Raticate","Spearow","Fearow","Ekans","Arbok","Pikachu","Raichu","Sandshrew","Sandslash","Nidoran♀","Nidorina","Nidoqueen","Nidoran♂","Nidorino","Nidoking","Clefairy","Clefable","Vulpix","Ninetales","Jigglypuff","Wigglytuff","Zubat","Golbat","Oddish","Gloom","Vileplume","Paras","Parasect","Venonat","Venomoth","Diglett","Dugtrio","Meowth","Persian","Psyduck","Golduck","Mankey","Primeape","Growlithe","Arcanine","Poliwag","Poliwhirl","Poliwrath","Abra","Kadabra","Alakazam","Machop","Machoke","Machamp","Bellsprout","Weepinbell","Victreebel","Tentacool","Tentacruel","Geodude","Graveler","Golem","Ponyta","Rapidash","Slowpoke","Slowbro","Magnemite","Magneton","Farfetch'd","Doduo","Dodrio","Seel","Dewgong","Grimer","Muk","Shellder","Cloyster","Gastly","Haunter","Gengar","Onix","Drowzee","Hypno","Krabby","Kingler","Voltorb","Electrode","Exeggcute","Exeggutor","Cubone","Marowak","Hitmonlee","Hitmonchan","Lickitung","Koffing","Weezing","Rhyhorn","Rhydon","Chansey","Tangela","Kangaskhan","Horsea","Seadra","Goldeen","Seaking","Staryu","Starmie","Mr. Mime","Scyther","Jynx","Electabuzz","Magmar","Pinsir","Tauros","Magikarp","Gyarados","Lapras","Ditto","Eevee","Vaporeon","Jolteon","Flareon","Porygon","Omanyte","Omastar","Kabuto","Kabutops","Aerodactyl","Snorlax","Articuno","Zapdos","Moltres","Dratini","Dragonair","Dragonite","Mewtwo","Mew","Chikorita","Bayleef","Meganium","Cyndaquil","Quilava","Typhlosion","Totodile","Croconaw","Feraligatr","Sentret","Furret","Hoothoot","Noctowl","Ledyba","Ledian","Spinarak","Ariados","Crobat","Chinchou","Lanturn","Pichu","Cleffa","Igglybuff","Togepi","Togetic","Natu","Xatu","Mareep","Flaaffy","Ampharos","Bellossom","Marill","Azumarill","Sudowoodo","Politoed","Hoppip","Skiploom","Jumpluff","Aipom","Sunkern","Sunflora","Yanma","Wooper","Quagsire","Espeon","Umbreon","Murkrow","Slowking","Misdreavus","Unown","Wobbuffet","Girafarig","Pineco","Forretress","Dunsparce","Gligar","Steelix","Snubbull","Granbull","Qwilfish","Scizor","Shuckle","Heracross","Sneasel","Teddiursa","Ursaring","Slugma","Magcargo","Swinub","Piloswine","Corsola","Remoraid","Octillery","Delibird","Mantine","Skarmory","Houndour","Houndoom","Kingdra","Phanpy","Donphan","Porygon2","Stantler","Smeargle","Tyrogue","Hitmontop","Smoochum","Elekid","Magby","Miltank","Blissey","Raikou","Entei","Suicune","Larvitar","Pupitar","Tyranitar","Lugia","Ho-Oh","Celebi","Treecko","Grovyle","Sceptile","Torchic","Combusken","Blaziken","Mudkip","Marshtomp","Swampert","Poochyena","Mightyena","Zigzagoon","Linoone","Wurmple","Silcoon","Beautifly","Cascoon","Dustox","Lotad","Lombre","Ludicolo","Seedot","Nuzleaf","Shiftry","Taillow","Swellow","Wingull","Pelipper","Ralts","Kirlia","Gardevoir","Surskit","Masquerain","Shroomish","Breloom","Slakoth","Vigoroth","Slaking","Nincada","Ninjask","Shedinja","Whismur","Loudred","Exploud","Makuhita","Hariyama","Azurill","Nosepass","Skitty","Delcatty","Sableye","Mawile","Aron","Lairon","Aggron","Meditite","Medicham","Electrike","Manectric","Plusle","Minun","Volbeat","Illumise","Roselia","Gulpin","Swalot","Carvanha","Sharpedo","Wailmer","Wailord","Numel","Camerupt","Torkoal","Spoink","Grumpig","Spinda","Trapinch","Vibrava","Flygon","Cacnea","Cacturne","Swablu","Altaria","Zangoose","Seviper","Lunatone","Solrock","Barboach","Whiscash","Corphish","Crawdaunt","Baltoy","Claydol","Lileep","Cradily","Anorith","Armaldo","Feebas","Milotic","Castform","Kecleon","Shuppet","Banette","Duskull","Dusclops","Tropius","Chimecho","Absol","Wynaut","Snorunt","Glalie","Spheal","Sealeo","Walrein","Clamperl","Huntail","Gorebyss","Relicanth","Luvdisc","Bagon","Shelgon","Salamence","Beldum","Metang","Metagross","Regirock","Regice","Registeel","Latias","Latios","Kyogre","Groudon","Rayquaza","Jirachi","Deoxys","Turtwig","Grotle","Torterra","Chimchar","Monferno","Infernape","Piplup","Prinplup","Empoleon","Starly","Staravia","Staraptor","Bidoof","Bibarel","Kricketot","Kricketune","Shinx","Luxio","Luxray","Budew","Roserade","Cranidos","Rampardos","Shieldon","Bastiodon","Burmy","Wormadam","Mothim","Combee","Vespiquen","Pachirisu","Buizel","Floatzel","Cherubi","Cherrim","Shellos","Gastrodon","Ambipom","Drifloon","Drifblim","Buneary","Lopunny","Mismagius","Honchkrow","Glameow","Purugly","Chingling","Stunky","Skuntank","Bronzor","Bronzong","Bonsly","Mime Jr.","Happiny","Chatot","Spiritomb","Gible","Gabite","Garchomp","Munchlax","Riolu","Lucario","Hippopotas","Hippowdon","Skorupi","Drapion","Croagunk","Toxicroak","Carnivine","Finneon","Lumineon","Mantyke","Snover","Abomasnow","Weavile","Magnezone","Lickilicky","Rhyperior","Tangrowth","Electivire","Magmortar","Togekiss","Yanmega","Leafeon","Glaceon","Gliscor","Mamoswine","Porygon-Z","Gallade","Probopass","Dusknoir","Froslass","Rotom","Uxie","Mesprit","Azelf","Dialga","Palkia","Heatran","Regigigas","Giratina","Cresselia","Phione","Manaphy","Darkrai","Shaymin","Arceus","Victini","Snivy","Servine","Serperior","Tepig","Pignite","Emboar","Oshawott","Dewott","Samurott","Patrat","Watchog","Lillipup","Herdier","Stoutland","Purrloin","Liepard","Pansage","Simisage","Pansear","Simisear","Panpour","Simipour","Munna","Musharna","Pidove","Tranquill","Unfezant","Blitzle","Zebstrika","Roggenrola","Boldore","Gigalith","Woobat","Swoobat","Drilbur","Excadrill","Audino","Timburr","Gurdurr","Conkeldurr","Tympole","Palpitoad","Seismitoad","Throh","Sawk","Sewaddle","Swadloon","Leavanny","Venipede","Whirlipede","Scolipede","Cottonee","Whimsicott","Petilil","Lilligant","Basculin","Sandile","Krokorok","Krookodile","Darumaka","Darmanitan","Maractus","Dwebble","Crustle","Scraggy","Scrafty","Sigilyph","Yamask","Cofagrigus","Tirtouga","Carracosta","Archen","Archeops","Trubbish","Garbodor","Zorua","Zoroark","Minccino","Cinccino","Gothita","Gothorita","Gothitelle","Solosis","Duosion","Reuniclus","Ducklett","Swanna","Vanillite","Vanillish","Vanilluxe","Deerling","Sawsbuck","Emolga","Karrablast","Escavalier","Foongus","Amoonguss","Frillish","Jellicent","Alomomola","Joltik","Galvantula","Ferroseed","Ferrothorn","Klink","Klang","Klinklang","Tynamo","Eelektrik","Eelektross","Elgyem","Beheeyem","Litwick","Lampent","Chandelure","Axew","Fraxure","Haxorus","Cubchoo","Beartic","Cryogonal","Shelmet","Accelgor","Stunfisk","Mienfoo","Mienshao","Druddigon","Golett","Golurk","Pawniard","Bisharp","Bouffalant","Rufflet","Braviary","Vullaby","Mandibuzz","Heatmor","Durant","Deino","Zweilous","Hydreigon","Larvesta","Volcarona","Cobalion","Terrakion","Virizion","Tornadus","Thundurus","Reshiram","Zekrom","Landorus","Kyurem","Keldeo","Meloetta","Genesect","Chespin","Quilladin","Chesnaught","Fennekin","Braixen","Delphox","Froakie","Frogadier","Greninja","Bunnelby","Diggersby","Fletchling","Fletchinder","Talonflame","Scatterbug","Spewpa","Vivillon","Litleo","Pyroar","Flabébé","Floette","Florges","Skiddo","Gogoat","Pancham","Pangoro","Furfrou","Espurr","Meowstic","Honedge","Doublade","Aegislash","Spritzee","Aromatisse","Swirlix","Slurpuff","Inkay","Malamar","Binacle","Barbaracle","Skrelp","Dragalge","Clauncher","Clawitzer","Helioptile","Heliolisk","Tyrunt","Tyrantrum","Amaura","Aurorus","Sylveon","Hawlucha","Dedenne","Carbink","Goomy","Sliggoo","Goodra","Klefki","Phantump","Trevenant","Pumpkaboo","Gourgeist","Bergmite","Avalugg","Noibat","Noivern","Xerneas","Yveltal","Zygarde","Diancie","Hoopa","Volcanion","Rowlet","Dartrix","Decidueye","Litten","Torracat","Incineroar","Popplio","Brionne","Primarina","Pikipek","Trumbeak","Toucannon","Yungoos","Gumshoos","Grubbin","Charjabug","Vikavolt","Crabrawler","Crabominable","Oricorio","Cutiefly","Ribombee","Rockruff","Lycanroc","Wishiwashi","Mareanie","Toxapex","Mudbray","Mudsdale","Dewpider","Araquanid","Fomantis","Lurantis","Morelull","Shiinotic","Salandit","Salazzle","Stufful","Bewear","Bounsweet","Steenee","Tsareena","Comfey","Oranguru","Passimian","Wimpod","Golisopod","Sandygast","Palossand","Pyukumuku","Type: Null","Silvally","Minior","Komala","Turtonator","Togedemaru","Mimikyu","Bruxish","Drampa","Dhelmise","Jangmo-o","Hakamo-o","Kommo-o","Tapu Koko","Tapu Lele","Tapu Bulu","Tapu Fini","Cosmog","Cosmoem","Solgaleo","Lunala","Nihilego","Buzzwole","Pheromosa","Xurkitree","Celesteela","Kartana","Guzzlord","Necrozma","Magearna","Marshadow","Poipole","Naganadel","Stakataka","Blacephalon","Zeraora","Meltan","Melmetal","Grookey","Thwackey","Rillaboom","Scorbunny","Raboot","Cinderace","Sobble","Drizzile","Inteleon","Skwovet","Greedent","Rookidee","Corvisquire","Corviknight","Blipbug","Dottler","Orbeetle","Nickit","Thievul","Gossifleur","Eldegoss","Wooloo","Dubwool","Chewtle","Drednaw","Yamper","Boltund","Rolycoly","Carkol","Coalossal","Applin","Flapple","Appletun","Silicobra","Sandaconda","Cramorant","Arrokuda","Barraskewda","Toxel","Toxtricity","Sizzlipede","Centiskorch","Clobbopus","Grapploct","Sinistea","Polteageist","Hatenna","Hattrem","Hatterene","Impidimp","Morgrem","Grimmsnarl","Obstagoon","Perrserker","Cursola","Sirfetch'd","Mr. Rime","Runerigus","Milcery","Alcremie","Falinks","Pincurchin","Snom","Frosmoth","Stonjourner","Eiscue","Indeedee","Morpeko","Cufant","Copperajah","Dracozolt","Arctozolt","Dracovish","Arctovish","Duraludon","Dreepy","Drakloak","Dragapult","Zacian","Zamazenta","Eternatus"]
+
+var mainLoop = [1,4,7,10,13,16,19,21,23,27,29,32,37,41,43,46,48,50,52,54,56,58,60,63,66,69,72,74,77,79,81,83,84,86,88,90,92,95,96,98,100,102,104,108,109,111,114,115,116,118,120,123,127,128,129,131,132,133,137,138,140,142,147,152,155,158,161,163,165,167,170,172,173,174,175,177,179,187,190,191,193,194,198,200,201,203,204,206,207,209,211,213,214,215,216,218,220,222,223,225,227,228,231,234,235,236,238,239,240,241,246,252,255,258,261,263,265,270,273,276,278,280,283,285,287,290,293,296,298,299,300,302,303,304,307,309,311,312,313,314,316,318,320,322,324,325,327,328,331,333,335,336,337,338,339,341,343,345,347,349,351,352,353,355,357,359,360,361,363,366,369,370,371,374,387,390,393,396,399,401,403,406,408,410,412,415,417,418,420,422,425,427,431,433,434,436,438,439,440,441,442,443,446,447,449,451,453,455,456,458,459,479,489,495,498,501,504,506,509,511,513,515,517,519,522,524,527,529,531,532,535,538,539,540,543,546,548,550,551,554,556,557,559,561,562,564,566,568,570,572,574,577,580,582,585,587,588,590,592,594,595,597,599,602,605,607,610,613,615,616,618,619,621,622,624,626,627,629,631,632,633,636,650,653,656,659,661,664,667,669,672,674,676,677,679,682,684,686,688,690,692,694,696,698,701,702,703,704,707,708,710,712,714,722,725,728,731,734,736,739,741,742,744,746,747,749,751,753,755,757,759,761,764,765,766,767,769,771,772,774,775,776,777,778,779,780,781,782,810,813,816,819,821,824,827,829,831,833,835,837,840,843,845,846,848,850,852,854,856,859,868,870,871,872,874,875,876,877,878,880,881,882,883,884,885]
+
+var ansArray = [0,0,0,0,0,0];
+
+var runningList;
+
+</script>
+
+<div class="flex-container" style="display:flex; flex-direction:row;justify-content: center; flex-wrap:wrap;">
+<button id="forestButton" class="w3-button w3-dark-grey" onclick="quiz1(1)">
+<span class="wsite-button-inner" >FOREST</span></button>
+<button id="jungleButton" class="w3-button w3-dark-grey" onclick="quiz1(2)">
+<span class="wsite-button-inner">JUNGLE</span></button>
+<button id="woodlandButton" class="w3-button w3-dark-grey" onclick="quiz1(3)">
+<span class="wsite-button-inner">WOODLAND</span></button>
+<button id="fieldButton" class="w3-button w3-dark-grey" onclick="quiz1(4)">
+<span class="wsite-button-inner">FIELD</span></button>
+<button id="grasslandButton" class="w3-button w3-dark-grey" onclick="quiz1(5)">
+<span class="wsite-button-inner">GRASSLAND</span></button>
+<button id="cityButton" class="w3-button w3-dark-grey" onclick="quiz1(6)">
+<span class="wsite-button-inner">CITY</span></button>
+<button id="plantButton" class="w3-button w3-dark-grey" onclick="quiz1(7)">
+<span class="wsite-button-inner">INDUSTRIAL</span></button>
+<button id="volcanoButton" class="w3-button w3-dark-grey" onclick="quiz1(8)">
+<span class="wsite-button-inner">VOLCANO</span></button>
+<button id="caveButton" class="w3-button w3-dark-grey" onclick="quiz1(9)">
+<span class="wsite-button-inner">CAVE</span></button>
+<button id="mountainButton" class="w3-button w3-dark-grey" onclick="quiz1(10)">
+<span class="wsite-button-inner">MOUNTAIN</span></button>
+<button id="desertButton" class="w3-button w3-dark-grey" onclick="quiz1(11)">
+<span class="wsite-button-inner">DESERT</span></button>
+<button id="badlandButton" class="w3-button w3-dark-grey" onclick="quiz1(12)">
+<span class="wsite-button-inner">BADLAND</span></button>
+<button id="pondButton" class="w3-button w3-dark-grey" onclick="quiz1(13)">
+<span class="wsite-button-inner">POND</span></button>
+<button id="lakeButton" class="w3-button w3-dark-grey" onclick="quiz1(14)">
+<span class="wsite-button-inner">LAKE</span></button>
+<button id="riverButton" class="w3-button w3-dark-grey" onclick="quiz1(15)">
+<span class="wsite-button-inner">RIVER</span></button>
+<button id="riversideButton" class="w3-button w3-dark-grey" onclick="quiz1(16)">
+<span class="wsite-button-inner">RIVERSIDE</span></button>
+<button id="beachButton" class="w3-button w3-dark-grey" onclick="quiz1(17)">
+<span class="wsite-button-inner">BEACH</span></button>
+<button id="oceanButton" class="w3-button w3-dark-grey" onclick="quiz1(18)">
+<span class="wsite-button-inner">OCEAN</span></button>
+<button id="reefButton" class="w3-button w3-dark-grey" onclick="quiz1(19)">
+<span class="wsite-button-inner">REEF</span></button>
+<button id="polarButton" class="w3-button w3-dark-grey" onclick="quiz1(20)">
+<span class="wsite-button-inner">POLAR SEA</span></button>
+<button id="abyssButton" class="w3-button w3-dark-grey" onclick="quiz1(21)">
+<span class="wsite-button-inner">ABYSS</span></button>
+<button id="swampButton" class="w3-button w3-dark-grey" onclick="quiz1(22)">
+<span class="wsite-button-inner">SWAMP</span></button>
+<button id="glacierButton" class="w3-button w3-dark-grey" onclick="quiz1(23)">
+<span class="wsite-button-inner">GLACIER</span></button>
+<button id="tundraButton" class="w3-button w3-dark-grey" onclick="quiz1(24)">
+<span class="wsite-button-inner">TUNDRA</span></button>
+<button id="ruinButton" class="w3-button w3-dark-grey" onclick="quiz1(25)">
+<span class="wsite-button-inner">RUIN</span></button>
+
+<button id="easyButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz2(1)">
+<span class="wsite-button-inner">LOW MAINTENANCE</span></button>
+<button id="medButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz2(2)">
+<span class="wsite-button-inner">MODERATE MAINTENANCE</span></button>
+<button id="hardButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz2(3)">
+<span class="wsite-button-inner">HIGH MAINTENANCE</span></button>
+
+<button id="gentleButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz3(1)">
+<span class="wsite-button-inner">INTROVERTED</span></button>
+<button id="laidbackButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz3(2)">
+<span class="wsite-button-inner">IN BETWEEN</span></button>
+<button id="outgoingButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz3(3)">
+<span class="wsite-button-inner">EXTROVERTED</span></button>
+
+<button id="easygoingButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(1)">
+<span class="wsite-button-inner">EASYGOING</span></button>
+<button id="reservedButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(2)">
+<span class="wsite-button-inner">RESERVED</span></button>
+<button id="carefreeButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(3)">
+<span class="wsite-button-inner">CAREFREE</span></button>
+<button id="scrappyButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(4)">
+<span class="wsite-button-inner">SCRAPPY</span></button>
+<button id="hardworkingButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(5)">
+<span class="wsite-button-inner">HARDWORKING</span></button>
+<button id="caringButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(6)">
+<span class="wsite-button-inner">PROTECTIVE</span></button>
+<button id="mischievousButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(7)">
+<span class="wsite-button-inner">MISCHIEVOUS</span></button>
+<button id="curiousButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(8)">
+<span class="wsite-button-inner">CURIOUS</span></button>
+<button id="button5-1" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(1)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-2" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(2)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-3" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(3)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-4" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(4)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-5" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(5)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-6" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(6)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-7" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(7)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-8" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(8)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-9" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(9)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-10" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(0)">
+<span class="wsite-button-inner"></span></button>
+</div>
+
+<script>
+
+var prevList = [];
+
+function quiz1(id) {
+	document.getElementById("question").innerHTML = questionBank[1];
+
+  ansArray[1] = id;
+  prevList = runningList;
+  var tmpList = [];
+  for (i = 0; i < mainLoop.length; i++) {
+    if (eval(habitatVarList[id-1]).includes(mainLoop[i])) {
+      tmpList.push(mainLoop[i]);
+    }
+  }
+  runningList = tmpList;
+  loadStarterPage();
+  document.getElementById("forestButton").style.display = "none";
+  document.getElementById("jungleButton").style.display = "none";
+  document.getElementById("woodlandButton").style.display = "none";
+  document.getElementById("fieldButton").style.display = "none";
+  document.getElementById("grasslandButton").style.display = "none";
+  document.getElementById("cityButton").style.display = "none";
+  document.getElementById("plantButton").style.display = "none";
+  document.getElementById("volcanoButton").style.display = "none";
+  document.getElementById("caveButton").style.display = "none";
+  document.getElementById("mountainButton").style.display = "none";
+  document.getElementById("desertButton").style.display = "none";
+  document.getElementById("badlandButton").style.display = "none";
+  document.getElementById("pondButton").style.display = "none";
+  document.getElementById("lakeButton").style.display = "none";
+  document.getElementById("riverButton").style.display = "none";
+  document.getElementById("riversideButton").style.display = "none";
+  document.getElementById("beachButton").style.display = "none";
+  document.getElementById("oceanButton").style.display = "none";
+  document.getElementById("polarButton").style.display = "none";
+  document.getElementById("reefButton").style.display = "none";
+  document.getElementById("abyssButton").style.display = "none";
+  document.getElementById("tundraButton").style.display = "none";
+  document.getElementById("glacierButton").style.display = "none";
+  document.getElementById("swampButton").style.display = "none";
+  document.getElementById("ruinButton").style.display = "none";
+
+  if (easyPKMN.filter(value => runningList.includes(value)).length > 0) {
+    document.getElementById("easyButton").style.display = "block";
+  }
+  if (medPKMN.filter(value => runningList.includes(value)).length > 0) {
+    document.getElementById("medButton").style.display = "block";
+  }
+  if (hardPKMN.filter(value => runningList.includes(value)).length > 0) {
+    document.getElementById("hardButton").style.display = "block";
+  }
+}
+
+function quiz2(diff) {
+	document.getElementById("question").innerHTML = questionBank[2];
+
+  prevList = runningList;
+  ansArray[2] = diff;
+  var tmpList = [];
+  if (diff == 1) {
+    for (i = 0; i < easyPKMN.length; i++) {
+      if (runningList.includes(easyPKMN[i])) {
+        tmpList.push(easyPKMN[i]);
+      }
+    }
+  }
+  else if (diff == 2) {
+    for (i = 0; i < medPKMN.length; i++) {
+      if (runningList.includes(medPKMN[i])) {
+        tmpList.push(medPKMN[i]);
+      }
+    }
+  }
+  else if (diff == 3) {
+    for (i = 0; i < hardPKMN.length; i++) {
+      if (runningList.includes(hardPKMN[i])) {
+        tmpList.push(hardPKMN[i]);
+      }
+    }
+  }
+  runningList = tmpList;
+  if (tmpList.length == 1) {
+    removeAllButtons()
+  }
+  document.getElementById("easyButton").style.display = "none";
+  document.getElementById("medButton").style.display = "none";
+  document.getElementById("hardButton").style.display = "none";
+
+  var gentleList = [];
+  for (n = 0; n < overviewTemperament.length; n++) {
+    if (parseInt(overviewTemperament[n]) < 0) {
+      gentleList.push(n);
+    }
+  }
+  var laidbackList = [];
+  for (n = 0; n < overviewTemperament.length; n++) {
+    if (parseInt(overviewTemperament[n]) == 0) {
+      laidbackList.push(n);
+    }
+  }
+  var outgoingList = [];
+  for (n = 0; n < overviewTemperament.length; n++) {
+    if (parseInt(overviewTemperament[n]) > 0) {
+      outgoingList.push(n);
+    }
+  }
+
+  if (gentleList.filter(value => runningList.includes(value)).length > 0) {
+    document.getElementById("gentleButton").style.display = "block";
+  }
+  if (laidbackList.filter(value => runningList.includes(value)).length > 0) {
+   document.getElementById("laidbackButton").style.display = "block";
+  }
+  if (outgoingList.filter(value => runningList.includes(value)).length > 0) {
+    document.getElementById("outgoingButton").style.display = "block";
+  }
+
+  loadStarterPage();
+}
+
+function quiz3(temp) {
+  document.getElementById("question").innerHTML = questionBank[3];
+  prevList = runningList;
+  ansArray[3] = temp;
+  var gentleList = [];
+  for (n = 0; n < overviewTemperament.length; n++) {
+    if (parseInt(overviewTemperament[n]) < 0) {
+      gentleList.push(n);
+    }
+  }
+  var laidbackList = [];
+  for (n = 0; n < overviewTemperament.length; n++) {
+    if (parseInt(overviewTemperament[n]) == 0) {
+      laidbackList.push(n);
+    }
+  }
+  var outgoingList = [];
+  for (n = 0; n < overviewTemperament.length; n++) {
+    if (parseInt(overviewTemperament[n]) > 0) {
+      outgoingList.push(n);
+    }
+  }
+
+  var tmpList = [];
+  if (temp == 1) {
+    for (i = 0; i < gentleList.length; i++) {
+      if (runningList.includes(gentleList[i])) {
+        tmpList.push(gentleList[i]);
+      }
+    }
+  }
+  else if (temp == 2) {
+    for (i = 0; i < laidbackList.length; i++) {
+      if (runningList.includes(laidbackList[i])) {
+        tmpList.push(laidbackList[i]);
+      }
+    }
+  }
+  else if (temp == 3) {
+    for (i = 0; i < outgoingList.length; i++) {
+      if (runningList.includes(outgoingList[i])) {
+        tmpList.push(outgoingList[i]);
+      }
+    }
+  }
+  runningList = tmpList;
+
+  var personalityMatrix = [0,0,0,0,0,0,0,0,0];
+  for (i = 0; i < runningList.length; i++) {
+    var ind = mainLoop.findIndex(dexNum => dexNum == runningList[i]);
+    personalityMatrix[personalityNum[ind]] = personalityMatrix[personalityNum[ind]] + 1;
+  }
+
+  document.getElementById("gentleButton").style.display = "none";
+  document.getElementById("laidbackButton").style.display = "none";
+  document.getElementById("outgoingButton").style.display = "none";
+
+  if (personalityMatrix[1] > 0) {
+    document.getElementById("easygoingButton").style.display = "block";
+  }
+  if (personalityMatrix[2] > 0) {
+    document.getElementById("reservedButton").style.display = "block";
+  }
+  if (personalityMatrix[3] > 0) {
+    document.getElementById("carefreeButton").style.display = "block";
+  }
+  if (personalityMatrix[4] > 0) {
+    document.getElementById("scrappyButton").style.display = "block";
+  }
+  if (personalityMatrix[5] > 0) {
+    document.getElementById("hardworkingButton").style.display = "block";
+  }
+  if (personalityMatrix[6] > 0) {
+    document.getElementById("caringButton").style.display = "block";
+  }
+  if (personalityMatrix[7] > 0) {
+    document.getElementById("mischievousButton").style.display = "block";
+  }
+  if (personalityMatrix[8] > 0) {
+    document.getElementById("curiousButton").style.display = "block";
+  }
+
+  if (tmpList.length == 1) {
+    removeAllButtons()
+  }
+  loadStarterPage();
+}
+
+function quiz4(pers) {
+  document.getElementById("question").innerHTML = questionBank[4];
+  prevList = runningList;
+  ansArray[4] = pers;
+
+  var tmpList = [];
+  var persList = [];
+  for (n = 0; n < personalityNum.length; n++) {
+    if (personalityNum[n] == pers) {
+      persList.push(mainLoop[n]);
+    }
+  }
+  for (i = 0; i < persList.length; i++) {
+    if (runningList.includes(persList[i])) {
+        tmpList.push(persList[i]);
+    }
+  }
+  runningList = tmpList;
+
+  removeAllButtons();
+
+  if (runningList.length > 1) {
+    document.getElementById("button5-1").style.display = "block";
+    document.getElementById("button5-2").style.display = "block";
+  }
+  if (runningList.length > 2) {
+    document.getElementById("button5-3").style.display = "block";
+  }
+  if (runningList.length > 3) {
+    document.getElementById("button5-4").style.display = "block";
+  }
+  if (runningList.length > 4) {
+    document.getElementById("button5-5").style.display = "block";
+  }
+  if (runningList.length > 5) {
+    document.getElementById("button5-6").style.display = "block";
+  }
+  if (runningList.length > 6) {
+    document.getElementById("button5-7").style.display = "block";
+  }
+  if (runningList.length > 7) {
+    document.getElementById("button5-8").style.display = "block";
+  }
+  if (runningList.length > 8) {
+    document.getElementById("button5-9").style.display = "block";
+  }
+  if (runningList.length > 9) {
+    document.getElementById("button5-10").style.display = "block";
+  }
+  //FOREST
+  if (ansArray[1] == 1) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "STRENGTH";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+          document.getElementById("button5-4").innerHTML = "RESILIENCE";
+        }
+        else if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+          document.getElementById("button5-3").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-4").innerHTML = "CUNNING";
+          document.getElementById("button5-5").innerHTML = "SURPRISE";
+        }
+        else if (ansArray[4] == 6) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-3").innerHTML = "RESILIENCE";
+          document.getElementById("button5-4").innerHTML = "CUNNING";
+          document.getElementById("button5-5").innerHTML = "RELIABILITY";
+          document.getElementById("button5-6").innerHTML = "SURPRISE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+        }
+        else if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        else if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "CUNNING";
+        }
+        else if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "SURPRISE";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "STRENGTH";
+        }
+        else if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+          document.getElementById("button5-3").innerHTML = "CUNNING";
+          document.getElementById("button5-4").innerHTML = "STRENGTH";
+          document.getElementById("button5-5").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+          document.getElementById("button5-3").innerHTML = "RELIABILITY";
+          document.getElementById("button5-4").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-5").innerHTML = "STRENGTH";
+          document.getElementById("button5-6").innerHTML = "GRACE";
+          document.getElementById("button5-7").innerHTML = "SURPRISE";
+          document.getElementById("button5-8").innerHTML = "LOYALTY";
+          document.getElementById("button5-9").innerHTML = "RESILIENCE";
+        }
+        else if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+          document.getElementById("button5-4").innerHTML = "SURPRISE";
+          document.getElementById("button5-5").innerHTML = "CUNNING";
+        }
+        else if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        else if (ansArray[4] == 6) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+          document.getElementById("button5-3").innerHTML = "RELIABILITY";
+          document.getElementById("button5-4").innerHTML = "INTUITION";
+        }
+        else if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "CUNNING";
+          document.getElementById("button5-4").innerHTML = "GRACE";
+          document.getElementById("button5-5").innerHTML = "RESILIENCE";
+        }
+        else if (ansArray[4] == 6) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+          document.getElementById("button5-3").innerHTML = "RELIABILITY";
+        }
+        else if (ansArray[4] == 7) {
+          document.getElementById("button5-1").innerHTML = "SURPRISE";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+          document.getElementById("button5-3").innerHTML = "RESILIENCE";
+          document.getElementById("button5-4").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-5").innerHTML = "CUNNING";
+        }
+        else if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+          document.getElementById("button5-3").innerHTML = "INTUITION";
+          document.getElementById("button5-4").innerHTML = "CUNNING";
+          document.getElementById("button5-5").innerHTML = "STRENGTH";
+          document.getElementById("button5-6").innerHTML = "GRACE";
+          document.getElementById("button5-7").innerHTML = "RESILIENCE";
+          document.getElementById("button5-8").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+    else if (ansArray[2] == 3) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+          document.getElementById("button5-4").innerHTML = "GRACE";
+          document.getElementById("button5-5").innerHTML = "STRENGTH";
+          document.getElementById("button5-6").innerHTML = "CUNNING";
+        }
+      }
+      else if (ansArray[3] == 2) {
+      }
+      else if (ansArray[3] == 3) {
+      }
+    }
+  }
+  //JUNGLE
+  else if (ansArray[1] == 2) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        else if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+          document.getElementById("button5-3").innerHTML = "CUNNING";
+          document.getElementById("button5-4").innerHTML = "INTUITION";
+          document.getElementById("button5-5").innerHTML = "RESILIENCE";
+          document.getElementById("button5-6").innerHTML = "ADAPTABILITY";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+          document.getElementById("button5-3").innerHTML = "RESILIENCE";
+        }
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+          document.getElementById("button5-3").innerHTML = "CUNNING";
+          document.getElementById("button5-4").innerHTML = "STRENGTH";
+          document.getElementById("button5-5").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+        else if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+        }
+      }
+    }
+    else if (ansArray[2] == 3) {
+      //NONE
+    }
+  }
+  //WOODLAND
+  else if (ansArray[1] == 3) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 3) {
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "CUNNING";
+          document.getElementById("button5-4").innerHTML = "RESILIENCE";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+          document.getElementById("button5-4").innerHTML = "RESILIENCE";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        document.getElementById("button5-1").innerHTML = "RESILIENCE";
+        document.getElementById("button5-2").innerHTML = "INTUITION";
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+        }
+        else if (ansArray[4] == 7) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-4").innerHTML = "GRACE";
+          document.getElementById("button5-5").innerHTML = "CUNNING";
+          document.getElementById("button5-6").innerHTML = "SURPRISE";
+        }
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+        }
+      }
+    }
+    else if (ansArray[2] == 3) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+          document.getElementById("button5-3").innerHTML = "INTUITION";
+        }
+      }
+    }
+  }
+  //FIELD
+  else if (ansArray[1] == 4) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-3").innerHTML = "CUNNING";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+        if (ansArray[4] == 6) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+          document.getElementById("button5-4").innerHTML = "SURPRISE";
+          document.getElementById("button5-5").innerHTML = "RESILIENCE";
+        }
+        else if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+          document.getElementById("button5-4").innerHTML = "STRENGTH";
+        }
+        else if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+          document.getElementById("button5-4").innerHTML = "INTUITION";
+          document.getElementById("button5-5").innerHTML = "GRACE";
+        }
+        else if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+        }
+        else if (ansArray[4] == 6) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+      }
+    }
+    else if (ansArray[2] == 3) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+        }
+      }
+    }
+  }
+  //GRASSLAND
+  else if (ansArray[1] == 5) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+          document.getElementById("button5-4").innerHTML = "RESILIENCE";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        if (ansArray[4] == 6) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+          document.getElementById("button5-3").innerHTML = "CUNNING";
+        }
+        else if (ansArray[4] == 6) {
+          document.getElementById("button5-1").innerHTML = "GRACE";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "RELIABILITY";
+          document.getElementById("button5-4").innerHTML = "LOYALTY";
+        }
+        else if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+          document.getElementById("button5-3").innerHTML = "STRENGTH";
+          document.getElementById("button5-4").innerHTML = "LOYALTY";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "CUNNING";
+          document.getElementById("button5-4").innerHTML = "STRENGTH";
+        }
+      }
+    }
+    else if (ansArray[2] == 3) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+          document.getElementById("button5-3").innerHTML = "STRENGTH";
+        }
+      }
+    }
+  }
+  //CITY
+  else if (ansArray[1] == 6) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+        }
+        else if (ansArray[4] == 6) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+          document.getElementById("button5-4").innerHTML = "RESILIENCE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "SURPRISE";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+        }
+        else if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "SURPRISE";
+          document.getElementById("button5-2").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-3").innerHTML = "STRENGTH";
+          document.getElementById("button5-4").innerHTML = "RELIABILITY";
+        }
+        else if (ansArray[4] == 7) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+        }
+        else if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "INTUITION";
+        }
+        else if (ansArray[4] == 7) {
+          document.getElementById("button5-1").innerHTML = "SURPRISE";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+          document.getElementById("button5-3").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-4").innerHTML = "CUNNING";
+          document.getElementById("button5-5").innerHTML = "GRACE";
+          document.getElementById("button5-6").innerHTML = "STRENGTH";
+        }
+        else if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+        }
+      }
+    }
+    else if (ansArray[2] == 3) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+          document.getElementById("button5-3").innerHTML = "LOYALTY";
+          document.getElementById("button5-4").innerHTML = "STRENGTH";
+        }
+      }
+    }
+  }
+  //INDUSTRIAL
+  else if (ansArray[1] == 7) {
+    if (ansArray[2] == 2) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+      }
+    }
+  }
+  //VOLCANO
+  else if (ansArray[1] == 8) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "STRENGTH";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+          document.getElementById("button5-4").innerHTML = "RELIABILITY";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "STRENGTH";
+          document.getElementById("button5-3").innerHTML = "RELIABILITY";
+          document.getElementById("button5-4").innerHTML = "CUNNING";
+        }
+      }
+    }
+  }
+  //CAVE
+  else if (ansArray[1] == 9) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+          document.getElementById("button5-3").innerHTML = "STRENGTH";
+          document.getElementById("button5-4").innerHTML = "CUNNING";
+          document.getElementById("button5-5").innerHTML = "INTUITION";
+          document.getElementById("button5-6").innerHTML = "GRACE";
+          document.getElementById("button5-7").innerHTML = "RESILIENCE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+      }
+    }
+    if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        else if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+          document.getElementById("button5-3").innerHTML = "RESILIENCE";
+          document.getElementById("button5-4").innerHTML = "ADAPTABILITY";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "RELIABILITY";
+          document.getElementById("button5-4").innerHTML = "SURPRISE";
+        }
+        else if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        else if (ansArray[4] == 7) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+        }
+        else if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+        }
+      }
+    }
+    if (ansArray[2] == 3) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "STRENGTH";
+        }
+      }
+    }
+  }
+  //MOUNTAIN
+  else if (ansArray[1] == 10) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "STRENGTH";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+        }
+      }
+      if (ansArray[3] == 3) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "STRENGTH";
+        }
+        if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-3").innerHTML = "RESILIENCE";
+          document.getElementById("button5-4").innerHTML = "RELIABILITY";
+          document.getElementById("button5-5").innerHTML = "CUNNING";
+          document.getElementById("button5-6").innerHTML = "LOYALTY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        else if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "SURPRISE";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+          document.getElementById("button5-3").innerHTML = "STRENGTH";
+          document.getElementById("button5-4").innerHTML = "GRACE";
+          document.getElementById("button5-5").innerHTML = "CUNNING";
+        }
+        else if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "GRACE";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+          document.getElementById("button5-3").innerHTML = "RESILIENCE";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+        }
+        else if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "STRENGTH";
+          document.getElementById("button5-4").innerHTML = "GRACE";
+          document.getElementById("button5-5").innerHTML = "RELIABILITY";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+        }
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "RESILIENCE";
+        }
+        if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+          document.getElementById("button5-3").innerHTML = "RESILIENCE";
+        }
+      }
+    }
+  }
+  //DESERT
+  else if (ansArray[1] == 11) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 3) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "STRENGTH";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+  }
+  //BADLAND
+  else if (ansArray[1] == 12) {
+    if (ansArray[2] == 2) {
+      if (ansArray[3] == 3) {
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        if (ansArray[4] == 5) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "LOYALTY";
+        }
+      }
+    }
+    else if (ansArray[2] == 3) {
+      if (ansArray[3] == 3) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+          document.getElementById("button5-3").innerHTML = "STRENGTH";
+        }
+      else if (ansArray[4] == 6) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+          document.getElementById("button5-3").innerHTML = "LOYALTY";
+        }
+      }
+    }
+  }
+  //POND
+  else if (ansArray[1] == 13) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "GRACE";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+        }
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+        }
+      }
+    }
+  }
+  //LAKE
+  else if (ansArray[1] == 14) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "GRACE";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+        }
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+        }
+      }
+    }
+  }
+  //RIVER
+  else if (ansArray[1] == 15) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "GRACE";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+        }
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "LOYALTY";
+          document.getElementById("button5-2").innerHTML = "STRENGTH";
+        }
+      }
+    }
+  }
+  //RIVERSIDE
+  else if (ansArray[1] == 16) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "STRENGTH";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+          document.getElementById("button5-3").innerHTML = "LOYALTY";
+        }
+      }
+    }
+  }
+  //BEACH
+  else if (ansArray[1] == 17) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+          document.getElementById("button5-3").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+        }
+      }
+    }
+  }
+  //OCEAN
+  else if (ansArray[1] == 18) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+        }
+      }
+    }
+    if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+        }
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+          document.getElementById("button5-3").innerHTML = "LOYALTY";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+          document.getElementById("button5-4").innerHTML = "RESILIENCE";
+          document.getElementById("button5-5").innerHTML = "STRENGTH";
+        }
+      }
+    }
+  }
+  //REEF
+  else if (ansArray[1] == 19) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+          document.getElementById("button5-3").innerHTML = "RELIABILITY";
+        }
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RESILIENCE";
+          document.getElementById("button5-2").innerHTML = "SURPRISE";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+        }
+        else if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+        }
+      }
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+          document.getElementById("button5-4").innerHTML = "SURPRISE";
+          document.getElementById("button5-5").innerHTML = "RESILIENCE";
+        }
+        if (ansArray[4] == 4) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "INTUITION";
+        }
+      }
+    }
+  }
+  //POLAR
+  else if (ansArray[1] == 20) {
+    if (ansArray[2] == 2) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+      }
+    }
+  }
+  //ABYSS
+  else if (ansArray[1] == 21) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+          document.getElementById("button5-4").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "SURPRISE";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "CUNNING";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "GRACE";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+          document.getElementById("button5-3").innerHTML = "STRENGTH";
+        }
+      }
+    }
+  }
+  //SWAMP
+  else if (ansArray[1] == 22) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "SURPRISE";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+          document.getElementById("button5-3").innerHTML = "RESILIENCE";
+          document.getElementById("button5-4").innerHTML = "CUNNING";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+    else if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "SURPRISE";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+        }
+        else if (ansArray[4] == 3) {
+          document.getElementById("button5-1").innerHTML = "STRENGTH";
+          document.getElementById("button5-2").innerHTML = "RELIABILITY";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+        }
+      }
+      else if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "GRACE";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+          document.getElementById("button5-4").innerHTML = "RELIABILITY";
+        }
+      }
+    }
+  }
+  //GLACIER
+  else if (ansArray[1] == 23) {
+    if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "STRENGTH";
+          document.getElementById("button5-3").innerHTML = "GRACE";
+        }
+      }
+      else if (ansArray[3] == 3) {
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "LOYALTY";
+          document.getElementById("button5-3").innerHTML = "RELIABILITY";
+          document.getElementById("button5-4").innerHTML = "SURPRISE";
+        }
+      }
+    }
+  }
+  //TUNDRA
+  else if (ansArray[1] == 24) {
+    if (ansArray[2] == 2) {
+      if (ansArray[3] == 1) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "RELIABILITY";
+          document.getElementById("button5-2").innerHTML = "GRACE";
+        }
+      }
+      if (ansArray[3] == 3) {
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "CUNNING";
+          document.getElementById("button5-2").innerHTML = "STRENGTH";
+          document.getElementById("button5-3").innerHTML = "SURPRISE";
+        }
+      }
+    }
+  }
+  //RUIN
+  else if (ansArray[1] == 25) {
+    if (ansArray[2] == 1) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 1) {
+          document.getElementById("button5-1").innerHTML = "ADAPTABILITY";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+          document.getElementById("button5-3").innerHTML = "INTUITION";
+          document.getElementById("button5-4").innerHTML = "RELIABILITY";
+          document.getElementById("button5-5").innerHTML = "GRACE";
+          document.getElementById("button5-6").innerHTML = "SURPRISE";
+          document.getElementById("button5-7").innerHTML = "RESILIENCE";
+        }
+      }
+      if (ansArray[3] == 3) {
+        if (ansArray[4] == 8) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "CUNNING";
+        }
+      }
+    }
+    if (ansArray[2] == 2) {
+      if (ansArray[3] == 2) {
+        if (ansArray[4] == 2) {
+          document.getElementById("button5-1").innerHTML = "INTUITION";
+          document.getElementById("button5-2").innerHTML = "RESILIENCE";
+        }
+      }
+    }
+  }
+  loadStarterPage();
+}
+
+function quiz5(fin) {
+  prevList = runningList;
+  ansArray[5] = fin;
+  runningList = [prevList[fin-1]];
+  removeAllButtons();
+  loadStarterPage();
+}
+
+function removeAllButtons() {
+  document.getElementById("forestButton").style.display = "none";
+  document.getElementById("jungleButton").style.display = "none";
+  document.getElementById("woodlandButton").style.display = "none";
+  document.getElementById("fieldButton").style.display = "none";
+  document.getElementById("grasslandButton").style.display = "none";
+  document.getElementById("cityButton").style.display = "none";
+  document.getElementById("plantButton").style.display = "none";
+  document.getElementById("volcanoButton").style.display = "none";
+  document.getElementById("caveButton").style.display = "none";
+  document.getElementById("mountainButton").style.display = "none";
+  document.getElementById("desertButton").style.display = "none";
+  document.getElementById("badlandButton").style.display = "none";
+  document.getElementById("pondButton").style.display = "none";
+  document.getElementById("lakeButton").style.display = "none";
+  document.getElementById("riverButton").style.display = "none";
+  document.getElementById("riversideButton").style.display = "none";
+  document.getElementById("beachButton").style.display = "none";
+  document.getElementById("oceanButton").style.display = "none";
+  document.getElementById("polarButton").style.display = "none";
+  document.getElementById("reefButton").style.display = "none";
+  document.getElementById("abyssButton").style.display = "none";
+  document.getElementById("tundraButton").style.display = "none";
+  document.getElementById("glacierButton").style.display = "none";
+  document.getElementById("swampButton").style.display = "none";
+  document.getElementById("ruinButton").style.display = "none";
+
+  document.getElementById("easyButton").style.display = "none";
+  document.getElementById("medButton").style.display = "none";
+  document.getElementById("hardButton").style.display = "none";
+
+  document.getElementById("gentleButton").style.display = "none";
+  document.getElementById("laidbackButton").style.display = "none";
+  document.getElementById("outgoingButton").style.display = "none";
+
+  document.getElementById("easygoingButton").style.display = "none";
+  document.getElementById("reservedButton").style.display = "none";
+  document.getElementById("carefreeButton").style.display = "none";
+  document.getElementById("scrappyButton").style.display = "none";
+  document.getElementById("hardworkingButton").style.display = "none";
+  document.getElementById("caringButton").style.display = "none";
+  document.getElementById("mischievousButton").style.display = "none";
+  document.getElementById("curiousButton").style.display = "none";
+
+  document.getElementById("button5-1").style.display = "none";
+  document.getElementById("button5-2").style.display = "none";
+  document.getElementById("button5-3").style.display = "none";
+  document.getElementById("button5-4").style.display = "none";
+  document.getElementById("button5-5").style.display = "none";
+  document.getElementById("button5-6").style.display = "none";
+  document.getElementById("button5-7").style.display = "none";
+  document.getElementById("button5-8").style.display = "none";
+  document.getElementById("button5-9").style.display = "none";
+  document.getElementById("button5-10").style.display = "none";
+}
+
+function resetQuiz() {
+  window.location.reload();
+}
+
+function guideSwitchOn() {
+  document.getElementById("HowTo").style.display = "block";
+  document.getElementById("hideGuideButton").style.display = "block";
+  document.getElementById("text1").style.display = "block";
+  document.getElementById("text2").style.display = "block";
+  document.getElementById("text3").style.display = "block";
+  document.getElementById("text4").style.display = "block";
+  document.getElementById("text5").style.display = "block";
+  document.getElementById("text6").style.display = "block";
+  document.getElementById("showGuideButton").style.display = "none";
+}
+function guideSwitchOff() {
+  document.getElementById("HowTo").style.display = "none";
+  document.getElementById("hideGuideButton").style.display = "none";
+  document.getElementById("text1").style.display = "none";
+  document.getElementById("text2").style.display = "none";
+  document.getElementById("text3").style.display = "none";
+  document.getElementById("text4").style.display = "none";
+  document.getElementById("text5").style.display = "none";
+  document.getElementById("text6").style.display = "none";
+  document.getElementById("showGuideButton").style.display = "block";
+}
+
+</script>
+
+
+<!--STARTER GALLERY-->
+<div>
+  <div id="starter-gallery" class="imageGallery" style="line-height: 0px; padding: 0; margin: 0;">
+    <div style='display:flex; flex-flow:row wrap; margin:0px 175px 100px 175px;' id='entryHolder'></div>
+  </div>
+</div>
+
+<button id="reset" class="w3-button w3-grey" style="display:block;" onclick="resetQuiz()">
+<span class="wsite-button">Reset</span></button>
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr id = "breakline" class="styled-hr" style="width:100%;display:none;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+  <hr class='hr' style='width:100%;'>
+
+<button id="hideGuideButton" class="w3-button w3-dark-grey" style="display:block;" onclick="guideSwitchOff()">
+<span class="wsite-button">Hide Usage Guide</span></button>
+<button id="showGuideButton" class="w3-button w3-dark-grey" style="display:none;" onclick="guideSwitchOn()">
+<span class="wsite-button">Show Usage Guide</span></button>
+
+<br/>
+
+
+<h2 id="HowTo">Guide</h2>
+<p id="text1">This quiz is intended to select an ideal starter Pokémon in only five (or fewer) questions. Many times, you will not need all five questions, as some categories are already more narrow than others.</p>
+
+<br/>
+
+<p id="text2">The first question is of habitat; you might want to select the habitat you currently live in, or the habitat you believe you will spend a lot of time exploring; it depends on how you plan to use the results of the quiz.</p>
+
+<br/>
+
+<p id="text3">The second question regards Pokémon maintenance and how much effort you are willing to put towards training your starter. Low-maintenance Pokémon are ideal for beginning trainers, while high-maintenance Pokémon might be more suitable for veterans. Moderate Pokémon are a good choice for a wide variety of trainers.</p>
+
+<br/>
+
+<p id="text4">The third question is of disposition. Would you prefer a reserved, introverted sort of partner, or an outgoing, extroverted one? You might either choose a disposition to match your own, or perhaps one to balance your own tendencies out.</p>
+
+<br/>
+
+<p id="text5">The fourth question pertains to personality. Again, you can either select a personality similar to your own, or a personality that you would want in a partner Pokémon.</p>
+
+<br/>
+
+<p id="text6">The fifth question regards a defining characteristic that you consider most important in a partner. It is usually an ideal or trait that you would want your starter to embody.</p>
+
+<body><script>generateFooter()</script></body>
+
+</html>
+</div>

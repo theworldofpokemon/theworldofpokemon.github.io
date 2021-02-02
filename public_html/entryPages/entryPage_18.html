@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <head>
+    <script type='text/javascript' src='https://code.jquery.com/jquery-latest.js'></script>
+    <script type='text/javascript' src='../OverviewText.js'></script>
+  </head>
+
+  <script>generateStyle()</script>
+
+  <body onload='loadPage(18)'>
+
+        <script>generateNavBar()</script>
+
+  <div class='flex-container' style='margin:0px 175px 175px 175px; display:flex;flex-direction:column;'>
+    <div class='flex-container' style='display:flex; flex: 0 1 auto; flex-direction: row;justify-content: space-between;align-content: flex-start;'>
+        <div style='flex: 0 0 420px; width:1900;'>
+          <span class='flex-container' style='display:flex; flex-direction: row; justify-content: space-between;'>
+            <span style='line-height:normal;'>
+                <h1 class='entry-name' id='entry-name' style='font-weight:bold;font-size:60px;vertical-align:top;'>Pokémon Name</h1>
+                <h3 class='species-name' id='species-name' style='font-weight:bold; font-size:20px;'>The Undefined Pokémon</h3>
+            </span>
+            <h6 style='font-size:18px;'><a id='researchLink' href=''>Research Notes</a></h6>
+          </span>
+          <hr class='hr' style='width:100%;'>
+          <div class='flex-container' style='display:flex; flex-direction: row; justify-content: space-between;'>
+              <div style='width:450px;line-height:normal;'>
+              <h3 class='entry-stat' id='Num'>No</h3>
+              <h3 class='entry-stat' id='Type'>Type</h3>
+              <h3 class='entry-stat' id='Ht'>Ht</h3>
+              <h3 class='entry-stat' id='Wt'>Wt</h3>
+              <h3 class='entry-stat' id='Abilities'>Abilities</h3>
+              <h3 class='entry-stat' id='Egg'>Egg Groups</h3>
+            </div>
+            <span style='align-self:center;'><img id='sizeImage' width='123' height='100'></span>
+         </div>
+        </div>
+      <span><img id='entryImage' width='300' height='300' style='border: 1px solid lightgray;'></span>
+    </div>
+    <hr class='hr' style='width:100%;'>
+    <div class='flex-container' style='display:flex; flex-direction: row;'>
+      <span style='flex: 0 0 250px'><h2 class='section-info' id='Habitat-header' style='font-weight:100; font-size:25px; -webkit-font-smoothing: antialiased;'>Habitat</h2></span>
+      <span><p class='habitat-info' id='Habitat' style='font-size:18px;'>Habitat Info</p></span>
+    </div>
+    <div class='flex-container' style='display:flex; flex-direction: row;'>
+      <span style='flex: 0 0 250px'><h2 class='section-info' id='Overview-header' style='font-weight:100; font-size:25px; -webkit-font-smoothing: antialiased;'>Overview</h2></span>
+      <span><p class='overview-info' id='Overview'>Overview Info</p></span>
+    </div>
+    <div>
+      <hr class='hr' style='width:100%; margin:20px 0px 0px 0px;'>
+    </div>
+    <div class='flex-container' style='display:flex; flex-direction: row;'>
+      <span style='flex: 0 0 250px'><h2 class='evo-info' id = 'Evolution-header' style='font-weight:100; font-size:25px; -webkit-font-smoothing: antialiased;'>Evolution</h2></span>
+      <span><p class='evo-info' id='Evolution' style='font-size:18px;'>Evolution Info</p></span>
+    </div>
+    <div id='form-info' style='display:none'>
+      <hr class='hr' style='width:100%;'>
+      <div id='forms' class='flex-container' style='display:flex; flex-direction: row; flex-wrap:wrap; justify-content:center;'>
+      </div>
+    <div>
+      <hr class='hr' style='width:100%;'>
+    </div>
+  </div>
+    <div class='flex-container' style='display:flex; flex-direction: row;justify-content: space-between;'>
+      <a id='prev' href=''><button class='w3-button w3-dark-grey'><span class='wsite-button' style='vertical-align:-2px;'>PREVIOUS</span></button></a>
+      <a id='next' href=''><button class='w3-button w3-dark-grey'><span class='wsite-button' style='vertical-align:-2px;'>NEXT</button><span></a>
+    </div>
+  </div>
+</div>
+</body>
