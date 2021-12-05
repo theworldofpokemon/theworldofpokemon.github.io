@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <head>
+    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
+    <script type='text/javascript' src='../data/OverviewText.js'></script>
+  </head>
+
+  <script>generateStyle()</script>
+
+  <body onload='loadPage(540)'>
+
+        <script>generateNavBar()</script>
+
+  <div class='flex-container' style='margin:0px 170px 170px 170px; display:flex;flex-direction:column;'>
+    <div class='flex-container' style='display:flex; height:300px; flex: 0 0 420px; flex-direction: row;justify-content: space-between;'>
+        <div style='flex: 0 0 420px; width:1900;flex-direction: column;'>
+          <span class='flex-container' style='display:flex; flex-direction: row; justify-content: space-between;'>
+            <span>
+              <h1 class='entry-name' id='entry-name' style='line-height: 1.2;'>Pokémon Name</h1>
+              <h3 class='species-name' id='species-name' style='line-height: 1.2;'>The Undefined Pokémon</h3>
+            </span>
+            <a id='researchLink' href='' style='font-size:18px;font-family:Quattrocento, serif;'>Research Notes</a>
+          </span>
+          <hr class='hr' style='width:100%;'>
+          <div class='flex-container' style='display:flex; flex-direction: row; justify-content: space-between;'>
+            <div style='width:450px;'>
+              <h3 class='entry-stat' id='Num' style='line-height: 1.2;'>No</h3>
+              <h3 class='entry-stat' id='Type' style='line-height: 1.2;'>Type</h3>
+              <h3 class='entry-stat' id='Ht' style='line-height: 1.2;'>Ht</h3>
+              <h3 class='entry-stat' id='Wt' style='line-height: 1.2;'>Wt</h3>
+              <h3 class='entry-stat' id='Abilities' style='line-height: 1.2;'>Abilities</h3>
+              <h3 class='entry-stat' id='Egg' style='line-height: 1.2;'>Egg Groups</h3>
+            </div>
+            <span style='align-self:middle;'><img id='sizeImage' width='123' height='100'></span>
+         </div>
+        </div>
+      <span><img id='entryImage' width='300' height='300' style='border: 1px solid lightgray;'></span>
+    </div>
+    <hr class='hr' style='width:100%;'>
+    <div class='flex-container' style='display:flex; flex-direction: row;'>
+      <span style='flex: 0 0 150px'><h2 class='section-info' id='Habitat-header'>Habitat</h2></span>
+      <span><p class='habitat-info' id='Habitat'>Habitat Info</p></span>
+    </div>
+    <div class='flex-container' style='display:flex; flex-direction: row;'>
+      <span style='flex: 0 0 150px'><h2 class='section-info' id='Overview-header'>Overview</h2></span>
+      <span><p class='overview-info' id='Overview'>Overview Info</p></span>
+    </div>
+    <div>
+      <hr class='hr' style='width:100%;'>
+    </div>
+    <div class='flex-container' style='display:flex; flex-direction: row;'>
+      <span style='flex: 0 0 150px'><h2 class='evo-info' id = 'Evolution-header'>Evolution</h2></span>
+      <span><p class='evo-info' id='Evolution'>Evolution Info</p></span>
+    </div>
+    <div id='form-info' style='display:none'>
+      <hr class='hr' style='width:100%;'>
+      <div id='forms' class='flex-container' style='display:flex; flex-direction: row; flex-wrap:wrap; justify-content:center;'>
+      </div>
+    <div>
+      <hr class='hr' style='width:100%;'>
+    </div>
+  </div>
+    <div class='flex-container' style='display:flex; flex-direction: row;justify-content: space-between;'>
+      <a id='prev' href=''><button>Previous</button></a>
+      <a id='next' href=''><button>Next</button></a>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

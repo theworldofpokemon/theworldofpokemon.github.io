@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <head>
+    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
+    <script type='text/javascript' src='OverviewText.js'></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=G-NP4C5XZVLG'></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NP4C5XZVLG');
+</script>
+  </head>
+
+  <script>generateStyle()</script>
+  <script>document.title="Taxonomy";</script>
+
+  <script>
+  var nextLevel = [];
+  var toWrite = "";
+
+  var styleTagFront = ["<font size='10' color ='black'><b>","<font size ='10' color = 'gray'><b>","<font size = '10' color = 'black'>","<font size = '10' color = 'gray'>","<font size = '6' color = 'black'><b>","<font size = '6' color = 'gray'></b>","<font size ='6' color ='black'>"];
+  var styleTagBack = ["</font></b>","</font></b>","</font>","</font>","</font></b>","</font></b>","</font>"];
+
+  function generateTaxTree(node) {
+    if (node.name != "") {
+      var space = "";
+      for (rep=0;rep <= node.level; rep++) {
+        space = space + "\t";
+      }
+      toWrite = toWrite + space + styleTagFront[node.level] + node.name + styleTagBack[node.level] + "\n";
+    }
+    for (n = node.children.length - 1; n >=0; n--) {
+      if (node.children[n] instanceof snGroup & node.children[n] != null) {
+        nextLevel.push(node.children[n]);
+      }
+      else {
+        toWrite = toWrite + "\t\t\t\t\t\t\t\t<a href = " + directory + "/researchPages/" + node.children[n].num + "_research.html><font size='4'><i>" + overviewSN[node.children[n].num] + "</i></font>      <font size = 2>(" + overviewName[node.children[n].num] + ")</font>\n";
+      }
+    }
+    while (nextLevel.length > 0) {
+      generateTaxTree(nextLevel.pop());
+    }
+  }
+  generateTaxTree(taxonomyHead);
+  </script>
+
+  <body>
+    <script>generateNavBar()</script>
+    <div style="margin:0% 12% 0% 12%;">
+      <p id='taxonomyTree' style='white-space: pre;'></p>
+    </div>
+  </body>
+
+<script>document.getElementById("taxonomyTree").innerHTML = toWrite;</script>
+<script>generateFooter()</script>
+</html>

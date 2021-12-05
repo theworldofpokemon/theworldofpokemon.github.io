@@ -1,0 +1,1434 @@
+Natura	Bacteria,Protista,Plantoidae,Pokemonia	Domain
+Anatura	Mineralia,Spectrae	Domain
+Bacteria	Monozoa	Kingdom
+Protista	Mycetozoa,Amorphozoidia	Kingdom
+Plantoidae	Chlorophyta,Pinophyta,Magnoliaphyta	Kingdom
+Pokemonia	Stilluria,Coriodata,Cnidaria,Mollusca,Arthropoda,Echinodermata,Chordata	Kingdom
+Mineralia	Epistula,Crysta,Silexia	Kingdom
+Spectrae	Spiria	Kingdom
+Monozoa	Uniplasmia	Phylum
+Mycetozoa	Dictyostelia	Phylum
+Amorphozoidia	Amorphozoa	Phylum
+Chlorophyta Pseudohederapsida  Phylum
+Pinophyta	Pinopsida	Phylum
+Magnoliaphyta	Magnoliopsida,Asterids,Rosids	Phylum
+Stilluria	Stomatia	Phylum
+Coriodata	Latentia	Phylum
+Cnidaria	Anthozoa,Scyphozoa	Phylum
+Mollusca	Bivalvia,Gastropoda,Cephalopoda	Phylum
+Arthropoda	Radiodonta,Chilopoda,Arachnida,Maxillapoda,Malacostraca,Merostomata,Insecta	Phylum
+Echinodermata	Crinoidea,Asteroidea,Echinoidea,Holothuroidea	Phylum
+Chordata	Hyperoartia,Chondrichthyes,Actinopterygii,Sarcopterygii,Amphibia,Reptilia,Aves,Mammalia,Errata	Phylum
+Epistula	Litteria	Phylum
+Crysta	Glacia,Crystacreditia	Phylum
+Silexia	Lutumia,Petraria,Metalia	Phylum
+Spiria	Vestibulia,Materia	Phylum
+Uniplasmia	Uniplasmida	Class
+Dictyostelia	Dictyostelida	Class
+Amorphozoa	Amorphozoda	Class
+Pseudohederapsida  Pseudohederales  Class
+Pinopsida	Pinales	Class
+Magnoliopsida	Nymphaeales,Liliales,Lerales,Asparagales,Arecales	Class
+Asterids	Asterales	Class
+Rosids	Caryophyllales,Malvales,Cucurbitales,Fagales,Rosales,Malpighiales	Class
+Stomatia	Venteria	Class
+Latentia	Timensicauda	Class
+Anthozoa	Schleractinia	Class
+Scyphozoa	Semaeostomeae	Class
+Bivalvia	Pectinoida	Class
+Gastropoda	Gymnosomata,Nudibranchia,Stylommatophora	Class
+Cephalopoda	Ammonitida,Cerebrida,Octopoda	Class
+Radiodonta	Dinocaridida	Class
+Chilopoda	Scolopendramorpha,Geophilomorpha	Class
+Arachnida	Araneae,Scorpiones	Class
+Maxillapoda	Penduculata	Class
+Malacostraca	Isopoda,Decapoda	Class
+Merostomata	Xiphosura	Class
+Insecta	Meganisoptera,Orthoptera,Phasmatodea,Mantodea,Hemiptera,Coleoptera,Hymenoptera,Neuroptera,Diptera,Lepidoptera	Class
+Crinoidea	Monobathrida	Class
+Asteroidea	Valvatida	Class
+Echinoidea	Echinoida	Class
+Holothuroidea	Ventriculata	Class
+Hyperoartia	Petromyzontiformes	Class
+Chondrichthyes	Myliobatiformes,Lamniformes,Carcharhiniformes	Class
+Actinopterygii	Anguilliformes,Clupeiformes,Siluriformes,Cypriniformes,Lophiiformes,Lampriformes,Syngnathiformes,Pleuronectiformes,Tetradontiformes,Perciformes,Esociformes	Class
+Sarcopterygii	Coleocanthiformes	Class
+Amphibia	Nectridea,Caudata,Anura	Class
+Reptilia	Plesiosauria,Crocodilia,Testudines,Rhynococephalia,Squamata,Pterasauria,Ornithischia,Saurischia	Class
+Aves	Anseriformes,Galliformes,Struthioniformes,Libitiformes,Pelecaniformes,Sphenisciformes,Trogoniformes,Piciformes,Strigiformes,Psittaciformes,Passeriformes,Cathartiformes,Accipitriformes,Falconiformes,Suliformes	Class
+Mammalia	Monotremata,Diprotodontia,Lagomorpha,Rodentia,Pilosa,Eulipotyphyla,Chiroptera,Pholidota,Carnivora,Artiodactyla,Perrisodactyla,Proboscidea,Sirenia,Primates	Class
+Errata	Chimaera	Class
+Litteria	Litterales	Class
+Glacia	Glaciales	Class
+Crystacreditia	Crystacreditiales	Class
+Lutumia	Lutumiales	Class
+Petraria	Petriales	Class
+Metalia	Metaliales	Class
+Vestibulia	Vestibuliales,Plasmiales,Tractiales	Class
+Materia	Materiales	Class
+Uniplasmida	Uniplasmidae	Order
+Dictyostelida	Toxodictyostelidae	Order
+Amorphozoda	Amorphozoidae	Order
+Pseudohederales Pseudohederaceae  Order
+Pinales	Pinaceae	Order
+Nymphaeales	Nymphaeaceae	Order
+Liliales	Liliaceae	Order
+Lerales	Leraceae	Order
+Asparagales	Orchidae	Order
+Arecales	Arecaceae	Order
+Asterales	Asteraeae	Order
+Caryophyllales	Nepenthaceae,Droseraceae,Cactaceae	Order
+Malvales	Malvaceae	Order
+Cucurbitales	Cucurbitaceae	Order
+Fagales	Fagaceae	Order
+Rosales	Rosaceae	Order
+Malpighiales	Oddiceae,Clusiaceae	Order
+Venteria	Venteridae	Order
+Timensicauda	Timensicaudidae	Order
+Schleractinia	Acroporidae	Order
+Semaeostomeae	Ulmaridae,Pelagiidae	Order
+Pectinoida	Spondylidae	Order
+Gymnosomata	Clionidae	Order
+Nudibranchia	Facelinidae,Glaucidae	Order
+Stylommatophora	Helicidae	Order
+Ammonitida	Ammonitidae	Order
+Cerebrida	Cerebridae	Order
+Octopoda	Octopodidae	Order
+Dinocaridida	Anomalocarididae	Order
+Scolopendramorpha	Scolopendridae	Order
+Geophilomorpha	Geophilidae	Order
+Araneae	Salticidae,Cybaeidae,Theraphosidae	Order
+Scorpiones	Scorpionidae,Scorpteridae	Order
+Penduculata	Lepadidae	Order
+Isopoda	Cirolanidae	Order
+Decapoda	Coenobitidae,Alpheidae,Paguridae,Ocypodidae,Astacidae	Order
+Xiphosura	Kabutopsidae	Order
+Meganisoptera	Meganeuridae	Order
+Orthoptera	Gryllidae	Order
+Phasmatodea	Phyllidae	Order
+Mantodea	Mantidae	Order
+Hemiptera	Cicadidae	Order
+Coleoptera	Lucanidae,Scarabaeidae,Drilidae,Lampyridae,Coccinellidae	Order
+Hymenoptera	Formicidae,Apidae,Vespidae	Order
+Neuroptera	Myrmeleontidae	Order
+Diptera	Bombylidae	Order
+Lepidoptera	Toxisetidae,Psychidae,Oculopteridae,Saturniidae,Papilionidae,Pieridae	Order
+Monobathrida	Actinocrinitidae	Order
+Valvatida	Luminasteridae,Acanthasteridae	Order
+Echinoida	Strongylocentrotidae	Order
+Ventriculata	Ventriculatidae	Order
+Petromyzontiformes	Petromyzontidae	Order
+Myliobatiformes	Myliobatidae	Order
+Lamniformes	Lamnidae	Order
+Carcharhiniformes	Sphyrnidae	Order
+Anguilliformes	Nemicthyidae	Order
+Clupeiformes	Clupeidae	Order
+Siluriformes	Siluridae	Order
+Cypriniformes	Cyprinidae	Order
+Lophiiformes	Lanturidae	Order
+Lampriformes	Regalecidae	Order
+Syngnathiformes	Syngnathidae	Order
+Pleuronectiformes	Pleuronectidae	Order
+Tetradontiformes	Balistidae,Molidae,Tetraodontidae	Order
+Perciformes	Cichlidae,Chaetodontidae,Moronidae	Order
+Esociformes	Esocidae	Order
+Coleocanthiformes	Latimeriidae	Order
+Nectridea	Diplocaulidae	Order
+Caudata	Ambystomatidae,Salamandridae,Cryptobranchidae	Order
+Anura	Bufonidae,Dendrobatidae,Hylidae	Order
+Plesiosauria	Plesiosauridae	Order
+Crocodilia	Gavialidae,Alligatoridae	Order
+Testudines	Testudinae,Chelidae,Chelydridae,Protostegidae	Order
+Rhynococephalia	Sphenodontidae	Order
+Squamata	Aliferidae,Colubridae,Elapidae,Viperidae,Boidae,Draconidae,Gekkonidae,Chameleonidae,Corytophanidae,Moultinidae,Agamidae,Adiposidae	Order
+Pterasauria	Pterasauridae	Order
+Ornithischia	Ceratopsidae,Pachycephalosauridae	Order
+Saurischia	Diplodocidae,Dicraeosauridae,Tyrannosauridae,Archaeopterygidae	Order
+Anseriformes	Anatidae	Order
+Galliformes	Phasianidae	Order
+Struthioniformes	Struthionidae	Order
+Libitiformes	Libitidae	Order
+Pelecaniformes	Pelecanidae	Order
+Sphenisciformes	Spheniscidae	Order
+Trogoniformes	Trogonidae	Order
+Piciformes	Ramphastidae	Order
+Strigiformes	Strigidae,Fragridae	Order
+Psittaciformes	Psittacus	Order
+Passeriformes	Turdidae,Hirundinidae,Fringillidae,Corvidae,Passeridae	Order
+Cathartiformes	Cathartidae	Order
+Accipitriformes	Accipitridae	Order
+Falconiformes	Falconidae	Order
+Suliformes	Phalacrocoracidae	Order
+Monotremata	Ovidae	Order
+Diprotodontia	Phascolarctidae,Osteogeridae,Macropodidae	Order
+Lagomorpha	Leporidae	Order
+Rodentia	Castoridae,Chinchillidae,Sciuridae,Caviidae,Cricetidae,Muridae	Order
+Pilosa	Megatheriidae,Myrmecophagidae	Order
+Eulipotyphyla	Erinaceidae,Talpidae	Order
+Chiroptera	Phyllostomidae	Order
+Pholidota	Manidae	Order
+Carnivora	Procyonidae,Ailuridae,Otariidae,Odobenidae,Ursidae,Mephitidae,Mustelidae,Canidae,Herpestidae,Hyaenidae,Baijidae,Felidae	Order
+Artiodactyla	Caprinae,Camelidae,Cervidae,Giraffidae,Bovidae,Hippopotamidae,Cetaceae	Order
+Perrisodactyla	Equidae,Tapiridae,Rhinocerotidae	Order
+Proboscidea	Elephantidae	Order
+Sirenia	Dugongidae	Order
+Primates	Lemuridae,Cercopithidae,Cebidae,Hominidae	Order
+Chimaera	Chimaeridae	Order
+Litterales	Litteridae	Order
+Glaciales	Glacidae	Order
+Crystacreditiales	Crystacreditae	Order
+Lutumiales	Lutumidae	Order
+Petriales	Petridae	Order
+Metaliales	Metalidae	Order
+Vestibuliales	Vestibulidae	Order
+Plasmiales	Plasmidae	Order
+Tractiales	Tractilidae	Order
+Materiales	Materidae	Order
+Uniplasmidae	Uniplasmidum	Family
+Toxodictyostelidae	Toxodictyostelium	Family
+Amorphozoidae	Amorphozodium	Family
+Pseudohederaceae  Pseudohedera  Family
+Pinaceae	Abies	Family
+Nymphaeaceae	Nymphaea	Family
+Liliaceae	Lilium	Family
+Leraceae	Lera	Family
+Orchidae	Mantoludia	Family
+Arecaceae	Cocos	Family
+Asteraeae	Helianthus,Taraxacum	Family
+Nepenthaceae	Nepenthes	Family
+Droseraceae	Dionaea	Family
+Cactaceae	Opuntia,Carnegiea	Family
+Malvaceae	Durio,Gossypium	Family
+Cucurbitaceae	Cucurbita	Family
+Fagaceae	Quercus	Family
+Rosaceae	Rosa,Prunus	Family
+Oddiceae	Oddium	Family
+Clusiaceae	Garcinia	Family
+Venteridae	Venti	Family
+Timensicaudidae	Timens	Family
+Acroporidae	Acropora	Family
+Ulmaridae	Aurelia	Family
+Pelagiidae	Pelagia	Family
+Spondylidae	Spondylus	Family
+Clionidae	Clione	Family
+Facelinidae	Hermissenda	Family
+Glaucidae	Glaucus	Family
+Helicidae	Helix	Family
+Ammonitidae	Ammonite	Family
+Cerebridae	Cerebrius	Family
+Octopodidae	Octopus	Family
+Anomalocarididae	Anomalocaris	Family
+Scolopendridae	Scolopendra	Family
+Geophilidae	Geophilus	Family
+Salticidae	Myrmarachne	Family
+Cybaeidae	Argyroneta	Family
+Theraphosidae	Theraphosa	Family
+Scorpionidae	Scorpio	Family
+Scorpteridae	Scorptera	Family
+Lepadidae	Lepas	Family
+Cirolanidae	Bathynomus	Family
+Coenobitidae	Birgus	Family
+Alpheidae	Alpheus	Family
+Paguridae	Pagurus	Family
+Ocypodidae	Uca	Family
+Astacidae	Astacus	Family
+Kabutopsidae	Kabutops	Family
+Meganeuridae	Meganeura	Family
+Gryllidae	Gryllus	Family
+Phyllidae	Phyllium	Family
+Mantidae	Mantinae	Family
+Cicadidae	Cicada	Family
+Lucanidae	Lucanus	Family
+Scarabaeidae	Chalcosoma	Family
+Drilidae	Drilus	Family
+Lampyridae	Lampyris	Family
+Coccinellidae	Coccinella	Family
+Formicidae	Formica	Family
+Apidae	Apis	Family
+Vespidae	Vespa	Family
+Myrmeleontidae	Myrmeleon	Family
+Bombylidae	Bombylius	Family
+Toxisetidae	Toxiseta	Family
+Psychidae	Psyche	Family
+Oculopteridae	Oculoptera	Family
+Saturniidae	Attacus,Actias	Family
+Papilionidae	Papilio	Family
+Pieridae	Aporia	Family
+Actinocrinitidae	Actinocrinites	Family
+Luminasteridae	Luminaster	Family
+Acanthasteridae	Acanthaster	Family
+Strongylocentrotidae	Strongylocentrotus	Family
+Ventriculatidae	Ventricula	Family
+Petromyzontidae	Petromyzon	Family
+Myliobatidae	Manta	Family
+Lamnidae	Carcharodon	Family
+Sphyrnidae	Sphyrna	Family
+Nemicthyidae	Nemicthys	Family
+Clupeidae	Clupea	Family
+Siluridae	Silurus	Family
+Cyprinidae	Carassius,Cyprinus	Family
+Lanturidae	Lantura	Family
+Regalecidae	Regalecus	Family
+Syngnathidae	Hippocampus,Phyllopteryx	Family
+Pleuronectidae	Pleuronectes	Family
+Balistidae	Balistes	Family
+Molidae	Mola	Family
+Tetraodontidae	Tetraodon	Family
+Cichlidae	Symphysodon	Family
+Chaetodontidae	Chaetodon	Family
+Moronidae	Morone	Family
+Esocidae	Esox	Family
+Latimeriidae	Latimeria	Family
+Diplocaulidae	Diplocaulus	Family
+Ambystomatidae	Ambystoma	Family
+Salamandridae	Salamandra	Family
+Cryptobranchidae	Andrias	Family
+Bufonidae	Bufo	Family
+Dendrobatidae	Dendrobates	Family
+Hylidae	Hyla,Cruziohyla	Family
+Plesiosauridae	Plesiosaurus	Family
+Gavialidae	Gaviales	Family
+Alligatoridae	Alligator	Family
+Testudinae	Testudo,Terrade,Geoemyda	Family
+Chelidae	Chelus	Family
+Chelydridae	Macrochelys	Family
+Protostegidae	Archelon	Family
+Sphenodontidae	Sphenodon	Family
+Aliferidae	Boro,Serpenta	Family
+Colubridae	Coluber	Family
+Elapidae	Naja	Family
+Viperidae	Trimeresurus	Family
+Boidae	Eunectes	Family
+Draconidae	Draco,Dracoaves	Family
+Gekkonidae	Gekko	Family
+Chameleonidae	Chamaeleo	Family
+Corytophanidae	Basiliscus	Family
+Moultinidae	Moulta	Family
+Agamidae	Moloch	Family
+Adiposidae	Adiposa	Family
+Pterasauridae	Pterasaurus	Family
+Ceratopsidae	Ceratops,Triceratops	Family
+Pachycephalosauridae	Pachycephalosaur	Family
+Diplodocidae	Apatosaurus	Family
+Dicraeosauridae	Amargasaurus	Family
+Tyrannosauridae	Tyrannosaurus	Family
+Archaeopterygidae	Archaeopteryx	Family
+Anatidae	Anas,Cygnus	Family
+Phasianidae	Gallus,Phasianus	Family
+Struthionidae	Struthio	Family
+Libitidae	Libus	Family
+Pelecanidae	Pelecanus	Family
+Spheniscidae	Eudyptes,Spheniscus,Pygoscelis	Family
+Trogonidae	Pharomachrus	Family
+Ramphastidae	Ramphastos	Family
+Strigidae	Bubo,Pulsatrix	Family
+Fragridae	Fragus	Family
+Psittacidae	Psittacus	Family
+Turdidae	Siala	Family
+Hirundinidae	Hirundo	Family
+Fringillidae	Scirto	Family
+Corvidae	Corvus	Family
+Passeridae	Passer	Family
+Cathartidae	Vultur	Family
+Accipitridae	Gyps,Accipitrinae,Haliaeetus,Lophaetus	Family
+Falconidae	Falco	Family
+Phalacrocoracidae	Phalacrocorax	Family
+Ovidae	Ova	Family
+Phascolarctidae	Phascolarctos	Family
+Osteogeridae	Osteogera	Family
+Macropodidae	Macropus	Family
+Leporidae	Lauda,Arma,Rosala,Melutens,Oleocauda,Oryctolagus,Lepus	Family
+Castoridae	Castor	Family
+Chinchillidae	Chinchilla	Family
+Sciuridae	Sciurus,Glaucomys	Family
+Caviidae	Cavia	Family
+Cricetidae	Cricetus	Family
+Muridae	Rattus,Mus	Family
+Megatheriidae	Megatherium	Family
+Myrmecophagidae	Myrmecophaga	Family
+Erinaceidae	Erinaceus	Family
+Talpidae	Talpa	Family
+Phyllostomidae	Desmodus,Ectophylla,Sonidae	Family
+Manidae	Manis	Family
+Procyonidae	Procyon	Family
+Ailuridae	Ailurus	Family
+Otariidae	Otaria	Family
+Odobenidae	Odobenus	Family
+Ursidae	Somnursus,Ailuropoda,Ursus	Family
+Mephitidae	Mephitis	Family
+Mustelidae	Mellivora,Mustela	Family
+Canidae	Vulpes,Canis	Family
+Herpestidae	Suricata,Herpestes	Family
+Hyaenidae	Hyaena	Family
+Baijidae	Baijides	Family
+Felidae	Felis,Panthera	Family
+Caprinae	Ovis,Capra	Family
+Camelidae	Camelus	Family
+Cervidae	Cervini	Family
+Giraffidae	Giraffa	Family
+Bovidae	Bison,Bos	Family
+Hippopotamidae	Hippopotamus	Family
+Cetaceae	Balaena	Family
+Equidae	Equus	Family
+Tapiridae	Tapirus	Family
+Rhinocerotidae	Rhinoceros	Family
+Elephantidae	Mammuthus,Elephas	Family
+Dugongidae	Sirenus	Family
+Lemuridae	Lemur	Family
+Cercopithidae	Cercopithecus	Family
+Cebidae	Cebidus	Family
+Hominidae	Pongo,Gorilla,Pan,Fascinus,Similis,Homo	Family
+Chimaeridae	Chimaerum	Family
+Litteridae	Litterus	Family
+Glacidae	Glacies	Family
+Crystacreditae	Crystacredis	Family
+Lutumidae	Lutum	Family
+Petridae	Petra,Gemma,Carbo	Family
+Metalidae	Electricus,Sonus,Flexus,Magnus,Metalum	Family
+Vestibulidae	Vestibulus	Family
+Plasmidae	Plasmidus	Family
+Tractilidae	Tractis	Family
+Materidae	Ligna,Pulva,Lapis,Bolus,Ferreus,Aurum,Murrina	Family
+Uniplasmidum	Uniplasmidum homunculus	Genus
+Toxodictyostelium	Toxodictyostelium putridus	Genus
+Amorphozodium	Amorphozodium amorphus	Genus
+Pseudohedera  Pseudohedera vitis  Genus
+Abies	Abies yetus	Genus
+Nymphaea	Nymphaea saltadus	Genus
+Lilium	Lilium bella	Genus
+Lera	Lera garlandus	Genus
+Mantoludia	Mantoludia siculus	Genus
+Cocos	Cocos ovulum	Genus
+Helianthus	Helianthus apricum	Genus
+Taraxacum	Taraxacum byssus	Genus
+Nepenthes	Nepenthes sirupus	Genus
+Dionaea	Dionaea cardo	Genus
+Opuntia	Opuntia cassa	Genus
+Carnegiea	Carnegiea effigus	Genus
+Durio	Durio barbus	Genus
+Gossypium	Gossypium texentes,Gossypium malum	Genus
+Cucurbita	Cucurbita candela	Genus
+Quercus	Quercus tengus	Genus
+Rosa	Rosa persona	Genus
+Prunus	Prunus sakura	Genus
+Oddium	Oddium wanderus	Genus
+Garcinia	Garcinia dulcis	Genus
+Venti	Venti sorbeus	Genus
+Timens	Timens inlexis	Genus
+Acropora	Acropora tropis	Genus
+Aurelia	Aurelia royalis	Genus
+Pelagia	Pelagia fluitus	Genus
+Spondylus	Spondylus spica	Genus
+Clione	Clione manaphus	Genus
+Hermissenda	Hermissenda alternens	Genus
+Glaucus	Glaucus limus	Genus
+Helix	Helix velox,Helix lavus	Genus
+Ammonite	Ammonite velum	Genus
+Cerebrius	Cerebrius imperius	Genus
+Octopus	Octopus capto,Octopus artillus	Genus
+Anomalocaris	Anomalocaris terrestris	Genus
+Scolopendra	Scolopendra centauri	Genus
+Geophilus	Geophilus ignuitta	Genus
+Myrmarachne	Myrmarachne facies	Genus
+Argyroneta	Argyroneta bubblex	Genus
+Theraphosa	Theraphosa electrotela	Genus
+Scorpio	Scorpio vulgaris	Genus
+Scorptera	Scorptera corvex	Genus
+Lepas	Lepas corporis	Genus
+Bathynomus	Bathynomus brutalis	Genus
+Birgus	Birgus hirsutum	Genus
+Alpheus	Alpheus iactus	Genus
+Pagurus	Pagurus stratos	Genus
+Uca	Uca cancera	Genus
+Astacus	Astacus vexator	Genus
+Kabutops	Kabutops maximus	Genus
+Meganeura	Meganeura ogrus	Genus
+Gryllus	Gryllus stridulum	Genus
+Phyllium	Phyllium matricia	Genus
+Mantinae	Mantinae falces	Genus
+Cicada	Cicada subterra,Cicada cordyceps	Genus
+Lucanus	Lucanus voltus,Lucanus pincis	Genus
+Chalcosoma	Chalcosoma sucum	Genus
+Drilus	Drilus chivalris	Genus
+Lampyris	Lampyris mica	Genus
+Coccinella	Coccinella praedico,Coccinella constella	Genus
+Formica	Formica durum	Genus
+Apis	Apis mella	Genus
+Vespa	Vespa puncta	Genus
+Myrmeleon	Myrmeleon desertii	Genus
+Bombylius	Bombylius cerinthus	Genus
+Toxiseta	Toxiseta nocturnis	Genus
+Psyche	Psyche pallus,Psyche castrum	Genus
+Oculoptera	Oculoptera pluvia	Genus
+Attacus	Attacus solari	Genus
+Actias	Actias pruina	Genus
+Papilio	Papilio variabilis	Genus
+Aporia	Aporia regula,Aporia humidus	Genus
+Actinocrinites	Actinocrinites crinis	Genus
+Luminaster	Luminaster stellata	Genus
+Acanthaster	Acanthaster voracia	Genus
+Strongylocentrotus	Strongylocentrotus inpulsina	Genus
+Ventricula	Ventricula pugnus	Genus
+Petromyzon	Petromyzon levitatus	Genus
+Manta	Manta kitus	Genus
+Carcharodon	Carcharodon torpedus	Genus
+Sphyrna	Sphyrna aera	Genus
+Nemicthys	Nemicthys abyssus	Genus
+Clupea	Clupea vadis	Genus
+Silurus	Silurus tremulus	Genus
+Carassius	Carassius vibrans	Genus
+Cyprinus	Cyprinus serpensis	Genus
+Lantura	Lantura lumens	Genus
+Regalecus	Regalecus puris	Genus
+Hippocampus	Hippocampus vortex	Genus
+Phyllopteryx	Phyllopteryx algus	Genus
+Pleuronectes	Pleuronectes dolus	Genus
+Balistes	Balistes garix	Genus
+Mola	Mola curata	Genus
+Tetraodon	Tetraodon nerus	Genus
+Symphysodon	Symphysodon amorus	Genus
+Chaetodon	Chaetodon papilius	Genus
+Morone	Morone nemesis	Genus
+Esox	Esox sagitta	Genus
+Latimeria	Latimeria anciens	Genus
+Diplocaulus	Diplocaulus furtivus	Genus
+Ambystoma	Ambystoma lustrum,Ambystoma amica	Genus
+Salamandra	Salamandra pheroma	Genus
+Andrias	Andrias tardus	Genus
+Bufo	Bufo verruca	Genus
+Dendrobates	Dendrobates fraudator	Genus
+Hyla	Hyla crocus	Genus
+Cruziohyla	Cruziohyla swiftis	Genus
+Plesiosaurus	Plesiosaurus melodii	Genus
+Gaviales	Gaviales spectacalis	Genus
+Alligator	Alligator mordetis	Genus
+Testudo	Testudo carbo	Genus
+Terrade	Terrade firma	Genus
+Geoemyda	Geoemyda tormento	Genus
+Chelus	Chelus blastus	Genus
+Macrochelys	Macrochelys ammorsus	Genus
+Archelon	Archelon oceanis	Genus
+Sphenodon	Sphenodon bulbus	Genus
+Boro	Boro miserabilis	Genus
+Serpenta	Serpenta maritius	Genus
+Coluber	Coluber hederis	Genus
+Naja	Naja ajans	Genus
+Trimeresurus	Trimeresurus rivalis	Genus
+Eunectes	Eunectes hariactus	Genus
+Draco	Draco pomum,Draco clangor,Draco senescens,Draco gladium	Genus
+Dracoaves	Dracoaves horribilis,Dracoaves caverna,Dracoaves avium,Dracoaves ignis	Genus
+Gekko	Gekko sylvus	Genus
+Chamaeleo	Chamaeleo secretum,Chamaeleo chromata	Genus
+Basiliscus	Basiliscus helios	Genus
+Moulta	Moulta pellis	Genus
+Moloch	Moloch venelectrus	Genus
+Adiposa	Adiposa magmus,Adiposa lingua	Genus
+Pterasaurus	Pterasaurus predatum	Genus
+Ceratops	Ceratops bastius	Genus
+Triceratops	Triceratops ferrum	Genus
+Pachycephalosaur	Pachycephalosaur rampartus	Genus
+Apatosaurus	Apatosaurus fructus,Apatosaurus aroma	Genus
+Amargasaurus	Amargasaurus borealis	Genus
+Tyrannosaurus	Tyrannosaurus mechanicum,Tyrannosaurus infans,Tyrannosaurus montem	Genus
+Archaeopteryx	Archaeopteryx plumus	Genus
+Anas	Anas allium,Anas kappus	Genus
+Cygnus	Cygnus albus	Genus
+Gallus	Gallus cinis	Genus
+Phasianus	Phasianus ornatus	Genus
+Struthio	Struthio squabilis	Genus
+Libus	Libus fortuna	Genus
+Pelecanus	Pelecanus gapus	Genus
+Eudyptes	Eudyptes holidens	Genus
+Spheniscus	Spheniscus napoleonis	Genus
+Pygoscelis	Pygoscelis cubus	Genus
+Pharomachrus	Pharomachrus divinus	Genus
+Ramphastos	Ramphastos beccus	Genus
+Bubo	Bubo intelligensis	Genus
+Pulsatrix	Pulsatrix apollens	Genus
+Fragus	Fragus perfuma	Genus
+Psittacus	Psittacus vocalis	Genus
+Siala	Siala soprana	Genus
+Hirundo	Hirundo barnus	Genus
+Scirto	Scirto venustus	Genus
+Corvus	Corvus eques,Corvus mafioso	Genus
+Passer	Passer rostro	Genus
+Vultur	Vultur bramblis	Genus
+Gyps	Gyps ossum	Genus
+Accipitrinae	Accipitrinae luchadora	Genus
+Haliaeetus	Haliaeetus patrius	Genus
+Lophaetus	Lophaetus pecus	Genus
+Falco	Falco cinialas,Falco machus	Genus
+Phalacrocorax	Phalacrocorax devorum	Genus
+Ova	Ova felicitas	Genus
+Phascolarctos	Phascolarctos narcum	Genus
+Osteogera	Osteogera solum	Genus
+Macropus	Macropus matera	Genus
+Lauda	Lauda volumnis	Genus
+Arma	Arma toxis	Genus
+Rosala	Rosala gracia,Rosala stethos	Genus
+Melutens	Melutens mollia	Genus
+Oleocauda	Oleocauda aquus	Genus
+Oryctolagus	Oryctolagus orectoauris	Genus
+Lepus	Lepus calcitrus,Lepus structor	Genus
+Castor	Castor industrus	Genus
+Chinchilla	Chinchilla fascia	Genus
+Sciurus	Sciurus bucca,Sciurus scampus	Genus
+Glaucomys	Glaucomys glidum	Genus
+Cavia	Cavia fames	Genus
+Cricetus	Cricetus radi	Genus
+Rattus	Rattus normalis	Genus
+Mus	Mus plusus,Mus minus,Mus pikalis	Genus
+Megatherium	Megatherium loafus	Genus
+Myrmecophaga	Myrmecophaga furna	Genus
+Erinaceus	Erinaceus spiculorbis,Erinaceus castus	Genus
+Talpa	Talpa drillus,Talpa triplex	Genus
+Desmodus	Desmodus cavus	Genus
+Ectophylla	Ectophylla cardius	Genus
+Sonidae	Sonidae wyverii	Genus
+Manis	Manis rotis	Genus
+Procyon	Procyon derectus	Genus
+Ailurus	Ailurus vertigo	Genus
+Otaria	Otaria symphona,Otaria conchae	Genus
+Odobenus	Odobenus glacius	Genus
+Somnursus	Somnursus adiposum	Genus
+Ailuropoda	Ailuropoda banchus	Genus
+Ursus	Ursus ludibrium,Ursus articus,Ursus luna	Genus
+Mephitis	Mephitis odorus	Genus
+Mellivora	Mellivora eruptis	Genus
+Mustela	Mustela trichis,Mustela raftus,Mustela vila,Mustela slenderis	Genus
+Vulpes	Vulpes obtentus,Vulpes mysticii,Vulpes illusis,Vulpes alters,Vulpes prudens,Vulpes novem	Genus
+Canis	Canis curris,Canis bestia,Canis saccharum,Canis pampus,Canis alpinus,Canis aurus,Canis thundura,Canis pigmentum,Canis sulphurus,Canis maxilla,Canis legendaris	Genus
+Suricata	Suricata inflorescens	Genus
+Herpestes	Herpestes inquisitor,Herpestes notos	Genus
+Hyaena	Hyaena cowardis	Genus
+Baijides	Baijides disastrus	Genus
+Felis	Felis restrictus,Felis corsi,Felis prima,Felis urbana	Genus
+Panthera	Panthera heela,Panthera nobilis,Panthera limbra,Panthera visio	Genus
+Ovis	Ovis nigramaculus,Ovis luxus	Genus
+Capra	Capra folius	Genus
+Camelus	Camelus vulcans	Genus
+Cervini	Cervini vernum,Cervini virga	Genus
+Giraffa	Giraffa dualis	Genus
+Bison	Bison afros	Genus
+Bos	Bos lactis,Bos planum	Genus
+Hippopotamus	Hippopotamus harena	Genus
+Balaena	Balaena gigantica	Genus
+Equus	Equus lutulata,Equus electricus,Equus flamus	Genus
+Tapirus	Tapirus mistus,Tapirus hypnos	Genus
+Rhinoceros	Rhinoceros armatus	Genus
+Mammuthus	Mammuthus tuskus	Genus
+Elephas	Elephas ahenus,Elephas volvo	Genus
+Sirenus	Sirenus arbilla	Genus
+Lemur	Lemur strikus	Genus
+Cercopithecus	Cercopithecus irritabilis	Genus
+Cebidus	Cebidus dexter	Genus
+Pongo	Pongo magister,Pongo statua	Genus
+Gorilla	Gorilla tympanum,Gorilla tridentum	Genus
+Pan	Pan sagus,Pan searus,Pan pourus,Pan occidentalis	Genus
+Fascinus	Fascinus bellaria,Fascinus kobalus,Fascinus petasum,Fascinus flora,Fascinus luris,Fascinus sensus	Genus
+Similis	Similis formatio,Similis acutus,Similis fatum,Similis rufus,Similis caerulus,Similis construs,Similis mimus,Similis mentis,Similis crystalis,Similis palmus,Similis suava,Similis practicum,Similis musculus	Genus
+Homo	Homo sapiens	Genus
+Chimaerum	Chimaerum reptoaves,Chimaerum phocoaves,Chimaerum reptoisces,Chimaerum phocoisces	Genus
+Litterus	Litterus alpha	Genus
+Glacies	Glacies dorsum,Glacies hexagonus,Glacies nix	Genus
+Crystacredis	Crystacredis apex	Genus
+Lutum	Lutum nazcus,Lutum oculus	Genus
+Petra	Petra monumentum,Petra meteora,Petra arborealis,Petra boreas,Petra vermis,Petra volumens	Genus
+Gemma	Gemma carbuncula,Gemma pressura	Genus
+Carbo	Carbo rotodeos	Genus
+Electricus	Electricus crepitus,Electricus patella	Genus
+Sonus	Sonus campana,Sonus cano	Genus
+Flexus	Flexus clavis	Genus
+Magnus	Magnus crux	Genus
+Metalum	Metalum machina	Genus
+Vestibulus	Vestibulus umbra	Genus
+Plasmidus	Plasmidus habis	Genus
+Tractis	Tractis desirata,Tractis hexus	Genus
+Ligna	Ligna anchora,Ligna nemus	Genus
+Pulva	Pulva sabulum	Genus
+Lapis	Lapis malevolens	Genus
+Bolus	Bolus signum	Genus
+Ferreus	Ferreus bladus	Genus
+Aurum	Aurum capulum	Genus
+Murrina	Murrina thea	Genus
+Uniplasmidum homunculus	Solosis	Species
+Toxodictyostelium putridus	Toxodictyostelium putridus kantus,Toxodictyostelium putridus alolus	Species
+Amorphozodium amorphus	Ditto	Species
+Pseudohedera vitis  Tangela Species
+Abies yetus	Snover	Species
+Nymphaea saltadus	Lotad	Species
+Lilium bella	Petilil	Species
+Lera garlandus	Comfey	Species
+Mantoludia siculus	Fomantis	Species
+Cocos ovulum	Cocos ovulum kantus,Cocos ovulum alolus	Species
+Helianthus apricum	Sunkern	Species
+Taraxacum byssus	Hoppip	Species
+Nepenthes sirupus	Bellsprout	Species
+Dionaea cardo	Carnivine	Species
+Opuntia cassa	Maractus	Species
+Carnegiea effigus	Cacnea	Species
+Durio barbus	Ferroseed	Species
+Gossypium texentes	Gossifleur	Species
+Gossypium malum	Cottonee	Species
+Cucurbita candela	Pumpkaboo	Species
+Quercus tengus	Seedot	Species
+Rosa persona	Budew	Species
+Prunus sakura	Cherubi	Species
+Oddium wanderus	Oddish	Species
+Garcinia dulcis	Bounsweet	Species
+Venti sorbeus	Gulpin	Species
+Timens inlexis	Wynaut	Species
+Acropora tropis	Acropora tropis johtus,Acropora tropis galarius	Species
+Aurelia royalis	Frillish	Species
+Pelagia fluitus	Tentacool	Species
+Clione manaphus	Phione	Species
+Hermissenda alternens	Hermissenda alternens occidens,Hermissenda alternens oriens	Species
+Glaucus limus	Goomy	Species
+Helix velox	Shelmet	Species
+Helix lavus	Slugma	Species
+Cerebrius imperius	Inkay	Species
+Octopus capto	Clobbopus	Species
+Octopus artillus	Remoraid	Species
+Anomalocaris terrestris	Anorith	Species
+Scolopendra centauri	Venipede	Species
+Geophilus ignuitta	Sizzlipede	Species
+Myrmarachne facies	Spinarak	Species
+Argyroneta bubblex	Dewpider	Species
+Theraphosa electrotela	Joltik	Species
+Scorpio vulgaris	Skorupi	Species
+Scorptera corvex	Gligar	Species
+Lepas corporis	Binacle	Species
+Bathynomus brutalis	Wimpod	Species
+Birgus hirsutum	Crabrawler	Species
+Alpheus iactus	Clauncher	Species
+Pagurus stratos	Dwebble	Species
+Uca cancera	Krabby	Species
+Astacus vexator	Corphish	Species
+Kabutops maximus	Kabuto	Species
+Meganeura ogrus	Yanma	Species
+Gryllus stridulum	Kricketot	Species
+Phyllium matricia	Sewaddle	Species
+Mantinae falces	Scyther	Species
+Cicada subterra	Nincada	Species
+Cicada cordyceps	Paras	Species
+Lucanus voltus	Grubbin	Species
+Lucanus pincis	Pinsir	Species
+Chalcosoma sucum	Heracross	Species
+Drilus chivalris	Karrablast	Species
+Lampyris mica	Volbeat & Illumise	Species
+Coccinella praedico	Blipbug	Species
+Coccinella constella	Ledyba	Species
+Formica durum	Durant	Species
+Apis mella	Combee	Species
+Vespa puncta	Weedle	Species
+Myrmeleon desertii	Trapinch	Species
+Bombylius cerinthus	Cutiefly	Species
+Toxiseta nocturnis	Venonat	Species
+Psyche pallus	Burmy	Species
+Psyche castrum	Pineco	Species
+Oculoptera pluvia	Surskit	Species
+Attacus solari	Larvesta	Species
+Actias pruina	Snom	Species
+Aporia regula	Scatterbug	Species
+Aporia humidus	Caterpie	Species
+Actinocrinites crinis	Lileep	Species
+Luminaster stellata	Staryu	Species
+Acanthaster voracia	Mareanie	Species
+Strongylocentrotus inpulsina	Pincurchin	Species
+Ventricula pugnus	Pyukumuku	Species
+Petromyzon levitatus	Tynamo	Species
+Manta kitus	Mantyke	Species
+Carcharodon torpedus	Carvanha	Species
+Sphyrna aera	Gible	Species
+Nemicthys abyssus	Clamperl	Species
+Clupea vadis	Wishiwashi	Species
+Silurus tremulus	Barboach	Species
+Carassius vibrans	Goldeen	Species
+Cyprinus serpensis	Magikarp	Species
+Lantura lumens	Chinchou	Species
+Regalecus puris	Feebas	Species
+Hippocampus vortex	Horsea	Species
+Phyllopteryx algus	Skrelp	Species
+Pleuronectes dolus	Pleuronectes dolus unovus,Pleuronectes dolus galarius	Species
+Mola curata	Bruxish	Species
+Tetraodon nerus	Qwilfish	Species
+Symphysodon amorus	Luvdisc	Species
+Chaetodon papilius	Finneon	Species
+Morone nemesis	Morone nemesis scarlatinas,Morone nemesis indigoticus	Species
+Latimeria anciens	Relicanth	Species
+Diplocaulus furtivus	Dreepy	Species
+Ambystoma lustrum	Mudkip	Species
+Ambystoma amica	Wooper	Species
+Salamandra pheroma	Salandit	Species
+Andrias tardus	Slowpoke	Species
+Bufo verruca	Tympole	Species
+Dendrobates fraudator	Croagunk	Species
+Hyla crocus	Poliwag	Species
+Cruziohyla swiftis	Froakie	Species
+Plesiosaurus melodii	Lapras	Species
+Gaviales spectacalis	Sandile	Species
+Alligator mordetis	Totodile	Species
+Testudo carbo	Torkoal	Species
+Terrade firma	Turtwig	Species
+Geomyda tormento	Squirtle	Species
+Chelus blastus	Turtonator	Species
+Macrochelys ammorsus	Chewtle	Species
+Archelon oceanis	Tirtouga	Species
+Sphenodon bulbus	Bulbasaur	Species
+Boro miserabilis	Dunsparce	Species
+Serpenta maritius	Dratini	Species
+Coluber hederis	Snivy	Species
+Naja ajans	Ekans	Species
+Trimeresurus rivalis	Seviper	Species
+Eunectes hariactus	Sandaconda	Species
+Draco pomum	Applin	Species
+Draco clangor	Jangmo-o	Species
+Draco senescens	Drampa	Species
+Draco gladium	Axew	Species
+Dracoaves horribilis	Deino	Species
+Dracoaves caverna	Druddigon	Species
+Dracoaves avium	Bagon	Species
+Dracoaves ignis	Charmander	Species
+Gekko sylvus	Treecko	Species
+Chamaeleo secretum	Sobble	Species
+Chamaeleo chromata	Kecleon	Species
+Basiliscus helios	Helioptile	Species
+Moulta pellis	Scraggy	Species
+Moloch venelectrus	Toxel	Species
+Adiposa magmus	Magby	Species
+Adiposa lingua	Lickitung	Species
+Pterasaurus predatum	Aerodactyl	Species
+Ceratops bastius	Shieldon	Species
+Triceratops ferrum	Aron	Species
+Pachycephalosaur rampartus	Cranidos	Species
+Apatosaurus fructus	Tropius	Species
+Apatosaurus aroma	Chikorita	Species
+Amargasaurus borealis	Amaura	Species
+Tyrannosaurus mechanicum	Duraludon	Species
+Tyrannosaurus infans	Tyrunt	Species
+Tyrannosaurus montem	Larvitar	Species
+Archaeopteryx plumus	Archen	Species
+Anas allium	Anas allium kantus,Anas allium galarius	Species
+Anas kappus	Psyduck	Species
+Gallus cinis	Torchic	Species
+Phasianus ornatus	Pidove	Species
+Struthio squabilis	Doduo	Species
+Libus fortuna	Togepi	Species
+Pelecanus gapus	Wingull	Species
+Eudyptes holidens	Delibird	Species
+Spheniscus napoleonis	Piplup	Species
+Pygoscelis cubus	Eiscue	Species
+Pharomachrus divinus	Natu	Species
+Ramphastos beccus	Pikipek	Species
+Bubo intelligensis	Hoothoot	Species
+Pulsatrix apollens	Rowlet	Species
+Fragus perfuma	Spritzee	Species
+Psittacus vocalis	Chatot	Species
+Siala soprana	Swablu	Species
+Hirundo barnus	Taillow	Species
+Scirto venustus	Oricorio	Species
+Corvus eques	Rookidee	Species
+Corvus mafioso	Murkrow	Species
+Passer rostro	Spearow	Species
+Vultur bramblis	Skarmory	Species
+Gyps ossum	Vullaby	Species
+Accipitrinae luchadora	Hawlucha	Species
+Haliaeetus patrius	Rufflet	Species
+Lophaetus pecus	Starly	Species
+Falco cinialas	Fletchling	Species
+Falco machus	Pidgey	Species
+Phalacrocorax devorum	Cramorant	Species
+Ova felicitas	Happiny	Species
+Phascolarctos narcum	Komala	Species
+Osteogera solum	Osteogera solum kantus,Osteogera solum alolus	Species
+Macropus matera	Kangaskhan	Species
+Lauda volumnis	Whismur	Species
+Arma toxis	Nidoran	Species
+Rosala gracia	Indeedee	Species
+Rosala stethos	Audino	Species
+Melutens mollia	Igglybuff	Species
+Oleocauda aquus	Azurill	Species
+Oryctolagus orectoauris	Buneary	Species
+Lepus calcitrus	Scorbunny	Species
+Lepus structor	Bunnelby	Species
+Castor industrus	Bidoof	Species
+Chinchilla fascia	Minccino	Species
+Sciurus bucca	Skwovet	Species
+Sciurus scampus	Pachirisu	Species
+Glaucomys glidum	Emolga	Species
+Cavia fames	Morpeko	Species
+Cricetus radi	Dedenne	Species
+Rattus normalis	Rattus normalis kantus,Rattus normalis alolus	Species
+Mus plusus	Plusle	Species
+Mus minus	Minun	Species
+Mus pikalis	Mus pikalis kantus,Mus pikalis alolus	Species
+Megatherium loafus	Slakoth	Species
+Myrmecophaga furna	Heatmor	Species
+Erinaceus spiculorbis	Togedemaru	Species
+Erinaceus castus	Chespin	Species
+Talpa drillus	Drillbur	Species
+Talpa triplex	Talpa triplex kantus,Talpa triplex alolus	Species
+Desmodus cavus	Zubat	Species
+Ectophylla cardius	Woobat	Species
+Sonidae wyverii	Noibat	Species
+Manis rotis	Manis rotis kantus,Manis rotis alolus	Species
+Procyon derectus	Procyon derectus hoennius,Procyon derectus galarius	Species
+Ailurus vertigo	Spinda	Species
+Otaria symphona	Popplio	Species
+Otaria conchae	Oshawott	Species
+Odobenus glacius	Spheal	Species
+Somnursus adiposum	Munchlax	Species
+Ailuropoda banchus	Pancham	Species
+Ursus ludibrium	Stufful	Species
+Ursus articus	Cubchoo	Species
+Ursus luna	Teddiursa	Species
+Mephitis odorus	Stunky	Species
+Mellivora eruptis	Cyndaquil	Species
+Mustela trichis	Mienfoo	Species
+Mustela raftus	Buizel	Species
+Mustela vila	Sneasel	Species
+Mustela slenderis	Sentret	Species
+Vulpes obtentus	Nickit	Species
+Vulpes mysticii	Fennekin	Species
+Vulpes illusis	Zorua	Species
+Vulpes alters	Eevee	Species
+Vulpes prudens	Abra	Species
+Vulpes novem	Vulpes novem kantus,Vulpes novem alolus	Species
+Canis curris	Yamper	Species
+Canis bestia	Canis bestia meridis,Canis bestia noctis,Canis bestia subludicus	Species
+Canis saccharum	Swirlix	Species
+Canis pampus	Furfrou	Species
+Canis alpinus	Lillipup	Species
+Canis aurus	Riolu	Species
+Canis thundura	Electrike	Species
+Canis pigmentum	Smeargle	Species
+Canis sulphurus	Houndour	Species
+Canis maxilla	Snubbull	Species
+Canis legendaris	Growlithe	Species
+Suricata inflorescens	Patrat	Species
+Herpestes inquisitor	Yungoos	Species
+Herpestes notos	Zangoose	Species
+Hyaena cowardis	Poochyena	Species
+Baijides disastrus	Absol	Species
+Felis restrictus	Espurr	Species
+Felis corsi	Glameow	Species
+Felis prima	Skitty	Species
+Felis urbana	Felis urbana kantus,Felis urbana alolus,Felis urbana galarius	Species
+Panthera heela	Litten	Species
+Panthera nobilis	Litleo	Species
+Panthera limbra	Purrloin	Species
+Panthera visio	Shinx	Species
+Ovis nigramaculus	Wooloo	Species
+Ovis luxus	Mareep	Species
+Capra folius	Skiddo	Species
+Camelus vulcans	Numel	Species
+Cervini vernum	Deerling	Species
+Cervini virga	Stantler	Species
+Giraffa dualis	Girafarig	Species
+Bison afros	Bouffalant	Species
+Bos lactis	Miltank	Species
+Bos planum	Tauros	Species
+Hippopotamus harena	Hippopotas	Species
+Balaena gigantica	Wailmer	Species
+Equus lutulata	Mudbray	Species
+Equus electricus	Blitzle	Species
+Equus flamus	Equus flamus kantus,Equus flamus galarius	Species
+Tapirus mistus	Munna	Species
+Tapirus hypnos	Drowzee	Species
+Rhinoceros armatus	Rhyhorn	Species
+Mammuthus tuskus	Swinub	Species
+Elephas ahenus	Cufant	Species
+Elephas volvo	Phanpy	Species
+Sirenus arbilla	Seel	Species
+Lemur strikus	Passimian	Species
+Cercopithecus irritabilis	Mankey	Species
+Cebidus dexter	Aipom	Species
+Pongo magister	Oranguru	Species
+Pongo statua	Pongo statua unovus,Pongo statua galarius	Species
+Gorilla tympanum	Grookey	Species
+Gorilla tridentum	Elekid	Species
+Pan sagus	Pansage	Species
+Pan searus	Pansear	Species
+Pan pourus	Panpour	Species
+Pan occidentalis	Chimchar	Species
+Fascinus bellaria	Milcery	Species
+Fascinus kobalus	Impidimp	Species
+Fascinus petasum	Hatenna	Species
+Fascinus flora	Flabébé	Species
+Fascinus luris	Mawile	Species
+Fascinus sensus	Ralts	Species
+Similis formatio	Falinks	Species
+Similis acutus	Pawniard	Species
+Similis fatum	Gothita	Species
+Similis rufus	Throh	Species
+Similis caerulus	Sawk	Species
+Similis construs	Timburr	Species
+Similis mimus	Similis mimus cantus,Similis mimus galarius	Species
+Similis mentis	Meditite	Species
+Similis crystalis	Sableye	Species
+Similis suava	Smoochum	Species
+Similis practicum	Tyrogue	Species
+Similis musculus	Machop	Species
+Homo sapiens	Human	Species
+Chimaerum reptoaves	Dracozolt	Species
+Chimaerum phocoaves	Arctozolt	Species
+Chimaerum reptoisces	Drocovish	Species
+Chimaerum phocoisces	Arctovish	Species
+Litterus alpha	Unown	Species
+Glacies dorsum	Bergmite	Species
+Glacies hexagonus	Cryogonal	Species
+Glacies nix	Vanillite	Species
+Crystacredis apex	Snorunt	Species
+Lutum nazcus	Sigilyph	Species
+Lutum oculus	Baltoy	Species
+Petra monumentum	Stonjourner	Species
+Petra meteora	Minior	Species
+Petra arborealis	Bonsly	Species
+Petra boreas	Nosepass	Species
+Petra vermis	Onix	Species
+Petra volumens	Petra volumens kantus,Petra volumens alolus	Species
+Gemma carbuncula	Carbink	Species
+Gemma pressura	Roggenrola	Species
+Electricus crepitus	Voltorb	Species
+Electricus patella	Magnemite	Species
+Sonus campana	Bronzor	Species
+Sonus cano	Chingling	Species
+Flexus clavis	Klefki	Species
+Magnus crux	Beldum	Species
+Metalum machina	Klink	Species
+Vestibulus umbra	Gastly	Species
+Plasmidus habis	Rotom	Species
+Tractis desirata	Mimikyu	Species
+Tractis hexus	Misdreavus	Species
+Ligna anchora	Dhelmise	Species
+Ligna nemus	Phantump	Species
+Pulva sabulum	Sandygast	Species
+Lapis malevolens	Spiritomb	Species
+Bolus signum	Golett	Species
+Ferreus bladus	Honedge	Species
+Aurum capulum	Aurum capulum unovus,Aurum capulum galarius	Species
+Murrina thea	Sinistea	Species
+Toxodictyostelium putridus kantus	Grimer	Subspecies
+Toxodictyostelium putridus alolus	Alolan Grimer	Subspecies
+Cocos ovulum kantus	Exeggutor	Subspecies
+Cocos ovulum alolus	Alolan Exeggutor	Subspecies
+Acropora tropis johtus	Corsola	Subspecies
+Acropora tropis galarius	Galarian Corsola	Subspecies
+Hermissenda alternens occidens	Shellos (West Sea)	Subspecies
+Hermissenda alternens oriens	Shellos (East Sea)	Subspecies
+Pleuronectes dolus unovus	Stunfisk	Subspecies
+Pleuronectes dolus galarius	Galarian Stunfisk	Subspecies
+Morone nemesis scarlatinas	Red-Striped Basculin	Subspecies
+Morone nemesis indigoticus	Blue-Striped Basculin	Subspecies
+Anas allium kantus	Farfetch'd	Subspecies
+Anas allium galarius	Galarian Farfetch'd	Subspecies
+Osteogera solum kantus	Marowak	Subspecies
+Osteogera solum alolus	Alolan Marowak	Subspecies
+Rattus normalis kantus	Rattata	Subspecies
+Rattus normalis alolus	Alolan Rattata	Subspecies
+Mus pikalis kantus	Raichu	Subspecies
+Mus pikalis alolus	Alolan Raichu	Subspecies
+Talpa triplex kantus	Diglett	Subspecies
+Talpa triplex alolus	Alolan Diglett	Subspecies
+Manis rotis kantus	Sandshrew	Subspecies
+Manis rotis alolus	Alolan Sandshrew	Subspecies
+Procyon derectus hoennius	Zigzagoon	Subspecies
+Procyon derectus galarius	Galarian Zigzagoon	Subspecies
+Vulpes novem kantus	Vulpix	Subspecies
+Vulpes novem alolus	Alolan Vulpix	Subspecies
+Canis bestia meridis	Midday Form Lycanroc	Subspecies
+Canis bestia noctis	Midnight Form Lycanroc	Subspecies
+Canis bestia subludicus	Dusk Form Lycanroc	Subspecies
+Felis urbana kantus	Meowth	Subspecies
+Felis urbana alolus	Alolan Meowth	Subspecies
+Felis urbana galarius	Galarian Meowth	Subspecies
+Equus flamus kantus	Ponyta	Subspecies
+Equus flamus galarius	Galarian Ponyta	Subspecies
+Pongo statua unovus	Darumaka	Subspecies
+Pongo statua galarius	Galarian Darumaka	Subspecies
+Similis mimus kantus	Mr. Mime	Subspecies
+Similis mimus galarius	Galarian Mr. Mime	Subspecies
+Petra volumens kantus	Geodude	Subspecies
+Petra volumens alolus	Alolan Geodude	Subspecies
+Aurum capulum unovus	Yamask	Subspecies
+Aurum capulum galarius	Alolan Yamask	Subspecies
+Solosis	NULL	Image
+Grimer	NULL	Image
+Ditto	NULL	Image
+Snover	NULL	Image
+Lotad	NULL	Image
+Petilil	NULL	Image
+Comfey	NULL	Image
+Fomantis	NULL	Image
+Exeggutor	NULL	Image
+Alolan Exeggutor	NULL	Image
+Sunkern	NULL	Image
+Hoppip	NULL	Image
+Tangela	NULL	Image
+Bellsprout	NULL	Image
+Carnivine	NULL	Image
+Maractus	NULL	Image
+Cacnea	NULL	Image
+Ferroseed	NULL	Image
+Gossifleur	NULL	Image
+Cottonee	NULL	Image
+Pumpkaboo	NULL	Image
+Seedot	NULL	Image
+Budew	NULL	Image
+Oddish	NULL	Image
+Bounsweet	NULL	Image
+Gulpin	NULL	Image
+Wynaut	NULL	Image
+Corsola	NULL	Image
+Galarian Corsola	NULL	Image
+Frillish	NULL	Image
+Tentacool	NULL	Image
+Shellder	NULL	Image
+Phione	NULL	Image
+Shellos (West Sea)	NULL	Image
+Shellos (East Sea)	NULL	Image
+Goomy	NULL	Image
+Shelmet	NULL	Image
+Slugma	NULL	Image
+Omanyte	NULL	Image
+Inkay	NULL	Image
+Clobbopus	NULL	Image
+Remoraid	NULL	Image
+Anorith	NULL	Image
+Venipede	NULL	Image
+Sizzlipede	NULL	Image
+Spinarak	NULL	Image
+Dewpider	NULL	Image
+Joltik	NULL	Image
+Skorupi	NULL	Image
+Gligar	NULL	Image
+Binacle	NULL	Image
+Wimpod	NULL	Image
+Crabrawler	NULL	Image
+Clauncher	NULL	Image
+Dwebble	NULL	Image
+Krabby	NULL	Image
+Corphish	NULL	Image
+Kabuto	NULL	Image
+Yanma	NULL	Image
+Kricketot	NULL	Image
+Sewaddle	NULL	Image
+Scyther	NULL	Image
+Nincada	NULL	Image
+Paras	NULL	Image
+Grubbin	NULL	Image
+Pinsir	NULL	Image
+Heracross	NULL	Image
+Karrablast	NULL	Image
+Volbeat & Illumise	NULL	Image
+Blipbug	NULL	Image
+Ledyba	NULL	Image
+Durant	NULL	Image
+Combee	NULL	Image
+Weedle	NULL	Image
+Trapinch	NULL	Image
+Cutiefly	NULL	Image
+Venonat	NULL	Image
+Burmy	NULL	Image
+Pineco	NULL	Image
+Surskit	NULL	Image
+Larvesta	NULL	Image
+Snom	NULL	Image
+Wurmple	NULL	Image
+Scatterbug	NULL	Image
+Caterpie	NULL	Image
+Lileep	NULL	Image
+Staryu	NULL	Image
+Mareanie	NULL	Image
+Pincurchin	NULL	Image
+Pyukumuku	NULL	Image
+Tynamo	NULL	Image
+Mantyke	NULL	Image
+Carvanha	NULL	Image
+Gible	NULL	Image
+Clamperl	NULL	Image
+Wishiwashi	NULL	Image
+Barboach	NULL	Image
+Goldeen	NULL	Image
+Magikarp	NULL	Image
+Chinchou	NULL	Image
+Feebas	NULL	Image
+Horsea	NULL	Image
+Skrelp	NULL	Image
+Stunfisk	NULL	Image
+Galarian Stunfisk	NULL	Image
+Bruxish	NULL	Image
+Alomomola	NULL	Image
+Qwilfish	NULL	Image
+Luvdisc	NULL	Image
+Finneon	NULL	Image
+Red-Striped Basculin	NULL	Image
+Blue-Striped Basculin	NULL	Image
+Arrokuda	NULL	Image
+Relicanth	NULL	Image
+Dreepy	NULL	Image
+Mudkip	NULL	Image
+Salandit	NULL	Image
+Slowpoke	NULL	Image
+Tympole	NULL	Image
+Croagunk	NULL	Image
+Poliwag	NULL	Image
+Froakie	NULL	Image
+Lapras	NULL	Image
+Sandile	NULL	Image
+Totodile	NULL	Image
+Torkoal	NULL	Image
+Turtwig	NULL	Image
+Squirtle	NULL	Image
+Turtonator	NULL	Image
+Chewtle	NULL	Image
+Tirtouga	NULL	Image
+Bulbasaur	NULL	Image
+Dunsparce	NULL	Image
+Dratini	NULL	Image
+Snivy	NULL	Image
+Ekans	NULL	Image
+Seviper	NULL	Image
+Silicobra	NULL	Image
+Applin	NULL	Image
+Jangmo-o	NULL	Image
+Drampa	NULL	Image
+Axew	NULL	Image
+Deino	NULL	Image
+Druddigon	NULL	Image
+Bagon	NULL	Image
+Charmander	NULL	Image
+Treecko	NULL	Image
+Sobble	NULL	Image
+Kecleon	NULL	Image
+Helioptile	NULL	Image
+Scraggy	NULL	Image
+Toxel	NULL	Image
+Magby	NULL	Image
+Lickitung	NULL	Image
+Aerodactyl	NULL	Image
+Shieldon	NULL	Image
+Aron	NULL	Image
+Cranidos	NULL	Image
+Tropius	NULL	Image
+Chikorita	NULL	Image
+Amaura	NULL	Image
+Duraludon	NULL	Image
+Tyrunt	NULL	Image
+Larvitar	NULL	Image
+Archen	NULL	Image
+Farfetch'd	NULL	Image
+Galarian Farfetch'd	NULL	Image
+Psyduck	NULL	Image
+Ducklett	NULL	Image
+Torchic	NULL	Image
+Pidove	NULL	Image
+Doduo	NULL	Image
+Togepi	NULL	Image
+Wingull	NULL	Image
+Delibird	NULL	Image
+Piplup	NULL	Image
+Eiscue	NULL	Image
+Natu	NULL	Image
+Pikipek	NULL	Image
+Hoothoot	NULL	Image
+Rowlet	NULL	Image
+Spritzee	NULL	Image
+Chatot	NULL	Image
+Swablu	NULL	Image
+Taillow	NULL	Image
+Oricorio	NULL	Image
+Rookidee	NULL	Image
+Murkrow	NULL	Image
+Spearow	NULL	Image
+Skarmory	NULL	Image
+Vullaby	NULL	Image
+Hawlucha	NULL	Image
+Rufflet	NULL	Image
+Starly	NULL	Image
+Fletchling	NULL	Image
+Pidgey	NULL	Image
+Happiny	NULL	Image
+Komala	NULL	Image
+Marowak	NULL	Image
+Alolan Marowak	NULL	Image
+Kangaskhan	NULL	Image
+Whismur	NULL	Image
+Nidoran	NULL	Image
+Indeedee	NULL	Image
+Audino	NULL	Image
+Azurill	NULL	Image
+Buneary	NULL	Image
+Scorbunny	NULL	Image
+Bunnelby	NULL	Image
+Bidoof	NULL	Image
+Minccino	NULL	Image
+Skwovet	NULL	Image
+Pachirisu	NULL	Image
+Emolga	NULL	Image
+Morpeko	NULL	Image
+Dedenne	NULL	Image
+Rattata	NULL	Image
+Alolan Rattata	NULL	Image
+Plusle	NULL	Image
+Minun	NULL	Image
+Raichu	NULL	Image
+Alolan Raichu	NULL	Image
+Slakoth	NULL	Image
+Heatmor	NULL	Image
+Togedemaru	NULL	Image
+Chespin	NULL	Image
+Drilbur	NULL	Image
+Diglett	NULL	Image
+Alolan Diglett	NULL	Image
+Zubat	NULL	Image
+Woobat	NULL	Image
+Noibat	NULL	Image
+Sandshrew	NULL	Image
+Alolan Sandshrew	NULL	Image
+Zigzagoon	NULL	Image
+Galarian Zigzagoon	NULL	Image
+Spinda	NULL	Image
+Popplio	NULL	Image
+Oshawott	NULL	Image
+Spheal	NULL	Image
+Munchlax	NULL	Image
+Pancham	NULL	Image
+Stufful	NULL	Image
+Cubchoo	NULL	Image
+Teddiursa	NULL	Image
+Stunky	NULL	Image
+Cyndaquil	NULL	Image
+Mienfoo	NULL	Image
+Buizel	NULL	Image
+Sneasel	NULL	Image
+Sentret	NULL	Image
+Nickit	NULL	Image
+Fennekin	NULL	Image
+Zorua	NULL	Image
+Eevee	NULL	Image
+Abra	NULL	Image
+Vulpix	NULL	Image
+Alolan Vulpix	NULL	Image
+Yamper	NULL	Image
+Midday Form Lycanroc	NULL	Image
+Midnight Form Lycanroc	NULL	Image
+Dusk Form Lycanroc	NULL	Image
+Swirlix	NULL	Image
+Furfrou	NULL	Image
+Lillipup	NULL	Image
+Riolu	NULL	Image
+Electrike	NULL	Image
+Smeargle	NULL	Image
+Houndour	NULL	Image
+Snubbull	NULL	Image
+Growlithe	NULL	Image
+Patrat	NULL	Image
+Yungoos	NULL	Image
+Zangoose	NULL	Image
+Poochyena	NULL	Image
+Absol	NULL	Image
+Espurr	NULL	Image
+Glameow	NULL	Image
+Skitty	NULL	Image
+Meowth	NULL	Image
+Alolan Meowth	NULL	Image
+Galarian Meowth	NULL	Image
+Litten	NULL	Image
+Litleo	NULL	Image
+Purrloin	NULL	Image
+Shinx	NULL	Image
+Wooloo	NULL	Image
+Mareep	NULL	Image
+Skiddo	NULL	Image
+Numel	NULL	Image
+Deerling	NULL	Image
+Stantler	NULL	Image
+Girafarig	NULL	Image
+Bouffalant	NULL	Image
+Miltank	NULL	Image
+Tauros	NULL	Image
+Hippopotas	NULL	Image
+Wailmer	NULL	Image
+Mudbray	NULL	Image
+Blitzle	NULL	Image
+Ponyta	NULL	Image
+Galarian Ponyta	NULL	Image
+Munna	NULL	Image
+Drowzee	NULL	Image
+Rhyhorn	NULL	Image
+Seel	NULL	Image
+Passimian	NULL	Image
+Mankey	NULL	Image
+Aipom	NULL	Image
+Oranguru	NULL	Image
+Darumaka	NULL	Image
+Galarian Darumaka	NULL	Image
+Grookey	NULL	Image
+Elekid	NULL	Image
+Pansage	NULL	Image
+Pansear	NULL	Image
+Panpour	NULL	Image
+Chimchar	NULL	Image
+Milcery	NULL	Image
+Impidimp	NULL	Image
+Hatenna	NULL	Image
+Flabébé	NULL	Image
+Mawile	NULL	Image
+Ralts	NULL	Image
+Falinks	NULL	Image
+Pawniard	NULL	Image
+Gothita	NULL	Image
+Throh	NULL	Image
+Sawk	NULL	Image
+Timburr	NULL	Image
+Mr. Mime	NULL	Image
+Galarian Mr. Mime	NULL	Image
+Meditite	NULL	Image
+Sableye	NULL	Image
+Makuhita	NULL	Image
+Smoochum	NULL	Image
+Tyrogue	NULL	Image
+Machop	NULL	Image
+Human	NULL	Image
+Arctovish	NULL	Image
+Dracovish	NULL	Image
+Arctozolt	NULL	Image
+Dracozolt	NULL	Image
+Unown	NULL	Image
+Bergmite	NULL	Image
+Cryogonal	NULL	Image
+Vanillite	NULL	Image
+Snorunt	NULL	Image
+Sigilyph	NULL	Image
+Baltoy	NULL	Image
+Stonjourner	NULL	Image
+Minior	NULL	Image
+Bonsly	NULL	Image
+Nosepass	NULL	Image
+Onix	NULL	Image
+Geodude	NULL	Image
+Galarian Geodude	NULL	Image
+Carbink	NULL	Image
+Roggenrola	NULL	Image
+Rolycoly	NULL	Image
+Voltorb	NULL	Image
+Magnemite	NULL	Image
+Bronzor	NULL	Image
+Chingling	NULL	Image
+Klefki	NULL	Image
+Beldum	NULL	Image
+Klink	NULL	Image
+Gastly	NULL	Image
+Rotom	NULL	Image
+Mimikyu	NULL	Image
+Misdreavus	NULL	Image
+Dhelmise	NULL	Image
+Phantump	NULL	Image
+Sandygast	NULL	Image
+Spiritomb	NULL	Image
+Golett	NULL	Image
+Honedge	NULL	Image
+Yamask	NULL	Image
+Galarian Yamask	NULL	Image
+Sinistea	NULL	Image

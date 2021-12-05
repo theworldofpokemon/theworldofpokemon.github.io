@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<head>
+  <script type='text/javascript' src='https://code.jquery.com/jquery-latest.js'></script>
+  <script type='text/javascript' src='OverviewText.js'></script>
+  <script type='text/javascript' src='starterGenerator.js'></script>
+  <script type='text/javascript' src='quizCounts.js'></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=G-NP4C5XZVLG'></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-NP4C5XZVLG');
+</script>
+</head>
+
+<script>generateStyle()</script>
+<script>document.title="Starter Quiz";</script>
+<body><script>generateNavBar()</script></body>
+
+<div style='margin:0% 12% 12% 12%;'>
+  <div id="starter-gallery" class="imageGallery" style="line-height: 0px; padding: 0; margin: 0;">
+    <div style='display:flex; flex-flow:row wrap; margin-left:15%; margin-right:15%;' id='entryHolder'></div>
+  </div>
+</div>
+
+<script>
+class quizNode {
+  constructor(id, level, value, children, parent) {
+    this.id = id;
+    this.level = level;
+    this.value = value;
+    this.children = children;
+    this.parent = parent;
+  }
+
+  childrenInclude(id) {
+    var match;
+    for (var z = 0; z < this.children.length; z++) {
+      match = true
+      var za = 0
+      if (this.children[z].id.length == 0 || this.children[z].id.length != id.length) {
+        match = false;
+      }
+      while (match && za < this.children[z].id.length) {
+        if (this.children[z].id[za] != id[za]) {
+          match = false
+        }
+        za += 1
+      }
+
+      if (match) {
+        return this.children[z]
+      }
+    }
+    return null
+  }
+
+  childrenGetIds() {
+    var to_return = []
+    for (var z = 0; z < this.children.length; z++) {
+        to_return.push(this.children[z].id)
+        console.log(this.children[z].id)
+    }
+    return to_return
+  }
+
+  equals(node) {
+    if (node.id.length != this.id.length) {
+      return false
+    }
+    for (var z = 0; z < node.id.length; z++) {
+      if (node.id[z] != this.id[z]) {
+        return false
+      }
+    }
+    return true
+  }
+
+}
+
+overviewNameUpper = overviewName.map(function(x){ return x.toUpperCase(); })
+
+final_answer_lengths = []
+var nodeCount = 0
+var quizCount_delim = quizCount.split(" ")
+var quizCount_paths = []
+var quizCount_ends = []
+for (x = 0; x < quizCount_delim.length; x++) {
+  if (x % 2 == 0) {
+    quizCount_paths.push(quizCount_delim[x])
+  }
+  else {
+    quizCount_ends.push(quizCount_delim[x])
+  }
+}
+
+//construct text tree
+var textStarterRoot = new quizNode([],0,0,[],null);
+cur_node = textStarterRoot
+for (var n = 0; n < quizCount_paths.length; n++) {
+  cur_path = quizCount_paths[n].split(".")
+  cur_node = textStarterRoot
+  for (var j = 0; j < 5; j++) {
+    if (cur_path[j] == "X") {
+      cur_node.value = [parseInt(overviewNameUpper.indexOf(quizCount_ends[n]))];
+      j = cur_path.length
+    }
+    else {
+      var cur_id = []
+      for (var k = 0; k <= j; k++) {
+        cur_id.push(parseInt(cur_path[k]))
+      }
+      var childExists = cur_node.childrenInclude(cur_id)
+      if (childExists != null) {
+        if (childExists.value != 0) {
+          console.log(childExists)
+        }
+        cur_node = childExists
+      }
+      else {
+        tmpNode = new quizNode(cur_id,j+1,0,[],null);
+        if (j == 4) {
+          tmpNode.value = [parseInt(overviewNameUpper.indexOf(quizCount_ends[n]))];
+        }
+        cur_node.children.push(tmpNode)
+        cur_node = tmpNode
+      }
+    }
+  }
+}
+
+
+
+function loadStarterValidation() {
+	var entryImages = "";
+	var entryImageLink = "";
+  var habID = 3
+	for (i = 0; i < mainList[habID].length; i++) {
+		entryImageLink = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/".concat(overviewNum[mainList[habID][i]],".png");
+		entryImageContainer = "<div id='common-image-1' style='float:left; width:13.95%;margin:0;min-width:50px;'><div id='common-inside-image-1' style='position:relative;margin:5px;'><div id='common-1-border' class='galleryImageBorder' style='border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:8%;'><div class='galleryImageHolder' style='position:relative; width:100%;padding: 0 0 100%;overflow:hidden;'>"
+    entryImageTmp = entryImageContainer + "<a href=" + directory + "/researchPages/" + parseInt(overviewNum[mainList[habID][i]]) +"_research" + ".html><img src='" + entryImageLink + "' class='galleryImage' _width='600' _height='600' style='position:absolute;border:0;width:100%;top:-0%;left:0%'></a></div></div></div></div>";
+		entryImages = entryImages + entryImageTmp;
+	}
+	document.getElementById("starter-gallery").innerHTML = entryImages;
+}
+</script>
+
+
+<script>
+var starterRoot = new quizNode([],0,0,[],null);
+
+  mainList = new Array(26).fill([]);
+  for (i = 0; i < habitatVarList.length; i++) {
+    var tmpList = [];
+    tmpHabitat = eval(habitatVarList[i])
+    mainList[i+1] = mainLoop.filter(value => tmpHabitat.includes(value));
+    var tmpNode = new quizNode([i+1],1,mainList[i+1],starterRoot,null)
+    starterRoot.children.push(tmpNode)
+
+    var curL1Root = tmpNode;
+    var tmpListEasy = curL1Root.value.filter(value => easyPKMN.includes(value));
+    var tmpListMed = curL1Root.value.filter(value => medPKMN.includes(value));
+    var tmpListHard = curL1Root.value.filter(value => hardPKMN.includes(value));
+
+    var tmpID = curL1Root.id.slice()
+    var tmpEasyNode = new quizNode(tmpID.concat([1]),2,tmpListEasy,null,curL1Root);
+    var tmpMedNode = new quizNode(tmpID.concat([2]),2,tmpListMed,null,curL1Root);
+    var tmpHardNode = new quizNode(tmpID.concat([3]),2,tmpListHard,null,curL1Root);
+
+    var curL2Root_list = [tmpEasyNode,tmpMedNode,tmpHardNode]
+    curL1Root.children = curL2Root_list
+
+      for (k_a = 0; k_a < curL1Root.children.length; k_a++) {
+        var curL2Root = curL2Root_list[k_a]
+        var tmp_diff_list = curL1Root.children[k_a].value
+        for (k = 0; k < tmp_diff_list.length; k++) {
+          var tmpListIntro = tmp_diff_list.filter(value => gentleList.includes(value));
+          var tmpListBetween = tmp_diff_list.filter(value => laidbackList.includes(value));
+          var tmpListExtro = tmp_diff_list.filter(value => outgoingList.includes(value));
+        }
+        var tmpID = curL2Root.id.slice()
+        var tmpIntroNode = new quizNode(tmpID.concat([1]),3,tmpListIntro,null,curL2Root);
+        var tmpBetweenNode = new quizNode(tmpID.concat([2]),3,tmpListBetween,null,curL2Root);
+        var tmpExtroNode = new quizNode(tmpID.concat([3]),3,tmpListExtro,null,curL2Root);
+
+        var curL3Root_list = [tmpIntroNode,tmpBetweenNode,tmpExtroNode]
+        curL2Root.children = curL3Root_list
+
+        for (l_a = 0; l_a < curL3Root_list.length; l_a++) {
+          var curL3Root = curL3Root_list[l_a]
+          for (l = 0; l < personalityList.length - 1; l++) {
+            var tmpList = [];
+            tmpPersonality = eval(personalityList[l+1])
+            tmpListPers = curL3Root.value.filter(value => tmpPersonality.includes(value));
+            var tmpID = curL3Root.id.slice()
+            var tmpPersNode = new quizNode(tmpID.concat([l+1]),4,tmpListPers,null,curL3Root)
+            if (curL3Root.children != null) {
+              curL3Root.children.push(tmpPersNode)
+            }
+            else {
+              curL3Root.children = [tmpPersNode]
+            }
+
+            curL4Root = tmpPersNode;
+            final_answer_lengths.push(curL4Root.value.length)
+          }
+        }
+      }
+  }
+
+
+  function verifyTreeMatch() {
+    tRoot = textStarterRoot
+    aRoot = starterRoot
+
+    aToVisit = [aRoot]
+    aVisited = []
+    aVisitedPaths = []
+    while (aToVisit.length > 0) {
+      aCurNode = aToVisit.pop()
+      if (aCurNode.value != null && aCurNode.value.length > 0 && (aCurNode.value.length == 1 || (aCurNode.level == 4 && aCurNode.value.length > 0))) {
+            aVisited.push(aCurNode.value)
+            aVisitedPaths.push(aCurNode.id)
+      }
+      else if (aCurNode.children != null) {
+        for (var w = 0; w < aCurNode.children.length; w++) {
+          if (aCurNode.children[w].value.length > 0) {
+            aToVisit.push(aCurNode.children[w])
+          }
+        }
+      }
+    }
+
+    tToVisit = [tRoot]
+    tVisited = []
+    tVisitedPaths = []
+    while (tToVisit.length > 0) {
+      tCurNode = tToVisit.pop()
+      if (tCurNode.value != null && tCurNode.value.length > 0 && tCurNode.level <= 4) {
+            tVisited.push(tCurNode.value)
+            tVisitedPaths.push(tCurNode.id)
+      }
+      if (tCurNode.children.length > 0 && tCurNode.level < 4) {
+        for (var c = 0; c < tCurNode.children.length; c++) {
+          tToVisit.push(tCurNode.children[c])
+        }
+      }
+      if (tCurNode.level == 4 && tCurNode.children.length > 0) {
+        tmp_append = []
+        for (var d = 0; d < tCurNode.children.length; d++) {
+          tmp_append = tmp_append.concat(tCurNode.children[d].value)
+        }
+        tVisited.push(tmp_append)
+        tVisitedPaths.push(tCurNode.id)
+      }
+    }
+
+    for (var q = 0; q < Math.min(aVisited.length,tVisited.length); q++) {
+      for (var r = 0; r < Math.min(aVisited[q].length,tVisited[q].length); r++) {
+        if (aVisited[q].length != tVisited[q].length || aVisited[q][r] != tVisited[q][r]) {
+          return (aVisitedPaths[q].concat([-1]).concat(tVisitedPaths[q]).concat([-1]).concat([q]))
+        }
+      }
+    }
+    if (aVisited.length != tVisited.length) {
+      return (aVisitedPaths[q-1].concat([-1]).concat(tVisitedPaths[q-1]).concat(tVisitedPaths[q-1]).concat([-1]).concat([q-1]))
+    }
+    else {
+      return "Trees match"
+    }
+
+  }
+
+  loadStarterValidation()
+  console.log(verifyTreeMatch())
+
+</script>
+
+<body><script>generateFooter()</script></body>
+
+</html>
+</div>

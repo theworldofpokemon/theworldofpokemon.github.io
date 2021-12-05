@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<head>
+  <script type='text/javascript' src='https://code.jquery.com/jquery-latest.js'></script>
+  <script type='text/javascript' src='locationGenerator.js'></script>
+  <script type='text/javascript' src='OverviewText.js'></script>
+
+  <style type='text/css'>
+
+    .section-info-mobile {display: none;}
+
+    /* Smartphone Portrait and Landscape */
+    @media only screen
+      and (min-device-width : 320px)
+      and (max-device-width : 480px){
+        .section-info-mobile {display: inline;}
+    }
+  </style>
+  <style type='text/css'>
+    .section-info { display: inline; }
+
+    /* Smartphone Portrait and Landscape */
+    @media only screen
+      and (min-device-width : 320px)
+      and (max-device-width : 480px){
+        .section-info { display: none;}
+      }
+  </style>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=G-NP4C5XZVLG'></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-NP4C5XZVLG');
+</script>
+</head>
+
+  <script>generateStyle()</script>
+  <script>document.title="Location Generator";</script>
+  <body><script>generateNavBar()</script></body>
+
+  <div style='margin:0% 12% 0% 12%;'>
+  <h2 class="wsite-content-title" style="text-align:center;">
+    <font size="6">Location Generator</font>
+  </h2>
+
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr class="styled-hr" style="width:100%;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+
+<div class="flex-container" style="display:flex; flex-direction:row;justify-content: flex-start;flex-wrap:wrap;">
+<button id="forestButton" class="w3-button w3-dark-grey" onclick="setHabitat(1)">
+<span class="wsite-button-inner" >FOREST</span></button>
+<button id="jungleButton" class="w3-button w3-dark-grey" onclick="setHabitat(2)">
+<span class="wsite-button-inner">JUNGLE</span></button>
+<button id="woodlandButton" class="w3-button w3-dark-grey" onclick="setHabitat(3)">
+<span class="wsite-button-inner">WOODLAND</span></button>
+<button id="fieldButton" class="w3-button w3-dark-grey" onclick="setHabitat(4)">
+<span class="wsite-button-inner">FIELD</span></button>
+<button id="grasslandButton" class="w3-button w3-dark-grey" onclick="setHabitat(5)">
+<span class="wsite-button-inner">GRASSLAND</span></button>
+<button id="cityButton" class="w3-button w3-dark-grey" onclick="setHabitat(6)">
+<span class="wsite-button-inner">CITY</span></button>
+<button id="plantButton" class="w3-button w3-dark-grey" onclick="setHabitat(7)">
+<span class="wsite-button-inner">INDUSTRIAL</span></button>
+<button id="volcanoButton" class="w3-button w3-dark-grey" onclick="setHabitat(8)">
+<span class="wsite-button-inner">VOLCANO</span></button>
+<button id="caveButton" class="w3-button w3-dark-grey" onclick="setHabitat(9)">
+<span class="wsite-button-inner">CAVE</span></button>
+<button id="mountainButton" class="w3-button w3-dark-grey" onclick="setHabitat(10)">
+<span class="wsite-button-inner">MOUNTAIN</span></button>
+<button id="desertButton" class="w3-button w3-dark-grey" onclick="setHabitat(11)">
+<span class="wsite-button-inner">DESERT</span></button>
+<button id="badlandButton" class="w3-button w3-dark-grey" onclick="setHabitat(12)">
+<span class="wsite-button-inner">BADLAND</span></button>
+<button id="pondButton" class="w3-button w3-dark-grey" onclick="setHabitat(13)">
+<span class="wsite-button-inner">POND</span></button>
+<button id="lakeButton" class="w3-button w3-dark-grey" onclick="setHabitat(14)">
+<span class="wsite-button-inner">LAKE</span></button>
+<button id="riverButton" class="w3-button w3-dark-grey" onclick="setHabitat(15)">
+<span class="wsite-button-inner">RIVER</span></button>
+<button id="riversideButton" class="w3-button w3-dark-grey" onclick="setHabitat(16)">
+<span class="wsite-button-inner">RIVERSIDE</span></button>
+<button id="beachButton" class="w3-button w3-dark-grey" onclick="setHabitat(17)">
+<span class="wsite-button-inner">BEACH</span></button>
+<button id="oceanButton" class="w3-button w3-dark-grey" onclick="setHabitat(18)">
+<span class="wsite-button-inner">OCEAN</span></button>
+<button id="reefButton" class="w3-button w3-dark-grey" onclick="setHabitat(19)">
+<span class="wsite-button-inner">REEF</span></button>
+<button id="polarButton" class="w3-button w3-dark-grey" onclick="setHabitat(20)">
+<span class="wsite-button-inner">POLAR SEA</span></button>
+<button id="abyssButton" class="w3-button w3-dark-grey" onclick="setHabitat(21)">
+<span class="wsite-button-inner">ABYSS</span></button>
+<button id="swampButton" class="w3-button w3-dark-grey" onclick="setHabitat(22)">
+<span class="wsite-button-inner">SWAMP</span></button>
+<button id="glacierButton" class="w3-button w3-dark-grey" onclick="setHabitat(23)">
+<span class="wsite-button-inner">GLACIER</span></button>
+<button id="tundraButton" class="w3-button w3-dark-grey" onclick="setHabitat(24)">
+<span class="wsite-button-inner">TUNDRA</span></button>
+<button id="ruinButton" class="w3-button w3-dark-grey" onclick="setHabitat(25)">
+<span class="wsite-button-inner">RUIN</span></button>
+</div>
+
+<br></br>
+
+<div>
+  <div style="height: 2px; overflow: hidden; width: 100%;"></div>
+  <hr class="styled-hr" style="width:100%; margin:0px 0px 20px 0px;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+<h2 id="typeLoc"></h2>
+<p id="insert"></p>
+
+<div style="display:flex; flex-direction: column;">
+<div id="common-gallery" class="imageGallery" style="line-height: 0px; padding: 0; margin: 0;">
+  <div id="common-image-1" style="float:left; width:14.95%;margin:0;display: none">
+    <div id="common-inside-image-1" style="position:relative;margin:5px;">
+      <div id="common-1-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="com1_link" href="">
+            <img id="com1_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="common-image-2" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="common-inside-image-2" style="position:relative;margin:5px;">
+      <div id="common-2-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="com2_link" href="">
+            <img id="com2_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="common-image-3" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="common-inside-image-3" style="position:relative;margin:5px;">
+      <div id="common-3-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="com3_link" href="">
+            <img id="com3_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="common-image-4" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="common-inside-image-4" style="position:relative;margin:5px;">
+      <div id="common-4-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="com4_link" href="">
+            <img id="com4_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="common-image-5" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="common-inside-image-5" style="position:relative;margin:5px;">
+      <div id="common-5-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="com5_link" href="">
+            <img id="com5_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="uncommon-gallery" class="imageGallery" style="line-height: 0px; padding: 0; margin: 0;">
+  <div id="uncommon-image-1" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="uncommon-inside-image-1" style="position:relative;margin:5px;">
+      <div id="uncommon-1-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="uncom1_link" href="">
+            <img id="uncom1_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="uncommon-image-2" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="uncommon-inside-image-2" style="position:relative;margin:5px;">
+      <div id="uncommon-2-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="uncom2_link" href="">
+            <img id="uncom2_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="uncommon-image-3" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="uncommon-inside-image-3" style="position:relative;margin:5px;">
+      <div id="uncommon-3-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="uncom3_link" href="">
+            <img id="uncom3_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="uncommon-image-4" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="uncommon-inside-image-4" style="position:relative;margin:5px;">
+      <div id="uncommon-4-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="uncom4_link" href="">
+            <img id="uncom4_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="uncommon-image-5" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="uncommon-inside-image-5" style="position:relative;margin:5px;">
+      <div id="uncommon-5-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="uncom5_link" href="">
+            <img id="uncom5_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="uncommon-image-6" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="uncommon-inside-image-6" style="position:relative;margin:5px;">
+      <div id="uncommon-6-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="uncom6_link" href="">
+            <img id="uncom6_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="rare-gallery" class="imageGallery" style="line-height: 0px; padding: 0; margin: 0;">
+  <div id="rare-image-1" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="rare-inside-image-1" style="position:relative;margin:5px;">
+      <div id="rare-1-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="rare1_link" href="">
+            <img id="rare1_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="rare-image-2" style="float:left; width:14.95%;margin:0;display: none;">
+    <div id="rare-inside-image-2" style="position:relative;margin:5px;">
+      <div id="rare-2-border" class="galleryImageBorder" style="border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="rare2_link" href="">
+            <img id="rare2_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="main-gallery" class="imageGallery" style="line-height: 0px; padding: 0; margin: 0;">
+  <div id="main-image-1" style="float:left; width:17.95%;margin:0;display: none;">
+    <div id="main-inside-image-1" style="position:relative;margin:5px;">
+      <div id="main-1-border" class="galleryImageBorder" style="border: 1.5px solid rgba(255, 0, 0, 0.2);background: #e74c3c0f;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="main1_link" href="">
+            <img id="main1_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="main-image-2" style="float:left; width:17.95%;margin:0;display: none;">
+    <div id="main-inside-image-2" style="position:relative;margin:5px;">
+      <div id="main-2-border" class="galleryImageBorder" style="border: 1.5px solid rgba(255, 0, 0, 0.2);background: #e74c3c0f;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="main2_link" href="">
+            <img id="main2_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="main-image-3" style="float:left; width:17.95%;margin:0;display: none;">
+    <div id="main-inside-image-3" style="position:relative;margin:5px;">
+      <div id="main-3-border" class="galleryImageBorder" style="border: 1.5px solid rgba(255, 0, 0, 0.2);background: #e74c3c0f;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="main3_link" href="">
+            <img id="main3_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="main-image-4" style="float:left; width:17.95%;margin:0;display: none;">
+    <div id="main-inside-image-4" style="position:relative;margin:5px;">
+      <div id="main-4-border" class="galleryImageBorder" style="border: 1.5px solid rgba(255, 0, 0, 0.2);background: #e74c3c0f;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="main4_link" href="">
+            <img id="main4_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="main-image-5" style="float:left; width:17.95%;margin:0;display: none;">
+    <div id="main-inside-image-5" style="position:relative;margin:5px;">
+      <div id="main-5-border" class="galleryImageBorder" style="border: 1.5px solid rgba(255, 0, 0, 0.2);background: #e74c3c0f;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="main5_link" href="">
+            <img id="main5_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="main-image-6" style="float:left; width:17.95%;margin:0;display: none;">
+    <div id="main-inside-image-6" style="position:relative;margin:5px;">
+      <div id="main-6-border" class="galleryImageBorder" style="border: 1.5px solid rgba(255, 0, 0, 0.2);background: #e74c3c0f;padding:6px;">
+        <div class="galleryImageHolder" style="position:relative; width:100%;padding: 0 0 100%;overflow:hidden;">
+          <a id="main6_link" href="">
+            <img id="main6_img" src="" class="galleryImage" _width="400" _height="400" style="position:absolute;border:0;width:100%;top:-0%;left:0%">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr id = "breakline" class="styled-hr" style="width:100%;display:none;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+<form>
+  <label for="comSp">Common Species (between 0 and 4; enter -1 for the default):</label>
+  <input type="number" id="comSp" name="Common Species" min="-1" max="4" value="-1">
+  <br/>
+  <label for="uncomSp">Uncommon Species (between 0 and 4; enter -1 for the default):</label>
+  <input type="number" id="uncomSp" name="Uncommon Species" min="-1" max="4" value="-1">
+  <br/>
+  <label for="rareSp">Rare Species (between 1 and 2; enter -1 for the default):</label>
+  <input type="number" id="rareSp" name="Rare Species" min="-1" max="2" value="-1">
+  <br/>
+
+  <input type="checkbox" id="kanto" name="Kanto" value="Kanto" checked="checked">
+  <label for="kanto">Kanto</label><br>
+  <input type="checkbox" id="johto" name="Johto" value="Johto" checked="checked">
+  <label for="johto">Johto</label><br>
+  <input type="checkbox" id="hoenn" name="Hoenn" value="Hoenn" checked="checked">
+  <label for="hoenn">Hoenn</label><br>
+  <input type="checkbox" id="sinnoh" name="Sinnoh" value="Sinnoh" checked="checked">
+  <label for="sinnoh">Sinnoh</label><br>
+  <input type="checkbox" id="unova" name="Unova" value="Unova" checked="checked">
+  <label for="unova">Unova</label><br>
+  <input type="checkbox" id="kalos" name="Kalos" value="Kalos" checked="checked">
+  <label for="kalos">Kalos</label><br>
+  <input type="checkbox" id="alola" name="Alola" value="Alola" checked="checked">
+  <label for="alola">Alola</label><br>
+  <input type="checkbox" id="galar" name="Galar" value="Galar" checked="checked">
+  <label for="galar">Galar</label><br>
+
+  <p style="font-size:14px;">Please note, the fewer regions are selected, the fewer Pokémon are available in each habitat. Some habitats cannot support the default number of Pokémon at each rarity with regions excluded.</p>
+    <!-- <input type="button" class="w3-button w3-dark-grey" value="Submit" onclick="wawa()" /> -->
+
+    <input type="checkbox" id="lategame" name="Lategame" value="Lategame">
+    <label for="lategame">Stronger Pokémon?</label><br>
+
+</form>
+
+  <hr class='hr' style='width:100%;'>
+
+<button id="hideGuideButton" class="w3-button w3-dark-grey" style="display:block;" onclick="guideSwitchOff()">
+<span class="wsite-button">Hide Usage Guide</span></button>
+<button id="showGuideButton" class="w3-button w3-dark-grey" style="display:none;" onclick="guideSwitchOn()">
+<span class="wsite-button">Show Usage Guide</span></button>
+
+<br/>
+
+
+<h2 id="HowTo">Guide</h2>
+<p id="text1">To use this tool, simply click on the type of habitat you wish to create--the generator will give it a name and populate it with Pokémon appropriate for the environment. It will also create a defining feature or event for the location; this can be a strong Pokémon that protects it, an outbreak of a single species, a crisis that plagues the area, or any number of other random events. Every Pokémon family has at least one special event associated with it, and they have all been individually concocted to be relevant to the species--there may even be a chance for Legendary or Shiny Pokémon to make an appearance!</p>
+
+<br/>
+
+<p id="text2">This tool is great for creating scenarios for tabletop RPGs and fan games, for setting the scene in writing and art, and plenty of other things. Don't feel too restricted by it, though--it works best as a starting point for fleshing out a full locale.</p>
+
+<br/>
+
+<p id="text3">For instance, I am interested in creating a field habitat for an RPG. The generator gives me a place called "Dawnwheel Vale". I could change the name if I think it sounds odd, but I do like the ring of it. A vale is another word for valley, and "Dawnwheel" to me sounds like it should be a bright and peaceful place. I think that morning Pokémon like Ledyba and Sunflora would fit in well here in addition to what the generator has populated it with, so I add them in. The description tells me that the vale is guarded by a Florges who is fiercely protective of its flowers. This makes me imagine the vale as full of wildflowers; I decide that the Florges encounter would be triggered if a player stepped on any flower patch.</p>
+
+<br/>
+
+<p id="text4">Thus, Dawnwheel Vale becomes a serene valley that glows in the morning light. You can hear the chirps of Swablu and Fletchling gliding above in the crisp air. Flabébé and Ledyba flit about in patches of beautiful lavender wildflowers, while Sunflora and Roselia perfume the air with their blossoms. Locals have warned your group to stay on the beaten path, no matter how tempting the wildflowers may seem. But it looks like a rare Chespin may be rooting about in the soil just over the hill... should you all investigate this sighting, or heed the advice of the locals instead?</p>
+
+<br/>
+
+<p id="text5">Congratulations, you have now created your first location! In the same way, you could use this generator to provide the framework for areas in a fan game or a story. Connect different habitats together to build a whole region, or stitch different versions of the same habitat together in order to create a vast expanse of jungle or an entire network of caves--the possibilities are endless. Suggestions of new encounter events and other improvements are welcome; use the contact information in the footer to reach out. Have fun creating your own world of Pokémon!</p>
+
+<body><script>generateFooter()</script></body>
+
+</html>
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <head>
+    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
+    <script type='text/javascript' src='./OverviewText.js'></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=G-NP4C5XZVLG'></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NP4C5XZVLG');
+</script>
+  </head>
+
+  <script>generateStyle()</script>
+  <script>document.title="Difficulty & Care";</script>
+
+  <body onload='loadDifficultyPage()'>
+
+  <script>generateNavBar()</script>
+  <h1 id='habitatname'><strong><center>Difficulty</center></strong></h1>
+  <br></br>
+    <h1 id='easyname'><strong><center>Easy</center></strong></h1>
+  <div id='easy-gallery' class='imageGallery' style='line-height: 0px; padding: 0; margin: 0;'>
+    <div style='display:flex; flex-flow:row wrap; margin-left:15%; margin-right:15%;' id='easy-gallery-img'></div>
+  </div>
+    <h1 id='moderatename'><strong><center>Moderate</center></strong></h1>
+  <div id='moderate-gallery' class='imageGallery' style='line-height: 0px; padding: 0; margin: 0;'>
+    <div style='display:flex; flex-flow:row wrap; margin-left:15%; margin-right:15%;' id='moderate-gallery-img'></div>
+  </div>
+    <h1 id='hardname'><strong><center>Hard</center></strong></h1>
+  <div id='hard-gallery' class='imageGallery' style='line-height: 0px; padding: 0; margin: 0;'>
+    <div style='display:flex; flex-flow:row wrap; margin-left:15%; margin-right:15%;' id='hard-gallery-img'></div>
+  </div>
+</body>
+<script>document.getElementById('easyname').style.color='green'</script>
+<script>document.getElementById('moderatename').style.color='orange'</script>
+<script>document.getElementById('hardname').style.color='red'</script>
+<body><script>generateFooter()</script></body>
+</html>

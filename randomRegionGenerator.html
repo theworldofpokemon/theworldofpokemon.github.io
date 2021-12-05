@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<head>
+  <script type='text/javascript' src='https://code.jquery.com/jquery-latest.js'></script>
+  <script type='text/javascript' src='locationGenerator.js'></script>
+  <script type='text/javascript' src='OverviewText.js'></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=G-NP4C5XZVLG'></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-NP4C5XZVLG');
+</script>
+</head>
+
+<style>
+.container{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+
+  }
+  .item{
+    flex: 0 0 auto;
+    background-color: #fdfdfd50;
+    border:solid 1.5px rgba(50, 50, 50, 0.1);
+    margin: auto;
+  }
+
+  .emptyItem{
+    flex: 0 0 auto;
+    background-color: #fdfdfd00;
+    border-style:none;
+    height:60px;
+    width:60px;
+    margin: auto;
+  }
+
+  .routeBox{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #fdfdfd;
+    border:solid 1.5px rgba(50, 50, 50, 0.1);
+    margin: auto;
+  }
+  .landmarkBox{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #dddddd;
+    border:solid 1.5px rgba(50, 50, 50, 0.1);
+    margin: auto;
+  }
+  .caveBox{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #9f9f9f;
+    border:solid 2px rgba(20, 20, 20, 50);
+    margin: auto;
+  }
+  .legendBox{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #ebc634;
+    border:solid 2px rgba(20, 20, 20, 50);
+    margin: 5px auto;
+  }
+  .noGymBox{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #dddddd;
+    border:solid 1.5px rgba(50, 50, 50, 0.1);
+    margin: auto;
+  }
+  .starterBox{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #dddddd;
+    border:solid 1.5px rgba(50, 50, 50, 0.1);
+    margin: auto;
+  }
+  .blurbWrapper{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #fdfdfd;
+    /*border:solid 1.5px rgba(50, 50, 50, 0.1);*/
+    margin: 5px;
+    font-size: 14px;
+  }
+  .weatherWrapper{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #fdfdfd;
+    /*border:solid 1.5px rgba(50, 50, 50, 0.1);*/
+    margin: 5px;
+    font-size: 12px;
+  }
+  .routeNameWrapper{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    margin: 5px;
+  }
+  .caveNameWrapper{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    margin: 5px;
+    font-weight:999;
+  }
+  .townNameWrapper{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    font-size: 18px;
+    margin: 5px;
+  }
+
+</style>
+
+<script>generateStyle()</script>
+<script>document.title="Region Generator";</script>
+<body><script>generateNavBar()</script></body>
+
+  <div style='margin:0% 12% 0% 12%;'>
+
+    <button id="hideRegionGuideButton" class="w3-button w3-dark-grey" style="display:none;" onclick="regionGuideSwitchOff()">
+    <span class="wsite-button">Hide Usage Guide</span></button>
+    <button id="showRegionGuideButton" class="w3-button w3-dark-grey" style="display:block;" onclick="regionGuideSwitchOn()">
+    <span class="wsite-button">Show Usage Guide</span></button>
+
+    <br/>
+
+  <div id="guideSection" style="display:none">
+    <h2 id="HowTo">Guide</h2>
+    <p id="text1">Welcome to the World of Pokémon's region generator. This is an in-beta expansion of the habitat generator.</p>
+
+    <p id="text2">At its core, the Region Generator generates a series of habitats using the region generator. However, it employs a number of constraints and tweaks to keep the region it generates cohesive and in line with known Pokémon regions.</p>
+
+    <p id="text3">The Region Generator also populates the region with towns and cities, including random Gym Leaders, Elite Four members, and a champion. These regions and NPCs are given a short description or personality. The generator also creates non-route areas with wild Pokémon, such as caves, and adds weather to some routes.</p>
+
+    <p id="text4">This generator is still in-progress. Planned features include the ability to edit regions after generation and select specific Pokémon, though this can currently be done if the region is exported by editing the resulting text file. Have fun creating your own Pokémon region!</p>
+
+    <p id="text5" style="font-size:14px">Note on weather: 'tricky', 'wondrous', and 'magical' refer to the effects of Trick Room, Wonder Room, and Magic Room, respectively; 'misty', 'electrified', 'weird', and 'pollen' refer to the terrains.</p>
+
+    <br id="br5">
+  </div>
+
+    <hr class='hr' style='width:100%;'>
+
+  <h2 class="wsite-content-title" style="text-align:center;">
+    <font size="6">Location Generator</font>
+  </h2>
+  <h3 class="wsite-content-title" style="text-align:center;">
+    <font size="4">Region of</font>
+  </h3>
+
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr class="styled-hr" style="width:100%;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+<div style='margin: 0% 12.5% 0% 12.5%;'>
+  <div>
+  <button id="generateWholeRegion" class="w3-button w3-light-grey" style="font-size:12px;width:220px" onclick="generateRegionRefresh()">
+    <span style="display:flex;justify-content: center;"><span class="wsite-button-inner" style="display:flex;">Generate a new region</span></span></button>
+  </div>
+
+    <div id="managebox" class="flex-container" style="display:flex; margin:auto;flex-direction:column;justify-content: flex-start;flex-wrap:wrap; width:65%;">
+      <div id="routebox"></div>
+    </div>
+
+    <button id="exportRegion" class="w3-button w3-light-grey" style="font-size:12px;width:220px" onclick="exportRegion()">
+      <span style="display:flex;justify-content: center;"><span class="wsite-button-inner" style="display:flex;">Export this region</span></span></button>
+    </div>
+
+    <div id="dexWrapper" style="display:justify">
+      <h3 class="wsite-content-title" style="text-align:center;">
+        <font size="4">The Dex</font>
+      </h3>
+      <div>
+      <div id="currentDex" class="flex-container" style="display:flex; width:85%;margin:auto;flex-direction:row;justify-content: flex-start;flex-wrap:wrap;">
+      </div>
+    </div>
+</div>
+
+  <script>
+    //SETUP
+    var dexTracker;
+
+    class pkmn {
+      constructor(num, name, root, types, habitats, tags, stage) {
+        this.num = num;
+        this.name = name;
+        this.root = root;
+        this.types = types;
+        this.habitats = habitats;
+        this.tags = tags;
+        this.stage = stage;
+      }
+    }
+
+    class routeEnc {
+      constructor(routeId,pkmnNum) {
+        this.routeId = routeId;
+        this.pkmnNum = pkmnNum;
+      }
+    }
+
+    pkmnItemList = [];
+    currentDex = [];
+
+    for (i=0; i < overviewNum.length; i++) {
+      num = i;
+      name = overviewName[i];
+      root = parseInt(overviewResearchLink[i]);
+      types = [overviewType1[i], overviewType2[i]]
+      tmppkmn = new pkmn(num,name,root,types,[],[],0);
+      if (root != num && !fullyEvolvedGym.includes(name)) {
+        tmppkmn.stage = 1; //middle stage of a three-stage line
+      }
+      else if (root != num && fullyEvolvedGym.includes(name)) {
+        tmppkmn.stage = 2; //last stage of a two- or three-stage line
+      }
+      else if (root == num && fullyEvolvedGym.includes(name)) {
+        tmppkmn.stage = 3; //single-stage line
+      }
+      else if (overviewResearchLink[i] == "") {
+        tmppkmn.stage = 4; //legendary
+      }
+
+      pkmnItemList.push(tmppkmn);
+    }
+
+    for (h=0; h < habitatVarList.length; h++) {
+      for (i=0; i <= overviewNum.length; i++) {
+        tmpList = eval(habitatVarList[h]);
+        if (tmpList.includes(parseInt(overviewNum[i]))) {
+          pkmnItemList[i].habitats.push(h);
+        }
+      }
+    }
+
+    for (o=0; o < overviewNum.length; o++) {
+      if (o < 151 && o > 0) {
+        pkmnItemList[o].tags.push("kanto");
+      }
+      else if  (o < 252) {
+        pkmnItemList[o].tags.push("johto");
+      }
+      else if  (o < 387) {
+        pkmnItemList[o].tags.push("hoenn");
+      }
+      else if  (o < 494) {
+        pkmnItemList[o].tags.push("sinnoh");
+      }
+      else if  (o < 650) {
+        pkmnItemList[o].tags.push("unova");
+      }
+      else if  (o < 722) {
+        pkmnItemList[o].tags.push("kalos");
+      }
+      else if  (o < 810) {
+        pkmnItemList[o].tags.push("alola");
+      }
+      else if  (o < 898) {
+        pkmnItemList[o].tags.push("galar");
+      }
+      pkmnItemList[o].tags.push(overviewHabitat[o].toLowerCase());
+    }
+  </script>
+
+<script>
+
+  routeList = [];
+  routeCount = 0;
+  routeListPkmn = [];
+  landmarkList = [];
+  landmarkCount = 0;
+  noGymBlurbList = [];
+  noGymCount = 0;
+  gymList = [];
+  caveCount = 0;
+  caveList = [];
+  caveListPkmn = [];
+  caveLegendPkmn = [];
+  currentDexList = [];
+  starterList = [];
+  idList = [];
+  habitatTypeList = [];
+  usedBlurbs = [];
+
+  typeTriads = [["Grass","Fire","Water"],["Grass","Fire","Water"],["Grass","Fire","Water"],["Grass","Fire","Water"],["Psychic","Dark","Fighting"],["Fighting","Flying","Rock"],["Rock","Steel","Fire"],["Grass","Poison","Rock"]];
+  eligibleStarters = ["Bulbasaur","Squirtle","Caterpie","Weedle","Pidgey","Pichu","Nidoran♀","Nidoran♂","Cleffa","Igglybuff","Zubat","Oddish","Poliwag",
+                      "Abra","Machop","Bellsprout","Geodude","Magnemite","Gastly","Rhyhorn","Happiny","Horsea","Mime Jr.","Elekid","Magby","Porygon","Dratini",
+                      "Chikorita","Cyndaquil","Totodile","Togepi","Mareep","Azurill","Hoppip","Swinub","Larvitar","Treecko","Torchic","Mudkip","Wurmple",
+                      "Lotad","Seedot","Ralts","Slakoth","Whismur","Aron","Budew","Trapinch","Duskull","Bagon","Beldum","Turtwig","Chimchar","Piplup","Starly",
+                      "Shinx","Gible","Snivy","Tepig","Oshawott","Lillipup","Pidove","Roggenrola","Timburr","Tympole","Sewaddle","Venipede","Sandile","Gothita",
+                      "Solosis","Vanillite","Klink","Tynamo","Litwick","Axew","Deino","Chespin","Fennekin","Froakie","Fletchling","Scatterbug","Flabébé","Honedge",
+                      "Goomy","Rowlet","Litten","Popplio","Pikipek","Grubbin","Bounsweet","Jangmo-o","Grookey","Scorbunny","Sobble","Rookidee","Blipbug","Rolycoly",
+                      "Hatenna","Impidimp","Dreepy"]
+
+  personalities = ["adventurous","affable","agreeable","ambitious","aloof","amusing","arrogant","assertive","attractive","belligerent","boastful","bossy","beautiful","bold","brave","bright","calm","capable","careful","compassionate","courageous","courteous","creative","cantankerous","cowardly","cunning","cynical","cautious","charming","cheerful","confident","cool","dazzling","determined","diligent","dynamic","dishonest","domineering","efficient","easygoing","emotional","energetic","enthusiastic","exuberant","formal","finicky","flirtatious","fussy","fearless","forceful","frank","funny","friendly","generous","gentle","grouchy","greedy","gullible","harsh","helpful","honest","humorous","imaginative","inventive","impatient","impolite","impulsive","immature","informal","intellectual","intense","irritable","kind","lazy","learned","likable","lively","loving","loyal","mature","modest","mean","miserly","moody","neat","nice","nasty","nervous","noble","optimistic","patient","polite","pessimistic","positive","powerful","practical","passionate","pioneering","philosophical","placid","plucky","quiet","quick-witted","reliable","resourceful","romantic","rational","relaxed","rude","ruthless","reserved","respectable","sarcastic","secretive","self-confident","sensitive","sincere","straightforward","sociable","silly","stubborn","sensible","serious","strong","timid","tidy","untidy","unique","unassuming","versatile","vain","vulgar","venerable","warmhearted","wild","witty","zany"];
+  generalOccupations=["scientist","student","model","mogul","mayor","politician","businessman","director","CEO","bodyguard","secretary","chef","nurse","office worker","athlete","policeman","policewoman","engineer","doctor","professor","ranger","comedian","writer","poet","musician","singer","songwriter","dancer","explorer","actor","actress","diva","celebrity","artist","soldier","music conductor","medic","violinist","pianist","accountant","diplomat","ambassador","detective","cartoonist","butler","maid","salaryman","circus performer","influencer","bartender","reporter","newscaster","sports announcer","referee","umpire","landlord","jockey","DJ","translator","tailor","lawyer","fashion designer","props artist","counselor","camp counselor","newspaper editor","art appraiser","mover","truck driver","tour guide","councillor","statesman"];
+  typeOccupations=[["gardener","florist","farmer","aromatherapist","beautician","shaman","biologist","carpenter","arborist","tea house owner","barista","wedding planner","naturalist"],
+  ["pyromaniac","fireworks technician","soldier","welder","coal miner","potter","glassblower","train conductor","cafeteria worker","firefighter"],
+  ["swimmer","diver","scuba instructor","fisher","angler","aquarium attendant","biologist","shipwright","navigator","oil rig worker","firefighter"],
+  ["electrician","guitarist","programmer","inventor","tech company founder","stage director","drummer","animator","storm chaser","special effects artist"],
+  ["spelunker","jeweler","hiker","archaeologist","construction worker","foreman","miner","nomad","road worker","cobbler","explorer"],
+  ["spelunker","jeweler","hiker","archaeologist","construction worker","foreman","miner","sculptor","paleontologist","mason"],
+  ["pilot","airman","kitemaker","birdwatcher","collector","navigator","ornithologist","acrobat","gymnast","storm chaser","flight attendant","travel agent"],
+  ["entomologist","bug catcher","collector","museum docent","teacher","elementary school student","honeymaker","exterminator","naturalist"],
+  ["skiier","hiker","explorer","snowboarder","cryogenics expert","explorer","warehouse supervisor","environmental engineer"],
+  ["biker","garbageman","toxicologist","shaman","criminal","alchemist","evil genius","janitor","plumber","oil rig worker","pharmacist","nuclear engineer"],
+  ["genius","neuroscientist","esper","fortune teller","astronomer","astrologer","child savant","priest","philosopher","magician","quiz show host"],
+  ["mysterious child","astronomer","astrologer","old man","old woman","storyteller","librarian","toymaker","dollmaker","teacher's aide","seamstress"],
+  ["museum docent","stay-at-home father","stay-at-home mother","middle schooler","office manager","librarian","philosopher","pharmacist","wedding planner","caretaker","dairy farmer","shepherd"],
+  ["mafioso","biker","gambler","nightshift worker","detective","criminal","evil genius","puppeteer","clown","secret agent","spy","special effects artist","casino dealer","warden"],
+  ["construction worker","gymnast","black belt","bodybuilder","martial arts instructor","coach","professional athlete","weightlifter","fitness instructor"],
+  ["sailor","navigator","retired champion","prince","explorer","storyteller","librarian","storm chaser","historian","adventurer","elder"],
+  ["priest","storyteller","medium","gravekeeper","mysterious child","ghost hunter","magician","coroner","taxidermist","puppeteer","occultist"],
+  ["steelworker","mechanic","industrialist","inventor","miner","builder","factory worker","banker","roboticist","cobbler","swordsmaster"]]
+
+  regionEpithets = ["Abundance","Plenty","Prosperity","Industry","History","Progress","Beauty","Peace","Power","Strength","Victory","Struggle","Perserverance","Tradition","Recovery","Change","Order","Chaos","Salvation","Friendship","Conflict","Rebellion","Darkness","Light","Life","Desire","Comfort","Empowerment","Dreams","Disillusionment","Love","Faith","Will","Wealth","Heroes","Illusion","Immortality","Knowledge","Wisdom","Solitude","Hope","Progression","Domination","Harmony","Music","War","Stasis","Perfection","Achievement","Learning","Inspiration","Exploration","Discovery","Magic","Sorcery","Resolve","Willpower","Truth","Ideals","Balance","Spirits","Luck","Fortune","Spring","Summer","Fall","Winter","Storms","Lightning","Fire","Ice","Floods","Rivers","Mountains","Lakes","Jewels","Flowers","Winds","Legends","Sand","Swarms","Plagues","Drought","Scholars","Iron","Gods","Blood","Justice","Innocence","Honor","Glory","Sacrifice","Nature","Technology","Nations","Vice","Silence","Celebration","Rebirth","Unity","Transience","Temptation","Destruction","Vulnerability","Necessity","Artistry","Bravery","Conservation","Children","Creation","Courage","Despair","Destiny","Logic","Optimism","Reality","Redemption","Evolution","Revolution","Secrets","Mystery","Simplicity","Connections","Myth","Virtue","Adversity","Fame","Gratitude","Humility","Memories","Regret","Sorrow","Sin","Royalty","Amity","Grace","Vision","Energy","Joy","Chance","Oblivion","Smiles","Tears","Laughter"];
+
+  genericBlurbs = ["A university town with the brightest professors in the region.","A town famous for its amphitheater.","A town famous for being home to many celebrities.","A town with an enormous park in its center.","A town with the largest amusement park in the region.","A town with a large stadium, where tournaments are held annually.","A glamorous town with a luxurious department store.","A town visited by tourists from all across the world.","A once-abandoned town that is in the process of repopulating.","A well-developed town that serves as the region's capital.","A wealthy town where many business deals take place.","A lawless town that has been taken over by organized crime.","A regal town that was once the capital of a kingdom long past.","A town known for its magnificent historical museums.","A town famous for its extravagant art museum.","A town frequently visited by artists who wish to paint it.","A town with unpredictable weather.","A town built to commemorate friendship with another region.","A town inhabited primarily by immigrants from another region.","A town with a magnificent promenade running throughout its entire center.","A town famous for baked goods.","A town visited by gourmands from around the world.","A hip town known for its fashion scene.","A wary town that is cautious of outsiders.","A historical town with the region's largest library.","A town with an old, large church in its center."]
+  habitatBlurbs = [["A forest town shaded entirely by trees.","A town where the trees are always changing color.","A town popular for its unspoilt nature.","A town famous for its Berry-related products.","A heritage town with all of its wooden buildings intact.","A town known for its sweet syrup.","A town famous for having fair weather year-round.","A town where a gentle breeze is always blowing.","A town most famous for being the humble home of the current champion.","A town renowned for its fresh produce."],
+  ["A town built in the middle of dense jungle.","A town overgrown with vines and plants.","A town surrounded by walls to keep out the wildlife.","A humid town built to withstand the wetness.","A town where it's always raining.","A town famous for its vine-weaving.","A town known for its nature-watching tours.","A town that serves as a base for jungle explorers.","A town where the sun is always shining.","A jungle town famous for an enormous tree in its center."],
+  ["An isolated town surrounded by thick trees.","A mysterious town that receives few visitors.","A quaint town with many trails leading off into the woods.","An odd town where many mysterious phenomenon have been recorded.","A peculiar town where people are advised to not go outside at night.","A rustic town built in the midst of the woods.","A town famous for the buzzing of insects in the summer.","A town famous for its mushroom delicacies.","A town where it is always twilight.","A town where you can hear voices whistling in the wind."],
+  ["A town famous for fields of fragrant flowers.","A town located in a peaceful glade.","A town popular amongst the elderly and retired.","A bustling town that developed from a medieval village.","A town that holds a flower festival every year.","A town that exports honey across the world.","A town that still makes artisanal products by hand.","A town that makes delicious sweets from scratch.","A simple town whose residents live pastorally.","A rustic town in the process of modernizing."],
+  ["A pasture town famous for its meat products.","A rodeo town frequently visited by tourists.","A town well-known for its cheese.","A town where Pokémon riding is the most popular sport.","An agricultural town where almost everyone is a farmer.","An old farming town that is now switching to manufacturing.","A town that holds a dance weekly in its center.","A town that gives safari tours to tourists.","A town where Pokémon breeders congregate.","An old-fashioned town that adheres to tradition."],
+  ["An urban town ridden with air pollution.","An abandoned town that was once the region's most populous city.","A bustling town with huge apartment buildings.","A well-organized town with wild Pokémon areas interspersed with houses.","A large town where the current champion currently resides.","A populous town with a bit of a vermin problem.","A town considered a 'must-visit' by tourists.","A concrete town with no trees in sight.","A technological town where everything is automated.","A fully-enclosed town with an artificial sky."],
+  ["A resourceful town that repurposes scraps as building material.","A town suffocating from industrial runoff.","A town revitalized by recent industrialization.","A town where everyone works for a single factory.","A small town with many tech startups.","A shipping town that exports goods worldwide.","A depot town where many trains stop.","A hardy town known for its manufacturing.","A green town in the process of cleaning itself of industrial runoff.","A town where research on the environment is conducted."],
+  ["A town built over the rubble from a previous volcanic eruption.","A town that specializes in glassblowing.","A town renowned for its pottery.","A town whose volcanic springs are reputed to have health properties.","A town that is cloaked in volcanic fumes, inhabited mainly by researchers.","A town built with protections against the nearby volcano.","A town built within hardened lava tubes.","A town that prizes volcanic glass, using it for almost everything.","A town that monitors the volcano for eruptions.","A town that specializes in tours of the nearby volcano."],
+  ["A mining town located next to a large ore deposit.","A bejeweled town decked out in gemstones.","A town that glitters with quartz crystal.","A town full of cave spelunkers and their finds.","A town built in an abandoned mine.","A quarry town built entirely of stone.","A coal mining town covered in a layer of soot.","An old mining town that is now more of a tourist destination.","A town that specializes in giving tours of the nearby cave.","A town where the buildings are all connected by an elaborate underground tunnel system."],
+  ["A town with a beautifully clear night sky.","A town built in a ring around a mountain.","A breezy town built on the windward side of a mountain.","An elevated town built on steps carved into the mountainside.","A remote town that can only be reached by plane or helicopter.","A town where everyday necessities are scarce due to its remoteness.","A town whose residents are adapted to the high altitude.","A town founded in the overpass of a mountain trail.","A town built on the edge of a sheer mountain cliff.","A town popular for the many hiking trails nearby."],
+  ["An oasis town that has the only water for miles.","A town with a sandstorm constantly blowing.","A market town popular amongst traders.","A technological town that captures water from the air.","A rural town that uses Pokémon to traverse the sands.","A town where sand-surfing is a popular pastime.","A dusty town where those looking to escape society dwell.","A forgotten town cloaked by the sands.","An ancient town that houses ancient artifacts from a past civilization.","A quaint town that serves as a respite for desert travelers."],
+  ["A town carved entirely into a cliffside.","An outlaw town with no law enforcement.","An abandoned town that serves as an rest stop for travelers.","A desolate town with only one resident.","A town popular for filming movies.","A town where tumbleweeds frequently roll through.","A town built on what is considered the frontier of civilization.","A town that frequently has to defend itself from wild Pokémon.","A bustling town built in spite of its harsh environment.","A town built partially underground."],
+  ["A town pocketed with puddle-like ponds.","A town popular amongst bug catchers.","A town with a large, artificially-stocked fishery.","A misty town that is always drizzling slightly.","A quaint town where pleasant bubbling can always be heard in the background.","A small town with a local swimming hole where children play.","A little town with a mud hole that Pokémon enjoy.","A town with a large watering hole where wild Pokémon congregate.","A town cloaked in wild reeds.","A town that was built on land that was once underwater."],
+  ["A rainy town that periodically floods.","A resort town that caters to the wealthy.","A town that is popular amongst families on vacation.","A once-popular lake town that is now abandoned due to pollution.","A town with a great resevoir that supplies fresh water across the region.","A small town built on an island in the center of a lake.","A muddy town built of dried and packed silt.","A boating town where every resident sails in their free time.","A large town built on all sides of a large lake.","A town famous for an enormous Pokémon said to live in the lake.","A town that holds a competition monthly for pro fishermen."],
+  ["A large town with a majestic bridge crossing the river.","A town that was once two before a bridge joined them across the river.","A local port with many boats passing up and down the river.","A town built on top of a river dam.","A town where whitewater rafting is the main pastime.","A town with a floating market upon the river.","A town renowned for its shipbuilding.","A town that uses the river to power most of its utilities.","A town that mainly ferries passengers from one side of the river to the other.","A town where inner-tubing is a popular tourist activity."],
+  ["A resort town built on the rivershore.","A riverside town with many luxurious, expensive homes.","A beautiful town home to many retired Pokémon trainers.","A tourist town popular amongst people from other parts of the region.","A dense town built in a single row on one side of the river.","A large town built on a raised floodplain.","A sleepy town that was abandoned after the nearby river was diverted.","A small town whose residents amphibiously navigate both land and water.","A town with many waterways dug out between buildings.","A town that moved further away from the river to avoid polluting it."],
+  ["A resort town famous for its pristine white beach.","A town with volcanic black-sand beaches.","A tourist town with the region's most famous beach.","A town that holds a sandcastle-building contest regularly.","A surfing town where people and Pokémon alike ride the waves.","A resort town with a famous, all-inclusive resort and spa.","A beautiful town whose streets are all lined with palm trees.","An isolated town with a beautiful, but scarcely-visited beach.","An artificial town built on sand trucked in from far away.","A preserve town whose beach is off-limits to tourists.","A town built amongst flourishing tidepools.","A town built of iridescent sea glass."],
+  ["A town popular amongst retired sailors.","A town with a prestigious sailing school.","A town where professional swimmers come to train.","A town famous for high-quality seafood.","A town where fishermen come to buy new equipment.","A town founded by maritime explorers from afar.","A port town with people from all across the world.","A port town that handles most of the region's exports.","A port town infamous for its loose regulations.","A seaside town where salt is harvested."],
+  ["A resort town famous for world-class masseuses.","A town famous across the world for its coral reefs.","A town that made headlines for its endangered reefs.","A town that gives tours of local underwater caverns.","A town that sells all sorts of marine products.","A town decorated entirely with seashells.","A town that shuts down periodically due to typhoons.","A tropical town that is famous for its spicy food.","An exclusive town that charges a large admission fee to even enter.","A newly-built town entirely owned by a billionaire."],
+  ["A town where Water-type Pokémon put on shows for tourists.","An old port town where residents have made homes out of shipping containers.","A town protected from the sea by a huge barrier.","A town that harvests ice directly from the sea.","A town founded by intrepid explorers from a distant, frigid climate.","A town where tourists can take Pokémon-watching tours on the sea.","A town made famous in a novel about an elusive Pokémon.","A town full of explorers of parts unknown.","A hearty town whose residents all have huge appetites.","A hardy town built on a permanently-frozen region of the sea."],
+  ["A town where divers scavenge the remains of shipwrecks.","A town where marine researchers gather.","An abandoned seaside town once home to fishermen.","A town full of free-divers who leap from a nearby cliff.","A town where tourists can embark on submarine expeditions.","A town with a world-renowned aquarium.","A town where the sea lights up at night with bioluminescence.","A town famous for its high-quality pearls.","A town built upon an abandoned oil rig.","A town that floats on the deep sea."],
+  ["A town specializing in the production of Antidotes.","A town that is sinking slowly into the mud.","A town that purifies dirty water for drinking.","A town built largely of woven reeds.","A town built on enormous lily pads.","A town famous amongst bird-watchers.","A town renowned for its biodiversity.","A swamp town inhabited by simple folk.","A town well-known for its unique cuisine.","A marsh town where most buildings are covered in mud."],
+  ["An isolated town built on in snowbank.","A town famous for snow sculptures.","A town that thaws ice into fresh water.","A frigid town that is scarcely inhabited.","A town famous amongst snowboarders and skiiers.","A town where food is left outside to freeze.","An icy town that holds a festival on the winter solstice.","A resort town known for its hot springs.","A majestic town built entirely of ice.","A quaint town with a frozen river running under it."],
+  ["A town visited by those wanting to escape the polluted city.","A lumber town focused entirely on forestry exports.","A town periodically blanketed entirely in snow.","A quaint town where lights can be seen in the sky at night.","A town with a mysterious Pokémon said to roam its outskirts.","A town that Pokémon migrate through yearly.","A town that primarily sells wool.","A town that is entirely heated by Pokémon.","A town that serves as a refuge for injured Pokémon.","A distant town with only one road in or out."],
+  ["A town where archaeologists visiting the nearby ruins stop.","A town reputed to be a link to the spirit world.","A town that was once part of an ancient civilization.","A town with many fortune-tellers.","A town where some mysterious disappearances have been reported.","A town popular amongst extraterrestrial enthusiasts.","A town with great mythological significance in the region.","A town that is a holy site for some travelers.","A town where Pokémon are always uneasy.","A town where electronic devices don't work."]]
+
+  var weatherFreq = ["occasionally","rarely","sometimes","often","always"];
+  var weatherDict = {"clear":["is a bit clear","is clear","is very clear"],
+                    "sun":["is a bit sunny","is sunny","is very sunny"],
+                     "rain":["rains lightly","rains","rains heavily"],
+                     "snow":["snows lightly","snows","snows heavily"],
+                     "hail":["hails lightly","hails","hails heavily"],
+                     "sand":["is a bit sandy","is sandy","is very sandy"],
+                     "fog":["is a bit foggy","is foggy","is very foggy"],
+                     "mist":["is a bit misty","is misty","is very misty"],
+                     "weird":["is a bit weird","is weird","is very weird"],
+                     "electrified":["is a bit electrified","is electrified","is very electrified"],
+                     "magnetic":["is a bit magnetic","is magnetic","is very magnetic"],
+                     "tricky":["is a bit tricky","is tricky","is very tricky"],
+                     "wondrous":["is a bit wondrous","is wondrous","is very wondrous"],
+                     "magical":["is a bit magical","is magical","is very magical"],
+                     "aurora":["has slight auroras","has auroras","has strong auroras"],
+                     "storm":["is a bit stormy","is stormy","is very stormy"],
+                     "wind":["is a bit windy","is windy","is very windy"],
+                     "ash":["is a bit ashy","is ashy","is very ashy"],
+                     "smog":["is a bit smoggy","is smoggy","is very smoggy"],
+                     "pollen":["has a bit of pollen","has pollen","has a lot of pollen"]
+                   };
+  habitatWeathers = [[["clear",50],["sun",10],["rain",10],["wind",10],["storm",5],["fog",5],["pollen",5],["snow",5]],       //forest
+                    [["clear",25],["sun",25],["rain",50]],                                                                  //jungle
+                    [["clear",35],["rain",20],["wind",10],["fog",10],["mist",10],["weird",5],["wondrous",5],["magical",5]],  //woodland
+                    [["clear",40],["sun",20],["wind",20],["pollen",20]],                                                    //field
+                    [["clear",50],["wind",30],["sun",10],["wind",10]],                                                      //grassland
+                    [["clear",50],["smog",40],["rain",10]],                                                                 //city
+                    [["clear",40],["electrified",40],["magnetic",10],["smog",10]],                                          //industrial
+                    [["clear",50],["ash",50]],                                                                              //volcano
+                    [["clear",90],["magnetic",10]],                                                                         //cave
+                    [["clear",60],["rain",10],["wind",10],["storm",10],["fog",10]],
+                    [["clear",30],["sand",50],["sun",20]],
+                    [["clear",50],["sun",50],["sand",10],["wind",10]],
+                    [["clear",60],["rain",25],["fog",10],["mist",5]],
+                    [["clear",60],["rain",25],["fog",10],["mist",5]],
+                    [["clear",70],["rain",30]],
+                    [["clear",70],["rain",30]],
+                    [["clear",70],["sun",5],["rain",20],["storm",5]],
+                    [["clear",50],["sun",10],["rain",20],["storm",20]],
+                    [["clear",40],["sun",40],["rain",10],["storm",10]],
+                    [["clear",40],["snow",20],["hail",20],["aurora",20]],
+                    [["clear",50],["rain",25],["storm",25]],
+                    [["clear",40],["rain",40],["fog",20]],
+                    [["clear",40],["snow",20],["hail",20],["aurora",20]],
+                    [["clear",40],["snow",20],["hail",10],["aurora",30]],
+                    [["clear",70],["fog",10],["weird",5],["wondrous",5],["tricky",5],["magical",5]]
+                  ]
+
+  window.onload = generateRegion();
+
+  function generateRegionRefresh() {
+    location.reload();
+  }
+
+  function addRoute() {
+    newRoute = document.createElement("div");
+    newRoute.setAttribute("id","route"+routeCount);
+    newRoute.setAttribute("class","routeBox");
+    newRoute.setAttribute("style","height:75px;width:100%;align-items:center;");
+
+    areaName = document.createElement("div");
+    areaName.setAttribute("class","routeNameWrapper");
+    areaName.setAttribute("style","width:300px")
+    areaName.setAttribute("id","routeName"+routeCount);
+    areaName.innerHTML = "Route "+ (routeCount + 1);
+
+    weatherBlurb = document.createElement("div");
+    weatherBlurb.setAttribute("class","weatherWrapper");
+    weatherBlurb.setAttribute("style","width:100%")
+    weatherBlurb.setAttribute("id","weatherBlurb"+routeCount);
+
+    routeHR = document.createElement("hr");
+    routeHR.setAttribute("style","width:100%")
+
+    routeUnit = document.createElement("div");
+    routeUnit.setAttribute("id","routeUnit"+routeCount);
+    routeUnit.appendChild(areaName);
+    routeUnit.appendChild(weatherBlurb);
+    routeUnit.appendChild(newRoute);
+    routeUnit.appendChild(routeHR);
+    routebox.appendChild(routeUnit);
+    routeList.push(routeUnit);
+    routeListPkmn.push([]);
+    idList.push("routeUnit"+routeCount);
+    routeCount += 1;
+  }
+
+  function addLandmark(type="gymTown",gymType="Normal") {
+    newLandmark = document.createElement("div");
+    newLandmark.setAttribute("id","landmark"+landmarkCount);
+    newLandmark.setAttribute("class","landmarkBox");
+    landmarkBGColor = typeColors[typeList.indexOf(gymType)]
+    newLandmark.setAttribute("style","height:75px;width:100%;align-items:center;background-color:" + landmarkBGColor);
+
+    landmarkName = document.createElement("div");
+    landmarkName.setAttribute("class","townNameWrapper");
+    landmarkName.setAttribute("style","width:300px")
+    landmarkName.setAttribute("id","landmarkName"+landmarkCount);
+    if (landmarkCount < 8) {
+      cityName = getRandom(calmPrefix.concat(angryPrefix,waterPrefix),1) + getRandom(calmSuffix.concat(angrySuffix,waterSuffix),1) + " " + getRandom(["Town","City","City"],1)
+      landmarkName.innerHTML = cityName + " (Gym "+ (landmarkCount + 1) + ")";
+    }
+    else if (landmarkCount < 12) {
+      landmarkName.innerHTML ="E4 "+ (landmarkCount - 8 + 1);
+    }
+    else {
+      landmarkName.innerHTML = "Champion";
+      newLandmark.setAttribute("style","height:75px;width:100%;align-items:center;background-color:#FFFFFF;border:solid 2px #b8a633");
+    }
+
+    landmarkBlurb = document.createElement("div");
+    landmarkBlurb.setAttribute("class","blurbWrapper");
+    landmarkBlurb.setAttribute("style","width:100%")
+    landmarkBlurb.setAttribute("id","landmarkBlurb"+landmarkCount);
+
+    landmarkHR = document.createElement("hr");
+    landmarkHR.setAttribute("style","width:100%")
+
+    landmarkUnit = document.createElement("div");
+    landmarkUnit.setAttribute("id","landmarkUnit"+landmarkCount);
+    landmarkUnit.appendChild(landmarkName);
+    landmarkUnit.appendChild(landmarkBlurb);
+    landmarkUnit.appendChild(newLandmark);
+    landmarkUnit.appendChild(landmarkHR);
+    routebox.appendChild(landmarkUnit);
+    idList.push("landmarkUnit"+landmarkCount);
+    habitatTypeList.push(-1);
+    landmarkCount += 1;
+  }
+
+  function addStarter() {
+    newStarter = document.createElement("div");
+    newStarter.setAttribute("id","starter");
+    newStarter.setAttribute("class","starterBox");
+    newStarter.setAttribute("style","height:75px;width:100%;align-items:center;");
+
+    starterName = document.createElement("div");
+    starterName.setAttribute("class","townNameWrapper");
+    starterName.setAttribute("style","width:300px")
+    starterTextName = getRandom(calmPrefix.concat(angryPrefix,waterPrefix),1) + getRandom(calmSuffix.concat(angrySuffix,waterSuffix),1) + " " + getRandom(["Town","Town","Town","City"],1);
+    starterName.innerHTML = starterTextName;
+
+    starterBlurb = document.createElement("div");
+    starterBlurb.setAttribute("class","blurbWrapper");
+    starterBlurb.setAttribute("style","width:100%")
+    starterBlurb.setAttribute("id","starterBlurb");
+
+    starterHR = document.createElement("hr");
+    starterHR.setAttribute("style","width:100%")
+
+    starterUnit = document.createElement("div");
+    starterUnit.setAttribute("id","starterUnit");
+    starterUnit.appendChild(starterName);
+    starterUnit.appendChild(starterBlurb);
+    starterUnit.appendChild(newStarter);
+    starterUnit.appendChild(starterHR);
+    routebox.appendChild(starterUnit);
+    idList.push("starterUnit");
+    habitatTypeList.push(-1);
+  }
+
+  function addNoGym() {
+    newNoGym = document.createElement("div");
+    newNoGym.setAttribute("id","noGym"+noGymCount);
+    newNoGym.setAttribute("class","noGymBox");
+    newNoGym.setAttribute("style","height:25px;width:100%;align-items:center;background-color:" + "#dddddd");
+
+    noGymName = document.createElement("div");
+    noGymName.setAttribute("class","townNameWrapper");
+    noGymName.setAttribute("style","width:300px")
+    noGymName.setAttribute("id","noGymName"+noGymCount);
+    cityName = getRandom(calmPrefix.concat(angryPrefix,waterPrefix),1) + getRandom(calmSuffix.concat(angrySuffix,waterSuffix),1) + " " + getRandom(["Town","Town","Town","City"],1)
+    noGymName.innerHTML = cityName;
+
+    noGymBlurb = document.createElement("div");
+    noGymBlurb.setAttribute("class","blurbWrapper");
+    noGymBlurb.setAttribute("style","width:100%")
+    noGymBlurb.setAttribute("id","noGymBlurb"+noGymCount);
+
+    noGymHR = document.createElement("hr");
+    noGymHR.setAttribute("style","width:100%");
+
+    noGymUnit = document.createElement("div");
+    noGymUnit.setAttribute("id","noGymUnit"+noGymCount);
+    noGymUnit.appendChild(noGymName);
+    noGymUnit.appendChild(noGymBlurb);
+    noGymUnit.appendChild(noGymHR);
+    routebox.appendChild(noGymUnit);
+    idList.push("noGymUnit"+noGymCount);
+    habitatTypeList.push(-1);
+    noGymCount += 1;
+    noGymBlurbList.push(noGymBlurb.id)
+  }
+
+  function generateRandomHabitat(genHabitatID) {
+    var routeBoxList = document.getElementsByClassName("routeBox");
+
+    randomHabitat = getRandomRoutePkmn(genHabitatID);
+
+    habitatTypeList.push(genHabitatID);
+
+    addRoute();
+    setHabitat(parseInt(genHabitatID) + 1,output=false);
+    document.getElementById("routeName"+(routeCount-1)).innerHTML = document.getElementById("routeName"+(routeCount-1)).innerHTML + " (" + LocationName + ")";
+    weatherLine = setWeather(genHabitatID);
+    document.getElementById("weatherBlurb"+(routeCount-1)).innerHTML = weatherLine;
+
+    tmpRouteListPkmn = [];
+    for (i = 0;i < randomHabitat.length; i++) {
+      var tmpNum = parseInt(((PKMNList.indexOf(randomHabitat[i]) + 1).toString()).padStart(3,'0'));
+      var tmpEnc = new routeEnc(routeCount - 1,((PKMNList.indexOf(randomHabitat[i]) + 1).toString()).padStart(3,'0'));
+
+      nextItem = document.createElement("div");
+      nextItem.setAttribute("id","route"+routeCount+"_"+tmpNum);
+      nextItem.setAttribute("class","item");
+      nextItem.setAttribute("id","route"+routeCount+"_"+tmpNum);
+      nextImg = document.createElement("img");
+      nextImg.setAttribute("height",60);
+      nextImg.setAttribute("width",60);
+      nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[tmpNum] + ".png");
+
+      nextItem.appendChild(nextImg);
+      routeBoxList[routeCount - 1].appendChild(nextItem);
+      tmpRouteListPkmn.push(tmpNum);
+    }
+    routeListPkmn.push(tmpRouteListPkmn);
+    updateDex();
+
+  }
+
+  function generateCave(genHabitatID) {
+    setHabitat(parseInt(genHabitatID) + 1,output=false);
+    randomHabitat = getRandomRoutePkmn(genHabitatID);
+
+    habitatTypeList.push(genHabitatID);
+
+    newCave = document.createElement("div");
+    newCave.setAttribute("id","cave"+caveCount);
+    newCave.setAttribute("class","caveBox");
+    newCave.setAttribute("style","height:75px;width:100%;align-items:center;");
+
+    areaName = document.createElement("div");
+    areaName.setAttribute("class","caveNameWrapper");
+    areaName.setAttribute("style","width:300px")
+    areaName.setAttribute("id","caveName"+caveCount);
+    areaName.innerHTML = LocationName;
+
+    areaHR = document.createElement("hr");
+    areaHR.setAttribute("style","width:100%");
+
+    caveUnit = document.createElement("div");
+    caveUnit.setAttribute("id","caveUnit"+caveCount);
+    caveUnit.appendChild(areaName);
+    caveUnit.appendChild(newCave);
+
+    caveRng = Math.floor(Math.random() * 3);
+    if (caveRng == 0) {
+      caveLegend = document.createElement("div");
+      caveLegend.setAttribute("id","caveLegend"+caveCount);
+      caveLegend.setAttribute("class","legendBox");
+      caveLegend.setAttribute("style","height:75px;width:15%;align-items:center;background-color:" + habitatColors[genHabitatID]);
+      caveUnit.appendChild(caveLegend);
+    }
+    caveUnit.appendChild(areaHR);
+
+    routebox.appendChild(caveUnit);
+    caveList.push(caveUnit);
+    caveListPkmn.push([]);
+    idList.push("caveUnit"+caveCount);
+    caveCount += 1;
+
+    tmpCaveListPkmn = [];
+    var caveBoxList = document.getElementsByClassName("caveBox");
+    for (rh = 0; rh < randomHabitat.length; rh++) {
+      var tmpNum = parseInt(((PKMNList.indexOf(randomHabitat[rh]) + 1).toString()).padStart(3,'0'));
+      var tmpEnc = new routeEnc(caveCount - 1,((PKMNList.indexOf(randomHabitat[rh]) + 1).toString()).padStart(3,'0'));
+
+      nextItem = document.createElement("div");
+      nextItem.setAttribute("id","cave"+caveCount+"_"+tmpNum);
+      nextItem.setAttribute("class","item");
+      nextItem.setAttribute("id","cave"+caveCount+"_"+tmpNum);
+      nextImg = document.createElement("img");
+      nextImg.setAttribute("height",60);
+      nextImg.setAttribute("width",60);
+      nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[tmpNum] + ".png");
+
+      nextItem.appendChild(nextImg);
+      caveBoxList[caveBoxList.length - 1].appendChild(nextItem);
+      tmpCaveListPkmn.push(tmpNum);
+    }
+
+    if (caveRng == 0) {
+      var caveLegendList = document.getElementsByClassName("legendBox");
+      tmpCaveLegend = getRandom(habitatList_legend[genHabitatID],1)[0];
+      var tmpNum = parseInt(((PKMNList.indexOf(tmpCaveLegend) + 1).toString()).padStart(3,'0'));
+      var tmpEnc = new routeEnc(caveCount - 1,((PKMNList.indexOf(tmpCaveLegend) + 1).toString()).padStart(3,'0'));
+
+      nextItem = document.createElement("div");
+      nextItem.setAttribute("id","caveLegend"+caveCount+"_"+tmpNum);
+      nextItem.setAttribute("class","item");
+      nextItem.setAttribute("id","caveLegend"+caveCount+"_"+tmpNum);
+      nextImg = document.createElement("img");
+      nextImg.setAttribute("height",60);
+      nextImg.setAttribute("width",60);
+      nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[tmpNum] + ".png");
+
+      nextItem.appendChild(nextImg);
+      caveLegendList[caveLegendList.length - 1].appendChild(nextItem);
+      caveLegendPkmn.push([tmpNum]);
+    }
+    caveListPkmn.push(tmpCaveListPkmn);
+    updateDex();
+  }
+
+  function getRandomRoutePkmn(genHabitatID) {
+    num_common = habitatList_common[genHabitatID].length;
+    num_uncommon = 2;
+    if ((num_common < 3 && !lateVal) || (habitatList_common_L[genHabitatID].length < 3 && lateVal)) {
+      num_uncommon = num_uncommon + (3 - num_common);
+    }
+    if (!lateVal) {
+      var randomHabitat = getRandom(habitatList_common[genHabitatID],Math.min(habitatList_common[genHabitatID].length,3)).concat(getRandom(habitatList_uncommon[genHabitatID],Math.min(habitatList_uncommon[genHabitatID].length,num_uncommon))).concat(getRandom(habitatList_rare[genHabitatID],Math.min(habitatList_rare[genHabitatID].length,1)));
+    }
+    else {
+      var randomHabitat = getRandom(habitatList_common_L[genHabitatID],Math.min(habitatList_common_L[genHabitatID].length,3)).concat(getRandom(habitatList_uncommon_L[genHabitatID],Math.min(habitatList_uncommon_L[genHabitatID].length,num_uncommon))).concat(getRandom(habitatList_rare_L[genHabitatID],Math.min(habitatList_rare_L[genHabitatID].length,1)));
+    }
+    for (rh=0; rh < randomHabitat.length; rh++) {
+      if (randomHabitat[rh] == "Nidoran") {
+        randomHabitat[rh] = "Nidoran♀"
+        randomHabitat.concat("Nidoran♂")
+      }
+      else if (randomHabitat[rh] == "Nidorina & Nidorino") {
+        randomHabitat[rh] = "Nidorina"
+        randomHabitat.concat("Nidorino")
+      }
+      else if (randomHabitat[rh] == "Plusle & Minun") {
+        randomHabitat[rh] = "Plusle"
+        randomHabitat.concat("Minun")
+      }
+      else if (randomHabitat[rh] == "Volbeat & Illumise") {
+        randomHabitat[rh] = "Volbeat"
+        randomHabitat.concat("Illumise")
+      }
+    }
+
+    return randomHabitat;
+  }
+
+  function updateDex() {
+    currentDexDiv = document.getElementById("currentDex");
+    currentDexDiv.innerHTML = "";
+    currentDexList = [];
+
+    currentDexList = getCurrentDex();
+
+    for (i = 0; i < currentDexList.length; i++) {
+      nextItem = document.createElement("div");
+      nextItem.setAttribute("id","item_dex"+currentDexList[i]);
+      nextItem.setAttribute("class","item");
+      nextItem.setAttribute("id","item_dex"+currentDexList[i]);
+      nextImg = document.createElement("img");
+      nextImg.setAttribute("height",75);
+      nextImg.setAttribute("width",75);
+      nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[currentDexList[i]] + ".png");
+
+      nextItem.appendChild(nextImg);
+      currentDexDiv.appendChild(nextItem);
+    }
+  }
+
+  function generateRegion() {
+    intergymIntervals = [1,2,2,3,3,3,4,4];
+    shuffleArray(intergymIntervals);
+    shuffledTypes = typeList.slice();
+    shuffleArray(shuffledTypes);
+    intergym = 0;
+    intergymCounter = 0;
+    interstitialTown = false;
+    caveAdded = false;
+
+    //starters
+
+    starterTriadSelect = getRandom(typeTriads,1);
+    starterTriad = starterTriadSelect[0];
+    starterList = [];
+    for (type = 0; type < starterTriad.length; type++) {
+      workingList = [];
+      for (d = 0; d < eligibleStarters.length; d++) {
+        starterNum = overviewName.indexOf(eligibleStarters[d]);
+        typeIndex = 0;
+        if (starterTriad[type] == "Flying") {
+          typeIndex = 1;
+        }
+        if ((pkmnItemList[starterNum].types[typeIndex]) == (starterTriad[type])) {
+          workingList.push(pkmnItemList[starterNum].root)
+        }
+      }
+      starterList.push(getRandom(workingList,1))
+    }
+    addStarter() //starting town
+    var starterBoxList = document.getElementsByClassName("starterBox");
+    for (gp = 0; gp < starterList.length; gp++) {
+      var tmpNum = starterList[gp];
+
+      nextItem = document.createElement("div");
+      nextItem.setAttribute("id","starter"+gp+"_"+tmpNum);
+      nextItem.setAttribute("class","item");
+
+      nextImg = document.createElement("img");
+      nextImg.setAttribute("height",60);
+      nextImg.setAttribute("width",60);
+      nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[tmpNum] + ".png");
+
+      nextItem.appendChild(nextImg);
+      starterBoxList[0].appendChild(nextItem);
+    }
+
+    for (n = 0; n < 25; n++) {
+      //first three routes are forest, woodland, field, or grassland
+      if (n >= 10) {
+        lateVal = true;
+      }
+      if (n <= 2) {
+        rng = Math.floor(Math.random() * 5)
+        if (rng == 1) {
+          rng = 0;
+        }
+        generateRandomHabitat(rng)
+      }
+      //20% chance of water route
+      else {
+        waterChance = Math.floor(Math.random() * 5)
+        if (waterChance == 0) {
+          rng = Math.floor(Math.random() * (22 - 12) + 12)
+          generateRandomHabitat(rng)
+        }
+        else {
+          rng = Math.floor(Math.random() * 16)
+          if (rng >= 12) {
+            rng = rng + 9;
+          }
+          generateRandomHabitat(rng)
+        }
+      }
+      document.getElementById("route" + n).style.backgroundColor = addAlpha(habitatColors[rng],0.10);
+      intergymCounter += 1;
+      if (intergym < 8 && intergymCounter == intergymIntervals[intergym]) {
+        addLandmark(type="gymTown",gymType = shuffledTypes[intergym])
+        intergym += 1;
+        intergymCounter = 0;
+        interstitialTown = false;
+        caveAdded = false;
+      }
+      //no-gym towns
+      else if (!interstitialTown && Math.floor(Math.random() * 100) < 33) {
+        addNoGym()
+        interstitialTown = true;
+      }
+      //caves
+      if (intergymCounter < 3 && Math.floor(Math.random() * 100) < 20) {
+        caveRng = Math.floor(Math.random() * 16)
+        if (caveRng >= 12) {
+          caveRng = caveRng + 9;
+        }
+        generateCave(caveRng)
+        caveAdded = true;
+      }
+    }
+    lateVal = false;
+
+    //e4
+    for (e4 = 0; e4 < 5; e4++) {
+      addLandmark(type="gymTown",gymType = shuffledTypes[intergym])
+      intergym += 1;
+    }
+
+    //populate gyms
+    usedOccupations = [];
+    usedAdjectives = [];
+
+    gymTeamNumbers = [2,3,4,4,5,5,6,6,6,6,6,6,6]
+    currentDexList = getCurrentDex();
+    var gymBoxList = document.getElementsByClassName("landmarkBox");
+
+    for (gymNum = 0; gymNum < 13; gymNum ++) {
+      workingList = [];
+      pkmnStage = [[0],[0,1],[1,3],[1,3],[1,2,3],[2,3],[2,3],[2,3],[2,3],[2,3],[2,3],[2,3],[2,3]];
+      for (d = 0; d < currentDexList.length; d++) {
+        if ((gymNum == 12 || (pkmnItemList[currentDexList[d]].types).includes(shuffledTypes[gymNum])) && pkmnStage[gymNum].includes(pkmnItemList[currentDexList[d]].stage)) {
+          workingList.push(pkmnItemList[currentDexList[d]].num)
+        }
+      }
+
+      tmpGymPkmn = getRandom(workingList,Math.min(gymTeamNumbers[gymNum],workingList.length));
+      if (tmpGymPkmn.length < gymTeamNumbers[gymNum]) {
+        for (d = 0; d < currentDexList.length; d++) {
+          if (pkmnStage[gymNum].includes(pkmnItemList[currentDexList[d]].stage)) {
+            workingList.push(pkmnItemList[currentDexList[d]].num)
+          }
+        }
+      tmpGymPkmn = tmpGymPkmn.concat(getRandom(workingList,gymTeamNumbers[gymNum] - tmpGymPkmn.length))
+      }
+
+      var curGym = document.getElementById("landmarkName" + gymNum)
+      var curGymBlurb = document.getElementById("landmarkBlurb" + gymNum)
+
+      //build blurb
+      blurb = "";
+
+      if (gymNum < 8) {
+        selectedBlurb = selectRandomBlurb("landmarkUnit" + gymNum);
+      }
+
+      vowels = ['a','e','i','o','u','A','E','I','O','U'];
+      typeVowel = "A"
+      if (vowels.includes(shuffledTypes[gymNum].charAt(0))) {
+        typeVowel = "An ";
+      }
+      else {
+        typeVowel = "A ";
+      }
+
+      randomAdj = "";
+      while (randomAdj == "" || usedAdjectives.includes(randomAdj[0])) {
+        randomAdj = getRandom(personalities,1);
+      }
+      usedAdjectives.push(randomAdj[0]);
+      randomOccupation = ""
+      adjVowel = "a"
+      while (randomOccupation == "" || usedOccupations.includes(randomOccupation[0])) {
+        occupationRng = Math.floor(Math.random() * 2);
+        if (occupationRng == 0) {
+          randomOccupation = getRandom(generalOccupations,1)
+        }
+        else {
+          randomOccupation = getRandom(typeOccupations[typeList.indexOf(shuffledTypes[gymNum])],1)
+        }
+      }
+      usedOccupations.push(randomOccupation[0]);
+      if (vowels.includes((randomAdj[0]).charAt(0))) {
+        adjVowel = "an "
+      }
+      else {
+        adjVowel = "a "
+      }
+      if (gymNum < 8) {
+        blurb = selectedBlurb + " It is home to " + typeVowel.charAt(0).toLowerCase() + typeVowel.substring(1,typeVowel.length) + shuffledTypes[gymNum] + "-type gym run by " + adjVowel + randomAdj + " " + randomOccupation + ".";
+      }
+      else if (gymNum < 12) {
+        blurb = adjVowel.charAt(0).toUpperCase() + adjVowel.substring(1,adjVowel.length) + randomAdj + " " + randomOccupation + " specializing in " + shuffledTypes[gymNum] + "-types.";
+      }
+      else {
+        blurb = adjVowel.charAt(0).toUpperCase() + adjVowel.substring(1,adjVowel.length) + randomAdj + " " + randomOccupation + ".";
+      }
+      curGymBlurb.innerHTML = "<i>" + blurb + "</i>"
+
+
+      for (gp = 0; gp < tmpGymPkmn.length; gp++) {
+        var tmpNum = tmpGymPkmn[gp];
+
+        nextItem = document.createElement("div");
+        nextItem.setAttribute("id","landmark"+gp+"_"+tmpNum);
+        nextItem.setAttribute("class","item");
+        nextItem.setAttribute("id","route"+gp+"_"+tmpNum);
+        if (gp == 0) {
+          nextItem.setAttribute("style","border:solid 2px #00000050");
+        }
+
+        nextImg = document.createElement("img");
+        nextImg.setAttribute("height",60);
+        nextImg.setAttribute("width",60);
+        nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[tmpNum] + ".png");
+
+        nextItem.appendChild(nextImg);
+        gymBoxList[gymNum].appendChild(nextItem);
+      }
+      //move first/signature Pokemon to end
+      firstPkmn = gymBoxList[gymNum].childNodes[0];
+      gymBoxList[gymNum].removeChild(firstPkmn);
+      gymBoxList[gymNum].appendChild(firstPkmn);
+
+      if (tmpGymPkmn.length < 6) {
+        for (gb = 0; gb < 6 - tmpGymPkmn.length; gb++) {
+          nextItem = document.createElement("div");
+          nextItem.setAttribute("class","emptyItem");
+          gymBoxList[gymNum].appendChild(nextItem);
+        }
+      }
+
+      tmpblurb = document.getElementById("landmarkBlurb12").innerHTML;
+      document.getElementById("landmarkBlurb12").innerHTML  = tmpblurb.substring(0,tmpblurb.length - 4) +  " " + getRandom(["His","Her"],1) + " signature Pokémon is " + overviewName[parseInt(firstPkmn.id.split('_')[1])] + ".</i>";
+    }
+
+    //add blurb to no-gym towns
+    starterBlurb = document.getElementById("starterBlurb");
+    starterBlurb.innerHTML = "<i>" + selectRandomBlurb("starterUnit") + "</i>"
+
+    noGymUnitAll = noGymBlurbList;
+    for (ng = 0; ng < noGymUnitAll.length; ng++) {
+      curNoGymBlurb = document.getElementById(noGymUnitAll[ng]);
+      curNoGymBlurb.innerHTML = "<i>" + selectRandomBlurb("noGymUnit"+ng) + "</i>";
+    }
+
+    docTitle = document.getElementsByClassName("wsite-content-title");
+    newRegionName = generateRegionName()
+    consonantCount = 0;
+    nameLength = newRegionName.length;
+    for (var i = 0; i < nameLength; i++) {
+      if (!(vowels.concat(["y"])).includes(newRegionName.charAt(i))) {
+        consonantCount += 1
+        if (consonantCount == 4) {
+          vowelToInsert = getRandom(vowels,1)[0].toLowerCase();
+          newRegionName = newRegionName.substring(0,i-1) + vowelToInsert + newRegionName.substring(i,nameLength);
+          nameLength = newRegionName.length;
+          consonantCount = 0;
+        };
+      }
+    }
+    docTitle[0].innerHTML = "<font size=6'>The " + newRegionName + " Region</font>";
+    docTitle[1].innerHTML = "<font size=4'><i>Region of " + getRandom(regionEpithets,1) + "</i></font>";
+    docTitle[2].innerHTML = "<font size=6'>The " + newRegionName + " Dex</font>";
+  }
+
+  Array.prototype.toLowerCase = function() {
+    for (var i = 0; i < this.length; i++) {
+        this[i] = this[i].toString().toLowerCase();
+    }
+    return this;
+  }
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  function getCurrentDex() {
+    currentDexList = [];
+
+    allListPkmn = starterList.concat(routeListPkmn.concat(caveListPkmn.concat(caveLegendPkmn)));
+
+    for (i = 0; i < allListPkmn.length; i++) {
+      for (j = 0; j < allListPkmn[i].length; j++) {
+        if (!currentDexList.includes(parseInt(allListPkmn[i][j]))) {
+          var firstEvoIndex = parseInt(overviewResearchLink[parseInt(allListPkmn[i][j])]);
+          if (Number.isNaN(firstEvoIndex)) {
+              currentDexList.push(parseInt(allListPkmn[i][j]));
+          }
+          for (k = 0; k < overviewResearchLink.length; k++) {
+            if (parseInt(overviewResearchLink[k]) == parseInt(firstEvoIndex)) {
+              currentDexList.push(k);
+            }
+          }
+        }
+      }
+    }
+
+    return currentDexList;
+  }
+
+  function removeElementsByClass(className){
+      var elements = document.getElementsByClassName(className);
+      while(elements.length > 0){
+          elements[0].parentNode.removeChild(elements[0]);
+      }
+  }
+
+    function generateRegionName() {
+      allPrefixes = calmPrefix.concat(angryPrefix,waterPrefix);
+      allSuffixes = calmSuffix.concat(angrySuffix,waterSuffix);
+      allFixes = allPrefixes.concat(allSuffixes);
+
+      regionName = "";
+      rngFixes = Math.floor(Math.random() * (4 - 2) + 2);
+      toSlice = getRandom(allFixes,rngFixes);
+
+      for (ts = 0; ts < toSlice.length - 1; ts++) {
+        chunk = toSlice[ts].substring(0,(toSlice[ts].length/2));
+        regionName = regionName + chunk.toLowerCase();
+      }
+
+      chunk = toSlice[toSlice.length - 1].substring(toSlice[ts].length/2,toSlice[ts].length);
+      regionName = regionName + chunk.toLowerCase();
+      return regionName.charAt(0).toUpperCase() + (regionName.slice(1)).toLowerCase();
+    }
+
+    function selectRandomBlurb(unit_id) {
+      if (unit_id == "starterUnit") {
+        selectedBlurb = getRandom(habitatBlurbs[habitatTypeList[1]],1); //replace with starter-specific ones
+        usedBlurbs.push(selectedBlurb[0]);
+        return selectedBlurb;
+      }
+
+      selectedBlurb = ""
+      while (selectedBlurb == "" || usedBlurbs.includes(selectedBlurb[0])) {
+        blurbRng = Math.floor(Math.random() * 100);
+        if (blurbRng < 20) {
+          selectedBlurb = getRandom(genericBlurbs,1);
+        }
+        else {
+          updownRNG = Math.floor(Math.random() * 2);
+          move = -1;
+          if (updownRNG == 0) {
+            move = -1;
+          }
+          else if (idList.indexOf(unit_id) + move < habitatTypeList.length && habitatTypeList[idList.indexOf(unit_id) + move] != -1) {
+            move = 1;
+          }
+          blurbHabitatID = habitatTypeList[idList.indexOf(unit_id) + move];
+          selectedBlurb = getRandom(habitatBlurbs[blurbHabitatID],1);
+        }
+      }
+      usedBlurbs.push(selectedBlurb[0]);
+      return selectedBlurb;
+    }
+
+    function addAlpha(color, opacity) {
+    // coerce values so ti is between 0 and 1.
+    var _opacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
+    return color + _opacity.toString(16).toUpperCase();
+    }
+
+    function setWeather(habitatID) {
+      weatherFrequencyRNG = Math.floor(Math.random() * 10);
+      weatherFrequency = "";
+      weatherType = "";
+      if (weatherFrequencyRNG == 0) {
+        weatherFrequency = weatherFreq[0];
+      }
+      else if (weatherFrequencyRNG < 3) {
+        weatherFrequency = weatherFreq[1];
+      }
+      else if (weatherFrequencyRNG < 7) {
+        weatherFrequency = weatherFreq[2];
+      }
+      else if (weatherFrequencyRNG < 9) {
+        weatherFrequency = weatherFreq[3];
+      }
+      else {
+        weatherFrequency = weatherFreq[4];
+      }
+
+      thisWeather = habitatWeathers[habitatID];
+      thisWeatherArray = [];
+      for (w = 0; w < thisWeather.length; w++) {
+        weatherName = thisWeather[w][0];
+        weatherProb = thisWeather[w][1];
+        tmpArray = Array(weatherProb).fill(weatherName);
+        thisWeatherArray = thisWeatherArray.concat(tmpArray);
+      }
+      weatherTypeRNG = Math.floor(Math.random() * 100);
+      if (thisWeatherArray[weatherTypeRNG] != "clear") {
+        weatherType = getRandom(weatherDict[thisWeatherArray[weatherTypeRNG]],1)[0];
+        return ("This route " + weatherFrequency + " " + weatherType + ".");
+      }
+      return ("");
+    }
+
+    function exportRegion() {
+      const a = document.createElement('a');
+      allBoxes = document.getElementById("routebox").children
+
+      toWrite = "";
+      toWrite = toWrite + regionName.charAt(0).toUpperCase() + regionName.substring(1,regionName.length) + "\n" + docTitle[1].innerHTML + "\n\n";
+
+      for (ab = 0; ab < allBoxes.length; ab++) {
+        tmpBox = allBoxes[ab];
+          if ((tmpBox.id).includes("starter")) {
+            toWrite = toWrite + tmpBox.children[0].innerHTML + "\n";
+            toWrite = toWrite + tmpBox.children[1].innerHTML + "\n";
+
+            listOfPkmn = tmpBox.children[2].children;
+            pkmnTextList = ""
+            for (lp = 0; lp < listOfPkmn.length; lp++) {
+              tmpPkmn = overviewName[parseInt(listOfPkmn[lp].id.split("_")[1])];
+              pkmnTextList = pkmnTextList + tmpPkmn
+              if (lp != listOfPkmn.length - 1) {
+                pkmnTextList = pkmnTextList + ","
+              }
+              else {
+                pkmnTextList = pkmnTextList + "\n"
+              }
+            }
+            toWrite = toWrite + pkmnTextList + "\n";
+          }
+          else if ((allBoxes[ab].id).includes("route")) {
+            toWrite = toWrite + tmpBox.children[0].innerHTML + "\n";
+            toWrite = toWrite + tmpBox.children[1].innerHTML + "\n";
+
+            listOfPkmn = tmpBox.children[2].children;
+            pkmnTextList = ""
+            for (lp = 0; lp < listOfPkmn.length; lp++) {
+              tmpPkmn = overviewName[parseInt(listOfPkmn[lp].id.split("_")[1])];
+              pkmnTextList = pkmnTextList + tmpPkmn
+              if (lp != listOfPkmn.length - 1) {
+                pkmnTextList = pkmnTextList + ","
+              }
+              else {
+                pkmnTextList = pkmnTextList + "\n"
+              }
+            }
+            toWrite = toWrite + pkmnTextList + "\n";
+          }
+          else if ((allBoxes[ab].id).includes("cave")) {
+            toWrite = toWrite + tmpBox.children[0].innerHTML + "\n";
+
+            listOfPkmn = tmpBox.children[1].children;
+            pkmnTextList = ""
+            for (lp = 0; lp < listOfPkmn.length; lp++) {
+              tmpPkmn = overviewName[parseInt(listOfPkmn[lp].id.split("_")[1])];
+              pkmnTextList = pkmnTextList + tmpPkmn
+              if (lp != listOfPkmn.length - 1) {
+                pkmnTextList = pkmnTextList + ","
+              }
+              else {
+                pkmnTextList = pkmnTextList + "\n"
+              }
+            }
+            toWrite = toWrite + pkmnTextList + "\n";
+
+            if (tmpBox.children[2].id.includes("Legend")) {
+              tmpPkmn = overviewName[parseInt(tmpBox.children[2].children[0].id.split("_")[1])];
+              toWrite = toWrite + tmpPkmn + "\n";
+            }
+          }
+          else if ((allBoxes[ab].id).includes("landmark")) {
+            toWrite = toWrite + tmpBox.children[0].innerHTML + "\n";
+            toWrite = toWrite + tmpBox.children[1].innerHTML + "\n";
+
+            listOfPkmn = tmpBox.children[2].children;
+            pkmnTextList = ""
+            for (lp = 0; lp < listOfPkmn.length; lp++) {
+              tmpPkmn = overviewName[parseInt(listOfPkmn[lp].id.split("_")[1])];
+              pkmnTextList = pkmnTextList + tmpPkmn
+              if (lp != listOfPkmn.length - 1) {
+                pkmnTextList = pkmnTextList + ","
+              }
+              else {
+                pkmnTextList = pkmnTextList + "\n"
+              }
+            }
+            toWrite = toWrite + pkmnTextList + "\n";
+          }
+          else if ((allBoxes[ab].id).includes("noGym")) {
+            toWrite = toWrite + tmpBox.children[0].innerHTML + "\n";
+            toWrite = toWrite + tmpBox.children[1].innerHTML + "\n";
+          }
+          toWrite = toWrite + "\n--------------------\n";
+        }
+
+      const file = new Blob([toWrite], {type: "text/plain"});
+      a.href= URL.createObjectURL(file);
+      a.download = "region.txt";
+      a.click();
+
+    	URL.revokeObjectURL(a.href);
+    }
+
+    function regionGuideSwitchOn() {
+      document.getElementById("HowTo").style.display = "block";
+      document.getElementById("hideRegionGuideButton").style.display = "block";
+      document.getElementById("guideSection").style.display = "block";
+      document.getElementById("showRegionGuideButton").style.display = "none";
+    }
+    function regionGuideSwitchOff() {
+      document.getElementById("HowTo").style.display = "none";
+      document.getElementById("showRegionGuideButton").style.display = "block";
+      document.getElementById("guideSection").style.display = "none";
+      document.getElementById("hideRegionGuideButton").style.display = "none";
+    }
+
+  </script>
+
+<body><script>generateFooter();document.getElementsByClassName("container")[0].style.display="block";</script></body>
+
+</html>

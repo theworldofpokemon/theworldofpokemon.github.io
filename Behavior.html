@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<head>
+  <script type='text/javascript' src='https://code.jquery.com/jquery-latest.js'></script>
+  <script type='text/javascript' src='OverviewText.js'></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=G-NP4C5XZVLG'></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-NP4C5XZVLG');
+</script>
+</head>
+
+  <script>generateStyle()</script>
+  <script>document.title="Behavior";</script>
+  <body><script>generateNavBar()</script></body>
+
+  <div style='margin:0% 12% 12% 12%;'>
+  <h2 class="wsite-content-title" style="text-align:center;">
+    <font size="6"><b>Behavior</b></font>
+  </h2>
+
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr class="styled-hr" style="width:100%;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+<script>
+var finalSet = [];
+
+var temperamentFilter = [true, true, true, true, true];
+var dispositionFilter = [true, true, true, true, true];
+var responseFilter = [true, true, true, true, true];
+
+var temper_vS = [];
+var temper_sS = [];
+var temper_n = [];
+var temper_sB = [];
+var temper_vB = [];
+var temperArray = [temper_vS,temper_sS,temper_n,temper_sB,temper_vB];
+
+var disp_vH = [];
+var disp_sH = [];
+var disp_n = [];
+var disp_sF = [];
+var disp_vF = [];
+var dispArray = [disp_vH,disp_sH,disp_n,disp_sF,disp_vF];
+
+var resp_vFl = [];
+var resp_sFl = [];
+var resp_n = [];
+var resp_sFi = [];
+var resp_vFi = [];
+var respArray = [resp_vFl,resp_sFl,resp_n,resp_sFi,resp_vFi];
+
+for (i = 1; i < overviewTemperament.length; i++) {
+  if (overviewTemperament[i] != "-") {
+    temperArray[eval(overviewTemperament[i]) + 2].push(i);
+  }
+}
+for (i = 1; i < overviewDisposition.length; i++) {
+  if (overviewDisposition[i] != "-") {
+    dispArray[eval(overviewDisposition[i]) + 2].push(i);
+  }
+}
+for (i = 1; i < overviewResponse.length; i++) {
+  if (overviewResponse[i] != "-") {
+  respArray[eval(overviewResponse[i]) + 2].push(i);
+  }
+}
+
+//TEST function
+function loadBehaviorPage() {
+	var entryImages = "";
+	var entryImageLink = "";
+  var entryImageMessage = "";
+  entryTextOnly = "";
+	for (i = 0; i < finalSet.length; i++) {
+		entryImageLink = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/".concat(overviewNum[finalSet[i]],".png");
+		entryImageContainer = "<div id='common-image-1' style='width:20%;margin:auto;'><div id='common-inside-image-1' style='position:relative;margin:5px;'><div id='common-1-border' class='galleryImageBorder' style='border: 1.5px solid rgba(50, 50, 50, 0.1);background: #fdfdfd;padding:6px;'><div class='galleryImageHolder' style='position:relative; width:100%;padding: 0 0 100%;overflow:hidden;'>"
+    entryImageTmp = entryImageContainer + "<a href=" + directory + "/researchPages/" + overviewResearchLink[finalSet[i]] +"_research" + ".html><img src='" + entryImageLink + "' class='galleryImage' _width='100' _height='100' style='position:absolute;border:0;width:100%;top:-0%;left:0%'></a></div></div></div></div>";
+		entryImages = entryImages + entryImageTmp;
+    entryTextOnly = entryTextOnly + "<a href=" + directory + "/researchPages/" + overviewResearchLink[finalSet[i]] +"_research" + ".html>" + PKMNList[finalSet[i]] + "</a><br/>";
+	}
+    if (!namesOnly) {
+	    document.getElementById("entryHolder").innerHTML = entryImages;
+    }
+    else {
+      document.getElementById("entryHolder").innerHTML = "<div><p>" + entryTextOnly + "</p></div>";
+    }
+     if (entryImages == "") {
+       if (!temperamentFilter.reduce((a,b) => a || b)) {
+         entryImageMessage = "Please select a temperament value.";
+       }
+       else if (!dispositionFilter.reduce((a,b) => a || b)) {
+         entryImageMessage = "Please select a disposition value.";
+       }
+       else if (!responseFilter.reduce((a,b) => a || b)) {
+         entryImageMessage = "Please select a response value.";
+       }
+       else {
+         entryImageMessage = "No Pokémon meet these parameters."
+       }
+       document.getElementById("entryHolder").innerHTML = "<div><p>" + entryImageMessage + "</p></div>";
+     }
+}
+
+var PKMNList = ["Bulbasaur","Ivysaur","Venusaur","Charmander","Charmeleon","Charizard","Squirtle","Wartortle","Blastoise","Caterpie","Metapod","Butterfree","Weedle","Kakuna","Beedrill","Pidgey","Pidgeotto","Pidgeot","Rattata","Raticate","Spearow","Fearow","Ekans","Arbok","Pikachu","Raichu","Sandshrew","Sandslash","Nidoran♀","Nidorina","Nidoqueen","Nidoran♂","Nidorino","Nidoking","Clefairy","Clefable","Vulpix","Ninetales","Jigglypuff","Wigglytuff","Zubat","Golbat","Oddish","Gloom","Vileplume","Paras","Parasect","Venonat","Venomoth","Diglett","Dugtrio","Meowth","Persian","Psyduck","Golduck","Mankey","Primeape","Growlithe","Arcanine","Poliwag","Poliwhirl","Poliwrath","Abra","Kadabra","Alakazam","Machop","Machoke","Machamp","Bellsprout","Weepinbell","Victreebel","Tentacool","Tentacruel","Geodude","Graveler","Golem","Ponyta","Rapidash","Slowpoke","Slowbro","Magnemite","Magneton","Farfetch'd","Doduo","Dodrio","Seel","Dewgong","Grimer","Muk","Shellder","Cloyster","Gastly","Haunter","Gengar","Onix","Drowzee","Hypno","Krabby","Kingler","Voltorb","Electrode","Exeggcute","Exeggutor","Cubone","Marowak","Hitmonlee","Hitmonchan","Lickitung","Koffing","Weezing","Rhyhorn","Rhydon","Chansey","Tangela","Kangaskhan","Horsea","Seadra","Goldeen","Seaking","Staryu","Starmie","Mr. Mime","Scyther","Jynx","Electabuzz","Magmar","Pinsir","Tauros","Magikarp","Gyarados","Lapras","Ditto","Eevee","Vaporeon","Jolteon","Flareon","Porygon","Omanyte","Omastar","Kabuto","Kabutops","Aerodactyl","Snorlax","Articuno","Zapdos","Moltres","Dratini","Dragonair","Dragonite","Mewtwo","Mew","Chikorita","Bayleef","Meganium","Cyndaquil","Quilava","Typhlosion","Totodile","Croconaw","Feraligatr","Sentret","Furret","Hoothoot","Noctowl","Ledyba","Ledian","Spinarak","Ariados","Crobat","Chinchou","Lanturn","Pichu","Cleffa","Igglybuff","Togepi","Togetic","Natu","Xatu","Mareep","Flaaffy","Ampharos","Bellossom","Marill","Azumarill","Sudowoodo","Politoed","Hoppip","Skiploom","Jumpluff","Aipom","Sunkern","Sunflora","Yanma","Wooper","Quagsire","Espeon","Umbreon","Murkrow","Slowking","Misdreavus","Unown","Wobbuffet","Girafarig","Pineco","Forretress","Dunsparce","Gligar","Steelix","Snubbull","Granbull","Qwilfish","Scizor","Shuckle","Heracross","Sneasel","Teddiursa","Ursaring","Slugma","Magcargo","Swinub","Piloswine","Corsola","Remoraid","Octillery","Delibird","Mantine","Skarmory","Houndour","Houndoom","Kingdra","Phanpy","Donphan","Porygon2","Stantler","Smeargle","Tyrogue","Hitmontop","Smoochum","Elekid","Magby","Miltank","Blissey","Raikou","Entei","Suicune","Larvitar","Pupitar","Tyranitar","Lugia","Ho-Oh","Celebi","Treecko","Grovyle","Sceptile","Torchic","Combusken","Blaziken","Mudkip","Marshtomp","Swampert","Poochyena","Mightyena","Zigzagoon","Linoone","Wurmple","Silcoon","Beautifly","Cascoon","Dustox","Lotad","Lombre","Ludicolo","Seedot","Nuzleaf","Shiftry","Taillow","Swellow","Wingull","Pelipper","Ralts","Kirlia","Gardevoir","Surskit","Masquerain","Shroomish","Breloom","Slakoth","Vigoroth","Slaking","Nincada","Ninjask","Shedinja","Whismur","Loudred","Exploud","Makuhita","Hariyama","Azurill","Nosepass","Skitty","Delcatty","Sableye","Mawile","Aron","Lairon","Aggron","Meditite","Medicham","Electrike","Manectric","Plusle","Minun","Volbeat","Illumise","Roselia","Gulpin","Swalot","Carvanha","Sharpedo","Wailmer","Wailord","Numel","Camerupt","Torkoal","Spoink","Grumpig","Spinda","Trapinch","Vibrava","Flygon","Cacnea","Cacturne","Swablu","Altaria","Zangoose","Seviper","Lunatone","Solrock","Barboach","Whiscash","Corphish","Crawdaunt","Baltoy","Claydol","Lileep","Cradily","Anorith","Armaldo","Feebas","Milotic","Castform","Kecleon","Shuppet","Banette","Duskull","Dusclops","Tropius","Chimecho","Absol","Wynaut","Snorunt","Glalie","Spheal","Sealeo","Walrein","Clamperl","Huntail","Gorebyss","Relicanth","Luvdisc","Bagon","Shelgon","Salamence","Beldum","Metang","Metagross","Regirock","Regice","Registeel","Latias","Latios","Kyogre","Groudon","Rayquaza","Jirachi","Deoxys","Turtwig","Grotle","Torterra","Chimchar","Monferno","Infernape","Piplup","Prinplup","Empoleon","Starly","Staravia","Staraptor","Bidoof","Bibarel","Kricketot","Kricketune","Shinx","Luxio","Luxray","Budew","Roserade","Cranidos","Rampardos","Shieldon","Bastiodon","Burmy","Wormadam","Mothim","Combee","Vespiquen","Pachirisu","Buizel","Floatzel","Cherubi","Cherrim","Shellos","Gastrodon","Ambipom","Drifloon","Drifblim","Buneary","Lopunny","Mismagius","Honchkrow","Glameow","Purugly","Chingling","Stunky","Skuntank","Bronzor","Bronzong","Bonsly","Mime Jr.","Happiny","Chatot","Spiritomb","Gible","Gabite","Garchomp","Munchlax","Riolu","Lucario","Hippopotas","Hippowdon","Skorupi","Drapion","Croagunk","Toxicroak","Carnivine","Finneon","Lumineon","Mantyke","Snover","Abomasnow","Weavile","Magnezone","Lickilicky","Rhyperior","Tangrowth","Electivire","Magmortar","Togekiss","Yanmega","Leafeon","Glaceon","Gliscor","Mamoswine","Porygon-Z","Gallade","Probopass","Dusknoir","Froslass","Rotom","Uxie","Mesprit","Azelf","Dialga","Palkia","Heatran","Regigigas","Giratina","Cresselia","Phione","Manaphy","Darkrai","Shaymin","Arceus","Victini","Snivy","Servine","Serperior","Tepig","Pignite","Emboar","Oshawott","Dewott","Samurott","Patrat","Watchog","Lillipup","Herdier","Stoutland","Purrloin","Liepard","Pansage","Simisage","Pansear","Simisear","Panpour","Simipour","Munna","Musharna","Pidove","Tranquill","Unfezant","Blitzle","Zebstrika","Roggenrola","Boldore","Gigalith","Woobat","Swoobat","Drilbur","Excadrill","Audino","Timburr","Gurdurr","Conkeldurr","Tympole","Palpitoad","Seismitoad","Throh","Sawk","Sewaddle","Swadloon","Leavanny","Venipede","Whirlipede","Scolipede","Cottonee","Whimsicott","Petilil","Lilligant","Basculin","Sandile","Krokorok","Krookodile","Darumaka","Darmanitan","Maractus","Dwebble","Crustle","Scraggy","Scrafty","Sigilyph","Yamask","Cofagrigus","Tirtouga","Carracosta","Archen","Archeops","Trubbish","Garbodor","Zorua","Zoroark","Minccino","Cinccino","Gothita","Gothorita","Gothitelle","Solosis","Duosion","Reuniclus","Ducklett","Swanna","Vanillite","Vanillish","Vanilluxe","Deerling","Sawsbuck","Emolga","Karrablast","Escavalier","Foongus","Amoonguss","Frillish","Jellicent","Alomomola","Joltik","Galvantula","Ferroseed","Ferrothorn","Klink","Klang","Klinklang","Tynamo","Eelektrik","Eelektross","Elgyem","Beheeyem","Litwick","Lampent","Chandelure","Axew","Fraxure","Haxorus","Cubchoo","Beartic","Cryogonal","Shelmet","Accelgor","Stunfisk","Mienfoo","Mienshao","Druddigon","Golett","Golurk","Pawniard","Bisharp","Bouffalant","Rufflet","Braviary","Vullaby","Mandibuzz","Heatmor","Durant","Deino","Zweilous","Hydreigon","Larvesta","Volcarona","Cobalion","Terrakion","Virizion","Tornadus","Thundurus","Reshiram","Zekrom","Landorus","Kyurem","Keldeo","Meloetta","Genesect","Chespin","Quilladin","Chesnaught","Fennekin","Braixen","Delphox","Froakie","Frogadier","Greninja","Bunnelby","Diggersby","Fletchling","Fletchinder","Talonflame","Scatterbug","Spewpa","Vivillon","Litleo","Pyroar","Flabébé","Floette","Florges","Skiddo","Gogoat","Pancham","Pangoro","Furfrou","Espurr","Meowstic","Honedge","Doublade","Aegislash","Spritzee","Aromatisse","Swirlix","Slurpuff","Inkay","Malamar","Binacle","Barbaracle","Skrelp","Dragalge","Clauncher","Clawitzer","Helioptile","Heliolisk","Tyrunt","Tyrantrum","Amaura","Aurorus","Sylveon","Hawlucha","Dedenne","Carbink","Goomy","Sliggoo","Goodra","Klefki","Phantump","Trevenant","Pumpkaboo","Gourgeist","Bergmite","Avalugg","Noibat","Noivern","Xerneas","Yveltal","Zygarde","Diancie","Hoopa","Volcanion","Rowlet","Dartrix","Decidueye","Litten","Torracat","Incineroar","Popplio","Brionne","Primarina","Pikipek","Trumbeak","Toucannon","Yungoos","Gumshoos","Grubbin","Charjabug","Vikavolt","Crabrawler","Crabominable","Oricorio","Cutiefly","Ribombee","Rockruff","Lycanroc","Wishiwashi","Mareanie","Toxapex","Mudbray","Mudsdale","Dewpider","Araquanid","Fomantis","Lurantis","Morelull","Shiinotic","Salandit","Salazzle","Stufful","Bewear","Bounsweet","Steenee","Tsareena","Comfey","Oranguru","Passimian","Wimpod","Golisopod","Sandygast","Palossand","Pyukumuku","Type: Null","Silvally","Minior","Komala","Turtonator","Togedemaru","Mimikyu","Bruxish","Drampa","Dhelmise","Jangmo-o","Hakamo-o","Kommo-o","Tapu Koko","Tapu Lele","Tapu Bulu","Tapu Fini","Cosmog","Cosmoem","Solgaleo","Lunala","Nihilego","Buzzwole","Pheromosa","Xurkitree","Celesteela","Kartana","Guzzlord","Necrozma","Magearna","Marshadow","Poipole","Naganadel","Stakataka","Blacephalon","Zeraora","Meltan","Melmetal","Grookey","Thwackey","Rillaboom","Scorbunny","Raboot","Cinderace","Sobble","Drizzile","Inteleon","Skwovet","Greedent","Rookidee","Corvisquire","Corviknight","Blipbug","Dottler","Orbeetle","Nickit","Thievul","Gossifleur","Eldegoss","Wooloo","Dubwool","Chewtle","Drednaw","Yamper","Boltund","Rolycoly","Carkol","Coalossal","Applin","Flapple","Appletun","Silicobra","Sandaconda","Cramorant","Arrokuda","Barraskewda","Toxel","Toxtricity","Sizzlipede","Centiskorch","Clobbopus","Grapploct","Sinistea","Polteageist","Hatenna","Hattrem","Hatterene","Impidimp","Morgrem","Grimmsnarl","Obstagoon","Perrserker","Cursola","Sirfetch'd","Mr. Rime","Runerigus","Milcery","Alcremie","Falinks","Pincurchin","Snom","Frosmoth","Stonjourner","Eiscue","Indeedee","Morpeko","Cufant","Copperajah","Dracozolt","Arctozolt","Dracovish","Arctovish","Duraludon","Dreepy","Drakloak","Dragapult","Zacian","Zamazenta","Eternatus"]
+
+var mainLoop = [1,4,7,10,13,16,19,21,23,27,29,32,37,41,43,46,48,50,52,54,56,58,60,63,66,69,72,74,77,79,81,83,84,86,88,90,92,95,96,98,100,102,104,108,109,111,114,115,116,118,120,123,127,128,129,131,132,133,137,138,140,142,147,152,155,158,161,163,165,167,170,172,173,174,175,177,179,187,190,191,193,194,198,200,201,203,204,206,207,209,211,213,214,215,216,218,220,222,223,225,227,228,231,234,235,236,238,239,240,241,246,252,255,258,261,263,265,270,273,276,278,280,283,285,287,290,293,296,298,299,300,302,303,304,307,309,311,312,313,314,316,318,320,322,324,325,327,328,331,333,335,336,337,338,339,341,343,345,347,349,351,352,353,355,357,359,360,361,363,366,369,370,371,374,387,390,393,396,399,401,403,406,408,410,412,415,417,418,420,422,425,427,431,433,434,436,438,439,440,441,442,443,446,447,449,451,453,455,456,458,459,479,489,495,498,501,504,506,509,511,513,515,517,519,522,524,527,529,531,532,535,538,539,540,543,546,548,550,551,554,556,557,559,561,562,564,566,568,570,572,574,577,580,582,585,587,588,590,592,594,595,597,599,602,605,607,610,613,615,616,618,619,621,622,624,626,627,629,631,632,633,636,650,653,656,659,661,664,667,669,672,674,676,677,679,682,684,686,688,690,692,694,696,698,701,702,703,704,707,708,710,712,714,722,725,728,731,734,736,739,741,742,744,746,747,749,751,753,755,757,759,761,764,765,766,767,769,771,772,774,775,776,777,778,779,780,781,782,810,813,816,819,821,824,827,829,831,833,835,837,840,843,845,846,848,850,852,854,856,859,868,870,871,872,874,875,876,877,878,880,881,882,883,884,885]
+
+var ansArray = [0,0,0,0,0,0];
+
+var namesOnly = false;
+
+var runningList;
+
+</script>
+<div class="flex-container" style="display:flex; flex-direction:column;justify-content: center; flex-wrap:wrap;">
+  <div class="flex-container" style="display:flex; flex-direction:row;justify-content: center; flex-wrap:wrap;">
+    <button id="gentleBut" class="w3-button w3-light-grey" style="width:150px" onclick="defPers(1)">
+    <span class="wsite-button-inner" >Gentle</span></button>
+    <button id="waryBut" class="w3-button w3-light-grey" style="width:150px" onclick="defPers(2)">
+    <span class="wsite-button-inner">Wary</span></button>
+    <button id="distrustfulBut" class="w3-button w3-light-grey" style="width:150px" onclick="defPers(3)">
+    <span class="wsite-button-inner">Distrustful</span></button>
+  </div>
+  <div class="flex-container" style="display:flex; flex-direction:row;justify-content: center; flex-wrap:wrap;">
+    <button id="amicableBut" class="w3-button w3-light-grey" style="width:150px" onclick="defPers(4)">
+    <span class="wsite-button-inner">Amicable</span></button>
+    <button id="aloofBut" class="w3-button w3-light-grey" style="width:150px" onclick="defPers(5)">
+    <span class="wsite-button-inner">Aloof</span></button>
+    <button id="watchfulBut" class="w3-button w3-light-grey" style="width:150px" onclick="defPers(6)">
+    <span class="wsite-button-inner">Watchful</span></button>
+  </div>
+  <div class="flex-container" style="display:flex; flex-direction:row;justify-content: center; flex-wrap:wrap;">
+    <button id="friendlyBut" class="w3-button w3-light-grey" style="width:150px" onclick="defPers(7)">
+    <span class="wsite-button-inner">Friendly</span></button>
+    <button id="curiousBut" class="w3-button w3-light-grey" style="width:150px" onclick="defPers(8)">
+    <span class="wsite-button-inner">Curious</span></button>
+    <button id="TerritorialBut" class="w3-button w3-light-grey" style="width:150px" onclick="defPers(9)">
+    <span class="wsite-button-inner">Territorial</span></button>
+  </div>
+</div>
+<hr></hr>
+<div class="flex-container" style="display:flex; flex-direction:column;justify-content: center; flex-wrap:wrap;">
+  <div class="flex-container" style="display:flex; flex-direction:row;justify-content: center; flex-wrap:wrap;">
+    <div style="width:150px;text-align:right; margin-right:20px;"><p>Skittish</p></div>
+    <button id="b-2" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(1)">
+    <span class="wsite-button-inner" >-2</span></button>
+    <button id="b-1" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(2)">
+    <span class="wsite-button-inner">-1</span></button>
+    <button id="b0" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(3)">
+    <span class="wsite-button-inner">0</span></button>
+    <button id="b1" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(4)">
+    <span class="wsite-button-inner">1</span></button>
+    <button id="b2" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(5)">
+    <span class="wsite-button-inner">2</span></button>
+    <div style="width:150px; text-align: left; margin-left:20px;"><p>Bold</p></div>
+  </div>
+  <div class="flex-container" style="display:flex; flex-direction:row;justify-content: center; flex-wrap:wrap;">
+    <div style="width:150px; text-align: right; margin-right:20px;"><p>Friendly</p></div>
+    <button id="d-2" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(6)">
+    <span class="wsite-button-inner">-2</span></button>
+    <button id="d-1" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(7)">
+    <span class="wsite-button-inner">-1</span></button>
+    <button id="d0" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(8)">
+    <span class="wsite-button-inner">0</span></button>
+    <button id="d1" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(9)">
+    <span class="wsite-button-inner">1</span></button>
+    <button id="d2" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(10)">
+    <span class="wsite-button-inner">2</span></button>
+      <div style="width:150px; text-align: left; margin-left:20px;"><p>Hostile</p></div>
+  </div>
+  <div class="flex-container" style="display:flex; flex-direction:row;justify-content: center; flex-wrap:wrap;">
+    <div style="width:150px; text-align: right; margin-right:20px;"><p>Flee</p></div>
+    <button id="r-2" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(11)">
+    <span class="wsite-button-inner">-2</span></button>
+    <button id="r-1" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(12)">
+    <span class="wsite-button-inner">-1</span></button>
+    <button id="r0" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(13)">
+    <span class="wsite-button-inner">0</span></button>
+    <button id="r1" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(14)">
+    <span class="wsite-button-inner">1</span></button>
+    <button id="r2" class="w3-button w3-dark-grey" style="width:50px; background-color:#f1f1f1" onclick="setBut(15)">
+    <span class="wsite-button-inner">2</span></button>
+    <div style="width:150px; text-align: left; margin-left:20px;"><p>Fight</p></div>
+  </div>
+</div>
+
+<script>
+
+buttonIDs = ["-","b-2","b-1","b0","b1","b2","d-2","d-1","d0","d1","d2","r-2","r-1","r0","r1","r2"];
+
+for (i = 1; i <= 15; i++) {
+  document.getElementById(buttonIDs[i]).style.setProperty("background-color", "#616161", "important");
+}
+
+function toggleButtonColor(id) {
+  if (document.getElementById(id).style.getPropertyValue("background-color") == "rgb(241, 241, 241)") {
+    document.getElementById(id).style.setProperty("background-color", "#616161", "important");
+  }
+  else {
+    document.getElementById(id).style.setProperty("background-color", "#f1f1f1", "important");
+  }
+}
+
+function setBut(i) {
+  /*if (i <= 5 && !temperamentFilter.reduce((a,b) => a || b)) {
+    temperamentFilter = [0, 0, 0, 0, 0];
+    for (t = 1; t <= 5; t ++) {
+      document.getElementById(buttonIDs[t]).style.setProperty("background-color", "#f1f1f1", "important");
+    }
+  }
+  if (new Set(dispArray).size == 1) {
+    dispArray = [0, 0, 0, 0, 0];
+    for (t = 5; t < 10; t ++) {
+      document.getElementById(buttonIDs(t)).style.setProperty("background-color", "#616161", "important");
+    }
+  }
+  if (new Set(respArray).size == 1) {
+    respArray = [0, 0, 0, 0, 0];
+    for (t = 10; t < 15; t ++) {
+      document.getElementById(buttonIDs(t)).style.setProperty("background-color", "#616161", "important");
+    }
+  }*/
+  if (i != 16) {
+    toggleButtonColor(buttonIDs[i]);
+  }
+  var temperSet = [];
+  var dispSet = [];
+  var respSet = [];
+  if  (i <= 5) {
+    temperamentFilter[i - 1] = !temperamentFilter[i - 1];
+  }
+  else if (i <= 10) {
+    dispositionFilter[i - 6] = !dispositionFilter[i - 6];
+  }
+  else if (i == 16) {
+    //do nothing and run function without toggling any switches
+  }
+  else {
+    responseFilter[i - 11] = !responseFilter[i - 11];
+  }
+  for (i = 0; i < 5; i++) {
+    if (temperamentFilter[i]) {
+      temperSet = temperSet.concat(temperArray[i])
+    }
+    if (dispositionFilter[i]) {
+      dispSet = dispSet.concat(dispArray[i])
+    }
+    if (responseFilter[i]) {
+      respSet = respSet.concat(respArray[i])
+    }
+  }
+  var workingSet = temperSet.filter(value => dispSet.includes(value));
+  workingSet = workingSet.filter(value => respSet.includes(value));
+  finalSet = workingSet;
+  finalSet.sort(function(a, b){return a-b});
+  loadBehaviorPage();
+
+}
+
+function toggleNames() {
+  namesOnly = !namesOnly;
+  setBut(16);
+}
+
+function defPers(persID) {
+  switch(persID) {
+    case 1:
+      runPreset(true,true,false,false,false,true,true,false,false,false);
+      break;
+    case 2:
+      runPreset(true,true,false,false,false,false,false,true,false,false);
+      break;
+    case 3:
+      runPreset(true,true,false,false,false,false,false,false,true,true);
+      break;
+    case 4:
+      runPreset(false,false,true,false,false,true,true,false,false,false);
+      break;
+    case 5:
+      runPreset(false,false,true,false,false,false,false,true,false,false);
+      break;
+    case 6:
+      runPreset(false,false,true,false,false,false,false,false,true,true);
+      break;
+    case 7:
+      runPreset(false,false,false,true,true,true,true,false,false,false);
+      break;
+    case 8:
+      runPreset(false,false,false,true,true,false,false,true,false,false);
+      break;
+    case 9:
+      runPreset(false,false,false,true,true,false,false,false,true,true);
+  }
+}
+
+function runPreset(a,b,c,d,e,f,g,h,i,j) {
+  if (temperamentFilter[0] != a) {
+    setBut(1);
+  }
+  if (temperamentFilter[1] != b) {
+    setBut(2);
+  }
+  if (temperamentFilter[2] != c) {
+    setBut(3);
+  }
+  if (temperamentFilter[3] != d) {
+    setBut(4);
+  }
+  if (temperamentFilter[4] != e) {
+    setBut(5);
+  }
+  if (dispositionFilter[0] != f) {
+    setBut(6);
+  }
+  if (dispositionFilter[1] != g) {
+    setBut(7);
+  }
+  if (dispositionFilter[2] != h) {
+    setBut(8);
+  }
+  if (dispositionFilter[3] != i) {
+    setBut(9);
+  }
+  if (dispositionFilter[4] != j) {
+    setBut(10);
+  }
+  if (!responseFilter[0]) {
+    setBut(11);
+  }
+  if (!responseFilter[1]) {
+    setBut(12);
+  }
+  if (!responseFilter[2]) {
+    setBut(13);
+  }
+  if (!responseFilter[3]) {
+    setBut(14);
+  }
+  if (!responseFilter[4]) {
+    setBut(15);
+  }
+}
+
+
+function guideSwitchOn() {
+  document.getElementById("HowTo").style.display = "block";
+  document.getElementById("hideGuideButton").style.display = "block";
+  document.getElementById("text1").style.display = "block";
+  document.getElementById("text2").style.display = "block";
+  document.getElementById("text3").style.display = "block";
+  document.getElementById("text4").style.display = "block";
+  document.getElementById("text5").style.display = "block";
+  document.getElementById("text6").style.display = "block";
+  document.getElementById("showGuideButton").style.display = "none";
+}
+function guideSwitchOff() {
+  document.getElementById("HowTo").style.display = "none";
+  document.getElementById("hideGuideButton").style.display = "none";
+  document.getElementById("text1").style.display = "none";
+  document.getElementById("text2").style.display = "none";
+  document.getElementById("text3").style.display = "none";
+  document.getElementById("text4").style.display = "none";
+  document.getElementById("text5").style.display = "none";
+  document.getElementById("text6").style.display = "none";
+  document.getElementById("showGuideButton").style.display = "block";
+}
+
+</script>
+
+
+<!--STARTER GALLERY-->
+<div>
+  <div id="starter-gallery" class="imageGallery" style="line-height: 0px; padding: 0; margin: 0;">
+    <div style='display:flex; flex-flow:row wrap; margin:0px 12% 5% 12%;' id='entryHolder'></div>
+  </div>
+</div>
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr id = "breakline" class="styled-hr" style="width:100%;display:none;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+<button id="reset" class="w3-button w3-grey" style="display:block;" onclick="toggleNames()">
+<span class="wsite-button">Toggle Images</span></button>
+
+<body><script>generateFooter()</script></body>
+
+</html>
+</div>

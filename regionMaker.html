@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<head>
+  <script type='text/javascript' src='https://code.jquery.com/jquery-latest.js'></script>
+  <script type='text/javascript' src='locationGenerator.js'></script>
+  <script type='text/javascript' src='OverviewText.js'></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=G-NP4C5XZVLG'></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-NP4C5XZVLG');
+</script>
+</head>
+
+<style>
+.container{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+
+  }
+  .item{
+    flex: 0 0 auto;
+    background-color: #fdfdfd;
+    border:solid 1.5px rgba(50, 50, 50, 0.1);
+    margin: 5px;
+  }
+  .routeBox{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #fdfdfd;
+    border:solid 1.5px rgba(50, 50, 50, 0.1);
+    margin: 5px;
+  }
+  .landmarkBox{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #dddddd;
+    border:solid 1.5px rgba(50, 50, 50, 0.1);
+    margin: 5px;
+  }
+  .caveBox{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #9f9f9f;
+    border:solid 1.5px rgba(50, 50, 50, 0.1);
+    margin: 5px;
+  }
+  .noGymBox{
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    z-index:50;
+    flex: 0 0 auto;
+    background-color: #dddddd;
+    border:solid 1.5px rgba(50, 50, 50, 0.1);
+    margin: 5px;
+  }
+
+</style>
+
+<script>
+  var clickedItem;
+  var origLeft;
+  var origTop;
+  var movedLeft;
+  var movedTop;
+  var currentDexList = [];
+
+  function makeDraggable() {
+
+    $(".item").draggable({
+
+      // ドラッグ開始時
+      start : function (event , ui){
+        var target = document.getElementById(this.id);
+        clickedItem = target;
+        origLeft = clickedItem.offsetLeft;
+        origTop = clickedItem.offsetTop;
+        target.style.zIndex=100;
+      },
+
+      // ドラッグ終了時
+      stop : function (event , ui){
+          // console.log(event , ui);
+          var divLeft = document.getElementById('sortbox').offsetLeft + document.getElementById('sortbox').offsetWidth;
+          movedLeft = clickedItem.offsetLeft;
+          movedTop = clickedItem.offsetTop;
+
+          if (clickedItem.offsetLeft > divLeft) {
+            clickedItem.offsetLeft = origLeft;
+            clickedItem.offsetTop = origTop;
+            addToRoute(clickedItem.id);
+          }
+
+            var nowPosition = new Object();
+            var newPosition = new Array();
+
+            var validHeights=[];
+
+            // 現在のポジションを取得する
+            for (var counter = 0; counter < workingList.length; counter++) {
+                id=workingList[counter].num;
+                //alert(id);
+                var positionDataLeft = getPosition(id)[0];
+                var positionDataTop = getPosition(id)[1];
+                if (!validHeights.includes(positionDataTop) && clickedItem.id != 'item'+id) {
+                  validHeights.push(positionDataTop)
+                }
+                nowPosition = {'name':'item'+id,'positionLeft':positionDataLeft,'positionTop':positionDataTop};
+
+                 newPosition.push(nowPosition);
+            }
+
+            adjPos = newPosition.filter(pos => {
+              return pos.name == clickedItem.id;
+            })[0];
+            validHeights.sort(function(a,b) {
+              if (a < b) return -1;
+              if (a > b) return 1;
+              return 0;
+            });
+            x = 0;
+            while (adjPos['positionTop'] > validHeights[x]+30) { //change 60 to a dynamic variable
+              x++;
+            }
+            adjPos['positionTop'] = validHeights[x];
+            for (i = 0; i < workingList.length; i++) {
+              newPosition[i].positionLeft = newPosition[i].positionLeft + 1000*validHeights.findIndex(height => height == newPosition[i].positionTop);
+            }
+
+            // ソート
+            newPosition.sort(function(a,b){
+                    //return b.positionTop - a.positionTop || b.positionLeft - a.positionLeft;
+                    if( a['positionLeft'] > b['positionLeft'] ) return -1;
+                    if( a['positionLeft'] < b['positionLeft'] ) return 1;
+                    return 0;
+            });
+
+            var movedItemPosIndex = newPosition.findIndex(pos => pos.name == clickedItem.id)
+
+            var allEvos = [];
+            var rootNum = workingList.find(element => 'item' + element.num == clickedItem.id).root;
+            for (i = 0; i < workingList.length; i++) {
+              if (workingList[i].root == rootNum) {
+                allEvos.push('item' + workingList[i].num);
+              }
+            }
+
+            var tmpEvo = [];
+            var oldRootIndex = newPosition.findIndex(pos => pos.name == 'item' + rootNum);
+            if (oldRootIndex == -1) {
+              var newEvos = pkmnItemList.filter(item => ((item.root == rootNum )&& !(workingList.includes(item))));
+              workingList = workingList.concat(newEvos);
+              for (i = 0; i < newEvos.length; i++) {
+                nowPosition = {'name':'item'+newEvos[i].num,'positionLeft':0,'positionTop':0};
+                newPosition.push(nowPosition);
+                allEvos.push('item' + newEvos[i].num);
+                addToWorkingList(newEvos[i].num);
+              }
+            }
+
+            for (i = 0; i < allEvos.length; i++) {
+              var tmpPos = newPosition.findIndex(pos => pos.name == allEvos[i]);
+              tmpEvo.push(newPosition[tmpPos])
+              newPosition.splice(tmpPos,1);
+              if (tmpPos < movedItemPosIndex) {
+                movedItemPosIndex = movedItemPosIndex - 1;
+              }
+            }
+
+            newPosition.splice(movedItemPosIndex,0,...tmpEvo.reverse());
+
+            var newRootIndex = newPosition.findIndex(pos => pos.name == 'item' + rootNum);
+            var beforeInd = newRootIndex+1;
+            if (beforeInd >= newPosition.length) {
+              beforeInd = newPosition.length - 1;
+            }
+            var afterInd = newRootIndex-tmpEvo.length;
+            if (afterInd < 0) {
+              afterInd = 0;
+            }
+            var beforeEvos = [];
+            var afterEvos = [];
+                                //alert(newPosition[newRootIndex].name + " " + newPosition[beforeInd].name + " " + newPosition[afterInd].name)
+            var beforeRootNum = workingList.find(element => 'item' + element.num == newPosition[beforeInd].name).root;
+            var afterRootNum = workingList.find(element => 'item' + element.num == newPosition[afterInd].name).root;
+
+  //          for (i = 0; i < workingList.length; i++) {
+    //          if (workingList[i].root == beforeRootNum) {
+      //          beforeEvos.push('item' + workingList[i].num);
+        //      }
+  //            if (workingList[i].root == afterRootNum) {
+    //            afterEvos.push('item' + workingList[i].num);
+      //        }
+        //    }
+
+  //          if (beforeRootNum == afterRootNum) {
+    //          alert()
+      //        var tmpEvo = [];
+        //      for (i = 0; i < beforeEvos.length; i++) {
+  //              var tmpPos = newPosition.findIndex(pos => pos.name == beforeEvos[i]);
+    //            tmpEvo.push(newPosition[tmpPos])
+      //          newPosition.splice(tmpPos,1);
+        //      }
+  //            newPosition.splice(beforeInd,0,...tmpEvo.reverse());
+    //        }
+
+            //Adjust before and after Pkmn
+
+            if (beforeInd < workingList.length) { //before
+
+            };
+            if (afterInd > 0) { //after
+
+            };
+
+            // Orderを入れる
+            var number = 0;
+            for (var i = newPosition.length; i--; ) {
+                //console.log(newPosition[i].name);
+                var tmpItem = document.getElementById(newPosition[i].name);
+                tmpItem.style.order = number;
+                tmpItem.style.left = 0;
+                tmpItem.style.top = 0;
+
+                number ++;
+            }
+
+          // 最後にz-indexを元に戻す
+          var target = document.getElementById(this.id);
+          target.style.zIndex=0;
+        }
+
+    });
+
+    // position取得の関数
+    function getPosition(id){
+      var tmpItem = document.getElementById('item'+id);
+      return [tmpItem.offsetLeft,tmpItem.offsetTop];
+    }
+
+    function addToRoute(id) {
+      var routeBoxList = document.getElementsByClassName("routeBox");
+      for (i = 0; i < routeBoxList.length; i++) {
+        var tmpTop = routeBoxList[i].offsetTop;
+        if (clickedItem.offsetTop > tmpTop - routeBoxList[i].offsetHeight && clickedItem.offsetTop < tmpTop + 1.5*routeBoxList[i].offsetHeight) {
+          var tmpNum = parseInt((clickedItem.id).substring(4,clickedItem.id.length));
+          if (!routeListPkmn[i].includes(tmpNum)) {
+            var tmpEnc = new routeEnc(i,tmpNum);
+
+            nextItem = document.createElement("div");
+            nextItem.setAttribute("id","route"+i+"_"+tmpNum);
+            nextItem.setAttribute("class","item");
+            nextItem.setAttribute("id","route"+i+"_"+tmpNum);
+            nextImg = document.createElement("img");
+            nextImg.setAttribute("height",60);
+            nextImg.setAttribute("width",60);
+            nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[tmpNum] + ".png");
+
+            nextItem.appendChild(nextImg);
+            routeBoxList[i].appendChild(nextItem);
+            routeListPkmn[i].push(tmpNum);
+          }
+        }
+      }
+      updateDex();
+    };
+};
+
+$(document).ready(function() {makeDraggable()});
+</script>
+
+<script>generateStyle()</script>
+<script>document.title="Region Generator";</script>
+<body><script>generateNavBar()</script></body>
+
+  <div style='margin:0px 170px 170px 170px;'>
+  <h2 class="wsite-content-title" style="text-align:center;">
+    <font size="6">Location Generator</font>
+  </h2>
+
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr class="styled-hr" style="width:100%;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+<script>
+  //SETUP
+  var dexTracker;
+
+  class pkmn {
+    constructor(num, name, root, types, habitats, tags, stage) {
+      this.num = num;
+      this.name = name;
+      this.root = root;
+      this.types = types;
+      this.habitats = habitats;
+      this.tags = tags;
+      this.stage = stage;
+    }
+  }
+
+  class routeEnc {
+    constructor(routeId,pkmnNum) {
+      this.routeId = routeId;
+      this.pkmnNum = pkmnNum;
+    }
+  }
+
+  pkmnItemList = [];
+  currentDex = [];
+
+  for (i=0; i < overviewNum.length; i++) {
+    num = i;
+    name = overviewName[i];
+    root = parseInt(overviewResearchLink[i]);
+    types = [overviewType1[i], overviewType2[i]]
+    tmppkmn = new pkmn(num,name,root,types,[],[],0);
+    if (root != num && !fullyEvolvedGym.includes(name)) {
+      tmppkmn.stage = 1; //middle stage of a three-stage line
+    }
+    else if (root != num && fullyEvolvedGym.includes(name)) {
+      tmppkmn.stage = 2; //last stage of a two- or three-stage line
+    }
+    else if (root == num && fullyEvolvedGym.includes(name)) {
+      tmppkmn.stage = 3; //single-stage line
+    }
+
+    pkmnItemList.push(tmppkmn);
+  }
+
+  for (h=0; h < habitatVarList.length; h++) {
+    for (i=0; i <= overviewNum.length; i++) {
+      tmpList = eval(habitatVarList[h]);
+      if (tmpList.includes(parseInt(overviewNum[i]))) {
+        pkmnItemList[i].habitats.push(h);
+      }
+    }
+  }
+
+  for (o=0; o < overviewNum.length; o++) {
+    if (o < 151 && o > 0) {
+      pkmnItemList[o].tags.push("kanto");
+    }
+    else if  (o < 252) {
+      pkmnItemList[o].tags.push("johto");
+    }
+    else if  (o < 387) {
+      pkmnItemList[o].tags.push("hoenn");
+    }
+    else if  (o < 494) {
+      pkmnItemList[o].tags.push("sinnoh");
+    }
+    else if  (o < 650) {
+      pkmnItemList[o].tags.push("unova");
+    }
+    else if  (o < 722) {
+      pkmnItemList[o].tags.push("kalos");
+    }
+    else if  (o < 810) {
+      pkmnItemList[o].tags.push("alola");
+    }
+    else if  (o < 898) {
+      pkmnItemList[o].tags.push("galar");
+    }
+    pkmnItemList[o].tags.push(overviewHabitat[o].toLowerCase());
+  }
+
+  //working list
+  workingList = getRandom(pkmnItemList,10);
+</script>
+
+  <div id="boxWrapper" style="display:block">
+    <div style="display:inline-block; width:100%;">
+      <div id="float-wrapper1" style="display:inline-block;width:50%;float:left;overflow: none;">
+        <input type="text" id="searchbox" name="searchbox" value="Search by name, number, type, or habitat" style="width:75%;height:">
+        <button id="newRoute" class="w3-button w3-light-grey" style="width:20%" onclick="searchPkmn()">
+          <span style="display:flex;"><span class="wsite-button-inner" style="display:flex; text-align:center">Search</span></span></button>
+        <div id="sortbox" class="flex-container" style="display:flex; flex-direction:row;justify-content: flex-start;flex-wrap:wrap;">
+      </div>
+      </div>
+      <div id="float-wrapper2" style="display:inline-block;width:50%;float:left;overflow: none;">
+        <div id="managebox" class="flex-container" style="display:flex; flex-direction:column;justify-content: flex-start;flex-wrap:wrap; width:50%;">
+          <div id="routebox"></div>
+          <button id="newRoute" class="w3-button w3-light-grey" style="width:150px" onclick="addRoute()">
+            <span style="display:flex;"><span class="wsite-button-inner" style="display:flex;">+ Add Route</span></span></button>
+            <button id="generateHabitat" class="w3-button w3-light-grey" style="width:150px" onclick="generateRandomHabitat(parseInt(document.getElementById('habitatChoice').value))">
+              <span style="display:flex;"><span class="wsite-button-inner" style="display:flex;">Generate a:</span></span></button>
+              <form action="/action_page.php">
+                <select name="habitat" id="habitatChoice">
+                  <option value="0">Forest</option>
+                  <option value="1">Jungle</option>
+                  <option value="2">Woodland</option>
+                  <option value="3">Field</option>
+                  <option value="4">Grassland</option>
+                  <option value="5">City</option>
+                  <option value="6">Power Plant</option>
+                  <option value="7">Volcano</option>
+                  <option value="8">Cave</option>
+                  <option value="9">Mountain</option>
+                  <option value="10">Desert</option>
+                  <option value="11">Badland</option>
+                  <option value="12">Pond</option>
+                  <option value="13">Lake</option>
+                  <option value="14">River</option>
+                  <option value="15">Riverside</option>
+                  <option value="16">Beach</option>
+                  <option value="17">Ocean</option>
+                  <option value="18">Reef</option>
+                  <option value="19">Polar Sea</option>
+                  <option value="20">Abyss</option>
+                  <option value="21">Swamp</option>
+                  <option value="22">Glacier</option>
+                  <option value="23">Tundra</option>
+                  <option value="24">Ruin</option>
+                </select>
+                <br><br>
+              </form>
+              <button id="generateWholeRegion" class="w3-button w3-light-grey" style="font-size:12px;width:150px" onclick="generateRegion()">
+                <span style="display:flex;"><span class="wsite-button-inner" style="display:flex;">Generate a Region</span></span></button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="dexWrapper" style="display:inline-block">
+    <div id="currentDex" class="flex-container" style="display:flex; flex-direction:row;justify-content: flex-start;flex-wrap:wrap;">
+    </div>
+  </div>
+  <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+<script>
+
+  for (i = 0; i < workingList.length; i++) {
+    nextItem = document.createElement("div");
+    nextItem.setAttribute("id","item"+workingList[i].num);
+    nextItem.setAttribute("class","item");
+    nextItem.setAttribute("id","item"+workingList[i].num);
+    nextImg = document.createElement("img");
+    nextImg.setAttribute("height",75);
+    nextImg.setAttribute("width",75);
+    nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[workingList[i].num] + ".png");
+
+    nextItem.appendChild(nextImg);
+    sortbox.appendChild(nextItem);
+  }
+
+  function addToWorkingList(id) {
+    nextItem = document.createElement("div");
+    nextItem.setAttribute("id","item"+pkmnItemList[id].num);
+    nextItem.setAttribute("class","item");
+    nextItem.setAttribute("id","item"+pkmnItemList[id].num);
+    nextImg = document.createElement("img");
+    nextImg.setAttribute("height",75);
+    nextImg.setAttribute("width",75);
+    nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[pkmnItemList[id].num] + ".png");
+
+    nextItem.appendChild(nextImg);
+    sortbox.appendChild(nextItem);
+
+    workingList.push(pkmnItemList[id]);
+  }
+
+  function clearWorkingList() {
+    sortbox.innerHTML="";
+    workingList = [];
+  }
+
+  function updateWorkingList(itemList) {
+    for (i = 0; i < itemList.length; i++) {
+      addToWorkingList(parseInt(itemList[i].num));
+    }
+  }
+
+  routeList = [];
+  routeCount = 0;
+  routeListPkmn = [];
+  landmarkList = [];
+  landmarkCount = 0;
+  noGymList = [];
+  noGymCount = 0;
+  gymList = [];
+  caveCount = 0;
+  caveList = [];
+  caveListPkmn = [];
+
+  typeTriads = [["Grass","Fire","Water"],["Psychic","Dark","Fighting"],["Fighting","Flying","Rock"],["Rock","Steel","Fire"],["Grass","Poison","Rock"]];
+
+  function addRoute() {
+    newRoute = document.createElement("div");
+    newRoute.setAttribute("id","route"+routeCount);
+    newRoute.setAttribute("class","routeBox");
+    newRoute.setAttribute("style","height:75px;width:150%;align-items:center;");
+
+    areaName = document.createElement("input");
+    areaName.setAttribute("type","text");
+    areaName.setAttribute("style","width:300px")
+    areaName.setAttribute("id","routeName"+routeCount);
+    areaName.setAttribute("value","Route "+ (routeCount + 1));
+
+    routeUnit = document.createElement("div");
+    routeUnit.setAttribute("id","routeUnit"+routeCount);
+    routeUnit.appendChild(areaName);
+    routeUnit.appendChild(newRoute);
+    routebox.appendChild(routeUnit);
+    routeList.push(routeUnit);
+    routeListPkmn.push([]);
+    routeCount += 1;
+  }
+
+  function addLandmark(type="gymTown",gymType="Normal") {
+    newLandmark = document.createElement("div");
+    newLandmark.setAttribute("id","landmark"+landmarkCount);
+    newLandmark.setAttribute("class","landmarkBox");
+    landmarkBGColor = typeColors[typeList.indexOf(gymType)]
+    newLandmark.setAttribute("style","height:75px;width:150%;align-items:center;background-color:" + landmarkBGColor);
+
+    landmarkName = document.createElement("input");
+    landmarkName.setAttribute("type","text");
+    landmarkName.setAttribute("style","width:300px")
+    landmarkName.setAttribute("id","landmarkName"+landmarkCount);
+    if (landmarkCount < 8) {
+      cityName = getRandom(calmPrefix.concat(angryPrefix,waterPrefix),1) + getRandom(calmSuffix.concat(angrySuffix,waterSuffix),1) + " " + getRandom(["Town","City","City"],1)
+      landmarkName.setAttribute("value",cityName + " (Gym "+ (landmarkCount + 1) + ")");
+    }
+    else {
+      landmarkName.setAttribute("value","E4 "+ (landmarkCount - 8 + 1));
+    }
+
+    landmarkUnit = document.createElement("div");
+    landmarkUnit.setAttribute("id","landmarkUnit"+landmarkCount);
+    landmarkUnit.appendChild(landmarkName);
+    landmarkUnit.appendChild(newLandmark);
+    routebox.appendChild(landmarkUnit);
+    landmarkCount += 1;
+  }
+
+  function addNoGym() {
+    newNoGym = document.createElement("div");
+    newNoGym.setAttribute("id","noGym"+noGymCount);
+    newNoGym.setAttribute("class","noGymBox");
+    newNoGym.setAttribute("style","height:25px;width:150%;align-items:center;background-color:" + "#dddddd");
+
+    noGymName = document.createElement("input");
+    noGymName.setAttribute("type","text");
+    noGymName.setAttribute("style","width:300px")
+    noGymName.setAttribute("id","noGymName"+noGymCount);
+    cityName = getRandom(calmPrefix.concat(angryPrefix,waterPrefix),1) + getRandom(calmSuffix.concat(angrySuffix,waterSuffix),1) + " " + getRandom(["Town","Town","Town","City"],1)
+    noGymName.setAttribute("value",cityName);
+
+    noGymUnit = document.createElement("div");
+    noGymUnit.setAttribute("id","noGymUnit"+noGymCount);
+    noGymUnit.appendChild(noGymName);
+    noGymUnit.appendChild(newNoGym);
+    routebox.appendChild(noGymUnit);
+    noGymCount += 1;
+  }
+
+  function generateRandomHabitat(genHabitatID) {
+    var routeBoxList = document.getElementsByClassName("routeBox");
+
+    randomHabitat = getRandomRoutePkmn(genHabitatID);
+
+    addRoute();
+    setHabitat(parseInt(genHabitatID) + 1,output=false);
+    document.getElementById("routeName"+(routeCount-1)).value = document.getElementById("routeName"+(routeCount-1)).value + " (" + LocationName + ")";
+    tmpRouteListPkmn = [];
+    for (i = 0;i < randomHabitat.length; i++) {
+      var tmpNum = parseInt(((PKMNList.indexOf(randomHabitat[i]) + 1).toString()).padStart(3,'0'));
+      var tmpEnc = new routeEnc(routeCount - 1,((PKMNList.indexOf(randomHabitat[i]) + 1).toString()).padStart(3,'0'));
+
+      nextItem = document.createElement("div");
+      nextItem.setAttribute("id","route"+routeCount+"_"+tmpNum);
+      nextItem.setAttribute("class","item");
+      nextItem.setAttribute("id","route"+routeCount+"_"+tmpNum);
+      nextImg = document.createElement("img");
+      nextImg.setAttribute("height",60);
+      nextImg.setAttribute("width",60);
+      nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[tmpNum] + ".png");
+
+      nextItem.appendChild(nextImg);
+      routeBoxList[routeCount - 1].appendChild(nextItem);
+      tmpRouteListPkmn.push(tmpNum);
+    }
+    routeListPkmn.push(tmpRouteListPkmn);
+    updateDex();
+
+  }
+
+  function generateCave(genHabitatID) {
+    setHabitat(parseInt(genHabitatID) + 1,output=false);
+    randomHabitat = getRandomRoutePkmn(genHabitatID);
+
+    newCave = document.createElement("div");
+    newCave.setAttribute("id","cave"+caveCount);
+    newCave.setAttribute("class","caveBox");
+    newCave.setAttribute("style","height:75px;width:150%;align-items:center;");
+
+    areaName = document.createElement("input");
+    areaName.setAttribute("type","text");
+    areaName.setAttribute("style","width:300px")
+    areaName.setAttribute("id","caveName"+caveCount);
+    areaName.setAttribute("value",LocationName);
+
+    caveUnit = document.createElement("div");
+    caveUnit.setAttribute("id","caveUnit"+caveCount);
+    caveUnit.appendChild(areaName);
+    caveUnit.appendChild(newCave);
+    routebox.appendChild(caveUnit);
+    caveList.push(caveUnit);
+    caveListPkmn.push([]);
+    caveCount += 1;
+
+    tmpCaveListPkmn = [];
+    var caveBoxList = document.getElementsByClassName("caveBox");
+    for (rh = 0; rh < randomHabitat.length; rh++) {
+      var tmpNum = parseInt(((PKMNList.indexOf(randomHabitat[rh]) + 1).toString()).padStart(3,'0'));
+      var tmpEnc = new routeEnc(caveCount - 1,((PKMNList.indexOf(randomHabitat[rh]) + 1).toString()).padStart(3,'0'));
+
+      nextItem = document.createElement("div");
+      nextItem.setAttribute("id","cave"+caveCount+"_"+tmpNum);
+      nextItem.setAttribute("class","item");
+      nextItem.setAttribute("id","cave"+caveCount+"_"+tmpNum);
+      nextImg = document.createElement("img");
+      nextImg.setAttribute("height",60);
+      nextImg.setAttribute("width",60);
+      nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[tmpNum] + ".png");
+
+      nextItem.appendChild(nextImg);
+      caveBoxList[caveBoxList.length - 1].appendChild(nextItem);
+      tmpCaveListPkmn.push(tmpNum);
+    }
+    caveListPkmn.push(tmpCaveListPkmn);
+    updateDex();
+  }
+
+  function getRandomRoutePkmn(genHabitatID) {
+    num_common = habitatList_common[genHabitatID].length;
+    num_uncommon = 2;
+    if ((num_common < 3 && !lateVal) || (habitatList_common_L[genHabitatID].length < 3 && lateVal)) {
+      num_uncommon = num_uncommon + (3 - num_common);
+    }
+    if (!lateVal) {
+      var randomHabitat = getRandom(habitatList_common[genHabitatID],Math.min(habitatList_common[genHabitatID].length,3)).concat(getRandom(habitatList_uncommon[genHabitatID],Math.min(habitatList_uncommon[genHabitatID].length,num_uncommon))).concat(getRandom(habitatList_rare[genHabitatID],Math.min(habitatList_rare[genHabitatID].length,1)));
+    }
+    else {
+      var randomHabitat = getRandom(habitatList_common_L[genHabitatID],Math.min(habitatList_common_L[genHabitatID].length,3)).concat(getRandom(habitatList_uncommon_L[genHabitatID],Math.min(habitatList_uncommon_L[genHabitatID].length,num_uncommon))).concat(getRandom(habitatList_rare_L[genHabitatID],Math.min(habitatList_rare_L[genHabitatID].length,1)));
+    }
+    for (rh=0; rh < randomHabitat.length; rh++) {
+      if (randomHabitat[rh] == "Nidoran") {
+        randomHabitat[rh] = "Nidoran♀"
+        randomHabitat.concat("Nidoran♂")
+      }
+      else if (randomHabitat[rh] == "Nidorina & Nidorino") {
+        randomHabitat[rh] = "Nidorina"
+        randomHabitat.concat("Nidorino")
+      }
+      else if (randomHabitat[rh] == "Plusle & Minun") {
+        randomHabitat[rh] = "Plusle"
+        randomHabitat.concat("Minun")
+      }
+      else if (randomHabitat[rh] == "Volbeat & Illumise") {
+        randomHabitat[rh] = "Volbeat"
+        randomHabitat.concat("Illumise")
+      }
+    }
+
+    return randomHabitat;
+  }
+
+  function updateDex() {
+    currentDexDiv = document.getElementById("currentDex");
+    currentDexDiv.innerHTML = "";
+    currentDexList = [];
+
+    currentDexList = getCurrentDex();
+
+    for (i = 0; i < currentDexList.length; i++) {
+      nextItem = document.createElement("div");
+      nextItem.setAttribute("id","item_dex"+currentDexList[i]);
+      nextItem.setAttribute("class","item");
+      nextItem.setAttribute("id","item_dex"+currentDexList[i]);
+      nextImg = document.createElement("img");
+      nextImg.setAttribute("height",75);
+      nextImg.setAttribute("width",75);
+      nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[currentDexList[i]] + ".png");
+
+      nextItem.appendChild(nextImg);
+      currentDexDiv.appendChild(nextItem);
+    }
+    drawChart();
+  }
+
+  function generateRegion() {
+    intergymIntervals = [1,2,2,3,3,3,4,4];
+    shuffleArray(intergymIntervals);
+    shuffledTypes = typeList.slice();
+    shuffleArray(shuffledTypes);
+    intergym = 0;
+    intergymCounter = 0;
+    interstitialTown = false;
+    caveAdded = false;
+    addNoGym() //starting town
+    for (n = 0; n < 25; n++) {
+      //first three routes are forest, woodland, field, or grassland
+      if (n >= 10) {
+        lateVal = true;
+      }
+      if (n <= 2) {
+        rng = Math.floor(Math.random() * 5)
+        if (rng == 1) {
+          rng = 0;
+        }
+        generateRandomHabitat(rng)
+      }
+      //25% chance of water route
+      else {
+        waterChance = Math.floor(Math.random() * 4)
+        if (waterChance == 0) {
+          rng = Math.floor(Math.random() * (22 - 12) + 12)
+          generateRandomHabitat(rng)
+        }
+        else {
+          rng = Math.floor(Math.random() * 16)
+          if (rng >= 12) {
+            rng = rng + 9;
+          }
+          generateRandomHabitat(rng)
+        }
+      }
+      intergymCounter += 1;
+      if (intergym < 8 && intergymCounter == intergymIntervals[intergym]) {
+        addLandmark(type="gymTown",gymType = shuffledTypes[intergym])
+        intergym += 1;
+        intergymCounter = 0;
+        interstitialTown = false;
+        caveAdded = false;
+      }
+      //no-gym towns
+      else if (!interstitialTown && Math.floor(Math.random() * 100) < 33) {
+        addNoGym()
+        interstitialTown = true;
+      }
+      //caves
+      if (intergymCounter < 3 && Math.floor(Math.random() * 100) < 15) {
+        caveRng = Math.floor(Math.random() * 16)
+        if (caveRng >= 12) {
+          caveRng = caveRng + 9;
+        }
+        generateCave(caveRng)
+        caveAdded = true;
+      }
+    }
+    lateVal = false;
+
+    //e4
+    for (e4 = 0; e4 < 4; e4++) {
+      addLandmark(type="gymTown",gymType = shuffledTypes[intergym])
+      intergym += 1;
+    }
+
+    //populate gyms
+    gymTeamNumbers = [2,3,4,4,5,5,6,6,6,6,6,6]
+    currentDexList = getCurrentDex();
+    var gymBoxList = document.getElementsByClassName("landmarkBox");
+
+    for (gymNum = 0; gymNum < 12; gymNum ++) {
+      workingList = [];
+      pkmnStage = [[0],[0,1],[1,3],[1,3],[1,2,3],[2,3],[2,3],[2,3],[2,3],[2,3],[2,3],[2,3]];
+      for (d = 0; d < currentDexList.length; d++) {
+        if ((pkmnItemList[currentDexList[d]].types).includes(shuffledTypes[gymNum]) && pkmnStage[gymNum].includes(pkmnItemList[currentDexList[d]].stage)) {
+          workingList.push(pkmnItemList[currentDexList[d]].num)
+        }
+      }
+
+      tmpGymPkmn = getRandom(workingList,Math.min(gymTeamNumbers[gymNum],workingList.length));
+      if (tmpGymPkmn.length < gymTeamNumbers[gymNum]) {
+        for (d = 0; d < currentDexList.length; d++) {
+          if (pkmnStage[gymNum].includes(pkmnItemList[currentDexList[d]].stage)) {
+            workingList.push(pkmnItemList[currentDexList[d]].num)
+          }
+        }
+      tmpGymPkmn = tmpGymPkmn.concat(getRandom(workingList,gymTeamNumbers[gymNum] - tmpGymPkmn.length))
+      }
+
+      var curGym = document.getElementById("landmarkName" + gymNum)
+
+      for (gp = 0; gp < tmpGymPkmn.length; gp++) {
+        var tmpNum = tmpGymPkmn[gp];
+
+        nextItem = document.createElement("div");
+        nextItem.setAttribute("id","landmark"+gp+"_"+tmpNum);
+        nextItem.setAttribute("class","item");
+        nextItem.setAttribute("id","route"+gp+"_"+tmpNum);
+
+        nextImg = document.createElement("img");
+        nextImg.setAttribute("height",60);
+        nextImg.setAttribute("width",60);
+        nextImg.setAttribute("src","https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + overviewNum[tmpNum] + ".png");
+
+        nextItem.appendChild(nextImg);
+        gymBoxList[gymNum].appendChild(nextItem);
+      }
+    }
+  }
+
+  Array.prototype.toLowerCase = function() {
+    for (var i = 0; i < this.length; i++) {
+        this[i] = this[i].toString().toLowerCase();
+    }
+    return this;
+  }
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  function getCurrentDex() {
+    currentDexList = [];
+
+    allListPkmn = routeListPkmn.concat(caveListPkmn);
+
+    for (i = 0; i < allListPkmn.length; i++) {
+      for (j = 0; j < allListPkmn[i].length; j++) {
+        if (!currentDexList.includes(parseInt(allListPkmn[i][j]))) {
+          var firstEvoIndex = parseInt(overviewResearchLink[parseInt(allListPkmn[i][j])]);
+          for (k = 0; k < overviewResearchLink.length; k++) {
+            if (parseInt(overviewResearchLink[k]) == parseInt(firstEvoIndex)) {
+              currentDexList.push(k);
+            }
+          }
+        }
+      }
+    }
+
+    return currentDexList;
+  }
+
+  function searchPkmn() {
+      clearWorkingList();
+      input = searchbox.value;
+      var foundSomething = false;
+      for (x = 0; x < habitatTypeList.length; x++) {
+        tmp = ((habitatTypeList[x]).toLowerCase()).includes(input.toLowerCase());
+        if (tmp) {
+          updateWorkingList(pkmnItemList.filter(item => item.habitats.includes(x)));
+          makeDraggable();
+          foundSomething = true;
+        }
+      }
+      if (!foundSomething) {
+        if (parseInt(input) > 0 && parseInt(input) < overviewName.length) {
+          updateWorkingList([pkmnItemList[parseInt(input)]]);
+          makeDraggable();
+          foundSomething = true;
+        }
+      }
+      if (!foundSomething) {
+        if (overviewName.indexOf(input) > 0) {
+          updateWorkingList([pkmnItemList[(overviewName.toLowerCase()).indexOf(input.toLowerCase())]]);
+          makeDraggable();
+          foundSomething = true;
+        }
+      }
+      if (!foundSomething) {
+        toReturn = [];
+        for (x = 0; x < pkmnItemList.length; x++) {
+          if ((pkmnItemList[x].types[0]).toLowerCase() == input.toLowerCase() || ((pkmnItemList[x].types[1]).toLowerCase() == input.toLowerCase() && pkmnItemList[x].types[0] != "Unknown")) {
+            toReturn.push(pkmnItemList[x]);
+            foundSomething = true;
+          }
+        }
+        updateWorkingList(toReturn);
+        makeDraggable();
+      }
+      if (!foundSomething) {
+        toReturn = [];
+        for (var x = 0; x < pkmnItemList.length; x++) {
+          if ((pkmnItemList[x].tags[0]).toLowerCase() == input.toLowerCase()) {
+            toReturn.push(pkmnItemList[x]);
+            foundSomething = true;
+          }
+        }
+        updateWorkingList(toReturn);
+        makeDraggable();
+      }
+      if (!foundSomething) {
+        toReturn = [];
+        for (var x = 0; x < pkmnItemList.length; x++) {
+          if ((pkmnItemList[x].tags[1]) && ((pkmnItemList[x].tags[1]).toLowerCase()).match('.*' + input.toLowerCase() + '.*')) {
+            toReturn.push(pkmnItemList[x]);
+            foundSomething = true;
+          }
+        }
+        updateWorkingList(toReturn);
+        makeDraggable();
+      }
+  }
+
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      typeCounter = [["Type","Number",{ role: 'style' }]];
+      for (t = 0; t < typeList.length; t++) {
+        typeCounter.push([typeList[t],0,"color: " + typeColors[t]]);
+      }
+      for (w = 0; w < currentDexList.length; w++) {
+        if ((typeList.indexOf(pkmnItemList[currentDexList[w]].types[0])) >= 0) {
+          typeCounter[typeList.indexOf(pkmnItemList[currentDexList[w]].types[0] ) + 1][1]++;
+        }
+
+        if (pkmnItemList[currentDexList[w]].types[1] != "Unknown" && (typeList.indexOf(pkmnItemList[currentDexList[w]].types[1])) >= 0) {
+          typeCounter[typeList.indexOf(pkmnItemList[currentDexList[w]].types[1]) + 1][1]++;
+        }
+      }
+      var data = google.visualization.arrayToDataTable(typeCounter);
+
+      var options = {
+        title: 'Type representation',
+        legend: { position: 'none' },
+        hAxis: {minValue: 0,
+                maxValue: 1,
+                viewWindow: {
+                  min: 0,
+                  viewWindowMode: "explicit"
+                }
+              }
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+
+  </script>
+
+<body><script>generateFooter();document.getElementsByClassName("container")[0].style.display="block";</script></body>
+
+</html>

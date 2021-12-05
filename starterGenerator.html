@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<head>
+  <script type='text/javascript' src='https://code.jquery.com/jquery-latest.js'></script>
+  <script type='text/javascript' src='OverviewText.js'></script>
+    <script type='text/javascript' src='starterGenerator.js'></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=G-NP4C5XZVLG'></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-NP4C5XZVLG');
+</script>
+</head>
+
+  <script>generateStyle()</script>
+  <script>document.title="Starter Quiz";</script>
+  <body><script>generateNavBar()</script></body>
+
+  <div style='margin:0% 12% 12% 12%;'>
+  <h2 class="wsite-content-title" style="text-align:center;">
+    <font size="5">Starter Quiz</font>
+  </h2>
+
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr class="styled-hr" style="width:100%;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+<h3 style="text-align:center; font-style:italic; display:none" id="starterReveal">
+  <font size="4">Your starter is...</font>
+</h3>
+<h3 style="text-align:center; font-style:italic;" id="question">
+  <font size="5">Which of the following best describes the habitat you live in or plan to explore?</font>
+</h3>
+<h3 style="text-align:center; font-style:none; font-size:250%; display:none" id="reveal">
+  <font>Undefined</font>
+</h3>
+</br>
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr class="styled-hr" style="width:100%;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+<h3 style="text-align:center; font-style:italic; font-size:120%; display:none" id="followup">
+  <font size="4">Learn more about UNDEFINED below!</font>
+</h3>
+
+
+<!--Buttons-->
+<div class="flex-container" style="display:flex; flex-direction:row;justify-content: center; flex-wrap:wrap;">
+<button id="forestButton" class="w3-button w3-dark-grey" onclick="quiz1(1)">
+<span class="wsite-button-inner" >FOREST</span></button>
+<button id="jungleButton" class="w3-button w3-dark-grey" onclick="quiz1(2)">
+<span class="wsite-button-inner">JUNGLE</span></button>
+<button id="woodlandButton" class="w3-button w3-dark-grey" onclick="quiz1(3)">
+<span class="wsite-button-inner">WOODLAND</span></button>
+<button id="fieldButton" class="w3-button w3-dark-grey" onclick="quiz1(4)">
+<span class="wsite-button-inner">FIELD</span></button>
+<button id="grasslandButton" class="w3-button w3-dark-grey" onclick="quiz1(5)">
+<span class="wsite-button-inner">GRASSLAND</span></button>
+<button id="cityButton" class="w3-button w3-dark-grey" onclick="quiz1(6)">
+<span class="wsite-button-inner">CITY</span></button>
+<button id="plantButton" class="w3-button w3-dark-grey" onclick="quiz1(7)">
+<span class="wsite-button-inner">INDUSTRIAL</span></button>
+<button id="volcanoButton" class="w3-button w3-dark-grey" onclick="quiz1(8)">
+<span class="wsite-button-inner">VOLCANO</span></button>
+<button id="caveButton" class="w3-button w3-dark-grey" onclick="quiz1(9)">
+<span class="wsite-button-inner">CAVE</span></button>
+<button id="mountainButton" class="w3-button w3-dark-grey" onclick="quiz1(10)">
+<span class="wsite-button-inner">MOUNTAIN</span></button>
+<button id="desertButton" class="w3-button w3-dark-grey" onclick="quiz1(11)">
+<span class="wsite-button-inner">DESERT</span></button>
+<button id="badlandButton" class="w3-button w3-dark-grey" onclick="quiz1(12)">
+<span class="wsite-button-inner">BADLAND</span></button>
+<button id="pondButton" class="w3-button w3-dark-grey" onclick="quiz1(13)">
+<span class="wsite-button-inner">POND</span></button>
+<button id="lakeButton" class="w3-button w3-dark-grey" onclick="quiz1(14)">
+<span class="wsite-button-inner">LAKE</span></button>
+<button id="riverButton" class="w3-button w3-dark-grey" onclick="quiz1(15)">
+<span class="wsite-button-inner">RIVER</span></button>
+<button id="riversideButton" class="w3-button w3-dark-grey" onclick="quiz1(16)">
+<span class="wsite-button-inner">RIVERSIDE</span></button>
+<button id="beachButton" class="w3-button w3-dark-grey" onclick="quiz1(17)">
+<span class="wsite-button-inner">BEACH</span></button>
+<button id="oceanButton" class="w3-button w3-dark-grey" onclick="quiz1(18)">
+<span class="wsite-button-inner">OCEAN</span></button>
+<button id="reefButton" class="w3-button w3-dark-grey" onclick="quiz1(19)">
+<span class="wsite-button-inner">REEF</span></button>
+<button id="polarButton" class="w3-button w3-dark-grey" onclick="quiz1(20)">
+<span class="wsite-button-inner">POLAR SEA</span></button>
+<button id="abyssButton" class="w3-button w3-dark-grey" onclick="quiz1(21)">
+<span class="wsite-button-inner">ABYSS</span></button>
+<button id="swampButton" class="w3-button w3-dark-grey" onclick="quiz1(22)">
+<span class="wsite-button-inner">SWAMP</span></button>
+<button id="glacierButton" class="w3-button w3-dark-grey" onclick="quiz1(23)">
+<span class="wsite-button-inner">GLACIER</span></button>
+<button id="tundraButton" class="w3-button w3-dark-grey" onclick="quiz1(24)">
+<span class="wsite-button-inner">TUNDRA</span></button>
+<button id="ruinButton" class="w3-button w3-dark-grey" onclick="quiz1(25)">
+<span class="wsite-button-inner">RUIN</span></button>
+
+<button id="easyButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz2(1)">
+<span class="wsite-button-inner">LOW MAINTENANCE</span></button>
+<button id="medButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz2(2)">
+<span class="wsite-button-inner">MODERATE MAINTENANCE</span></button>
+<button id="hardButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz2(3)">
+<span class="wsite-button-inner">HIGH MAINTENANCE</span></button>
+
+<button id="gentleButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz3(1)">
+<span class="wsite-button-inner">INTROVERTED</span></button>
+<button id="laidbackButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz3(2)">
+<span class="wsite-button-inner">IN BETWEEN</span></button>
+<button id="outgoingButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz3(3)">
+<span class="wsite-button-inner">EXTROVERTED</span></button>
+
+<button id="easygoingButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(1)">
+<span class="wsite-button-inner">EASYGOING</span></button>
+<button id="reservedButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(2)">
+<span class="wsite-button-inner">RESERVED</span></button>
+<button id="carefreeButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(3)">
+<span class="wsite-button-inner">CAREFREE</span></button>
+<button id="scrappyButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(4)">
+<span class="wsite-button-inner">SCRAPPY</span></button>
+<button id="hardworkingButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(5)">
+<span class="wsite-button-inner">HARDWORKING</span></button>
+<button id="caringButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(6)">
+<span class="wsite-button-inner">PROTECTIVE</span></button>
+<button id="mischievousButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(7)">
+<span class="wsite-button-inner">MISCHIEVOUS</span></button>
+<button id="curiousButton" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz4(8)">
+<span class="wsite-button-inner">CURIOUS</span></button>
+<button id="button5-1" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(1)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-2" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(2)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-3" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(3)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-4" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(4)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-5" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(5)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-6" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(6)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-7" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(7)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-8" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(8)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-9" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(9)">
+<span class="wsite-button-inner"></span></button>
+<button id="button5-10" class="w3-button w3-dark-grey" style="display:none;" onclick="quiz5(0)">
+<span class="wsite-button-inner"></span></button>
+</div>
+
+<!--STARTER GALLERY-->
+<div>
+  <div id="starter-gallery" class="imageGallery" style="line-height: 0px; padding: 0; margin: 0;">
+    <div style='display:flex; flex-flow:row wrap; margin:0px 10% 5% 10%;' id='entryHolder'></div>
+  </div>
+</div>
+
+<button id="reset" class="w3-button w3-grey" style="display:block;" onclick="resetQuiz()">
+<span class="wsite-button">Reset</span></button>
+
+<div>
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+  <hr id = "breakline" class="styled-hr" style="width:100%;display:none;">
+  <div style="height: 10px; overflow: hidden; width: 100%;"></div>
+</div>
+
+  <hr class='hr' style='width:100%;'>
+
+<button id="hideGuideButton" class="w3-button w3-dark-grey" style="display:block;" onclick="guideSwitchOff()">
+<span class="wsite-button">Hide Usage Guide</span></button>
+<button id="showGuideButton" class="w3-button w3-dark-grey" style="display:none;" onclick="guideSwitchOn()">
+<span class="wsite-button">Show Usage Guide</span></button>
+
+<br/>
+
+
+<h2 id="HowTo">Guide</h2>
+<p id="text1">This quiz is intended to select an ideal starter Pokémon in only five (or fewer) questions. Many times, you will not need all five questions, as some categories are already more narrow than others.</p>
+
+<br/>
+
+<p id="text2">The first question is of habitat; you might want to select the habitat you currently live in, or the habitat you believe you will spend a lot of time exploring; it depends on how you plan to use the results of the quiz.</p>
+
+<br/>
+
+<p id="text3">The second question regards Pokémon maintenance and how much effort you are willing to put towards training your starter. Low-maintenance Pokémon are ideal for beginning trainers, while high-maintenance Pokémon might be more suitable for veterans. Moderate Pokémon are a good choice for a wide variety of trainers.</p>
+
+<br/>
+
+<p id="text4">The third question is of disposition. Would you prefer a reserved, introverted sort of partner, or an outgoing, extroverted one? You might either choose a disposition to match your own, or perhaps one to balance your own tendencies out.</p>
+
+<br/>
+
+<p id="text5">The fourth question pertains to personality. Again, you can either select a personality similar to your own, or a personality that you would want in a partner Pokémon.</p>
+
+<br/>
+
+<p id="text6">The fifth question regards a defining characteristic that you consider most important in a partner. It is usually an ideal or trait that you would want your starter to embody.</p>
+
+<body><script>generateFooter()</script></body>
+
+</html>
+</div>
